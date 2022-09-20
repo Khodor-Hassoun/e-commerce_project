@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+}
+
+
+/* style header and navbar section*/
+
+.navbar {
+    width: 100vw;
+    height: 20%;
+    background-color: #022B3A;
+    color: white;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar-item {
+    margin: 15px;
+}
