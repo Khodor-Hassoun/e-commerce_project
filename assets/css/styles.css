@@ -1,0 +1,42 @@
+/* CSS Reset */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* Nav Bar*/
+
+.navbar {
+    width: 100vw;
+    height: 20%;
+    background-color: #022B3A;
+    color: white;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar-item {
+    margin: 15px;
+}
+
+
+/*Side menu*/
+
+.side-menu-container {
+    background-color: rgba(31, 122, 140, 1);
+    height: 100vh;
+    width: 30%;
+}
+
+.side-menu-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
