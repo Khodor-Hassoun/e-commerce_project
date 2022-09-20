@@ -9,23 +9,24 @@ include("connection/connection.php");
 $product_id = $_GET["product_id"];
 //check if id is not empty
 if(!isset($product_id)){ 
-    echo json_encode(['error' => 400,'message' => 'ID cannot be empty']); 
+    echo json_encode(['status' => 400,'message' => 'ID cannot be empty']); 
     return;
 }   
 //check if id is valid in database
-$query = $mysqli->prepare("SELECT id FROM products WHERE id = ?");
+$query = $mysqli->prepare("SELECT * FROM products WHERE id = ?");
 $query->bind_param("i", $product_id);
 $query->execute();
+$query->store_result();
+$num_rows = $query->num_rows;
     
-if($query->num_rows==0){
-    echo json_encode(['error' => 400,'message' => 'ID not found']); 
+if($num_rows == 0){
+    echo json_encode(['status' => 400,'message' => 'ID not found']); 
     return;
 }
-
-$query = $mysqli->prepare("DELETE * FROM products WHERE id = ?"); 
+//delete product by ID
+$query = $mysqli->prepare("DELETE FROM products WHERE id = ?"); 
 $query->bind_param("i", $product_id);
 $query->execute();
-
-echo json_encode(['error' => 200,'message' => 'success']); 
+echo json_encode(['status' => 200,'message' => 'success']); 
 
 ?>
