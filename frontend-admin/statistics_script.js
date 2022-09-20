@@ -25,7 +25,7 @@ google.charts.load("current", {packages:['corechart']});
       };
       var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_users"));
       chart.draw(view, options);
-  }
+}
 
 google.charts.load("current", {packages:['corechart']});
 google.charts.setOnLoadCallback(productsChart);

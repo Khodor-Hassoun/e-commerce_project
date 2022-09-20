@@ -200,6 +200,7 @@ header > h3{
 /*Statistics page starts here*/
 .charts_container{
     display: flex;
+    justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
 }
