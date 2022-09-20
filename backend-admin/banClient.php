@@ -2,17 +2,35 @@
     header("Access-Control-Allow-Origin: *");
     include('connection.php');
     $userId = $_GET['q'];
-    $ban = 0;
+    $not_ban = 0;
+    $ban = 1;
     // I need to get the client Id
     // When I GET the client Id, we change is_banned to 1 (true)
     // First we will check if the user exists in the database
-    $query = $mysqli ->prepare('SELECT * FROM users WHERE id=? AND is_banned = ?');
-    $query ->bind_param('ii', $userId, $ban);
+    $query = $mysqli ->prepare('SELECT * FROM users WHERE id=? AND is_banned = ?'); //Will return a single object
+    $query ->bind_param('ii', $userId, $not_ban);
     $query->execute();
-    $response = $query ->get_result();
-    $user = $response->fetch_assoc();
-    echo ($user["is_banned"]);
-    echo json_encode($user);
+    $response = $query ->get_result(); // get result gives an onject
+    $user = $response ->fetch_assoc(); //fetch_assoc gets an array of objects
+    if($user == null){
+        echo 'This is empty';
+        return json_encode(['Is-Empty' =>'True']);
+    }else{
+        $query = $mysqli ->prepare('UPDATE users SET is_banned = ? WHERE id=?'); //Will return a single object
+        $query ->bind_param('ii', $ban, $userId);
+        $query->execute();
+
+        echo json_encode(["Banned" =>"True"]);
+    }
+
+
+
+
+
+
+
+
+
     // if($user && $user[6] == 0){
     //     $query = $mysqli->prepare('UPDATE users SET is_banned = 1 WHERE id =? AND user_types_id = 3');
     //     $query ->bind_param('i', $userId);
