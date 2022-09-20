@@ -22,7 +22,7 @@
 }
 
 .navbar-item {
-    margin: 15px;
+    margin: 15px 35px 15px 25px;
 }
 
 
@@ -31,7 +31,7 @@
 .side-menu-container {
     background-color: rgba(31, 122, 140, 1);
     height: 100vh;
-    width: 30%;
+    width: 10%;
 }
 
 .side-menu-item {
@@ -39,4 +39,17 @@
     flex-direction: column;
     justify-content: space-between;
     text-align: center;
+}
+
+.side-menu-item a {
+    text-decoration: none;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    padding-bottom: 30px;
+}
+
+.side-menu-item>a:first-child {
+    margin-top: 30px;
+    font-weight: bold;
 }
