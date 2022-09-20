@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
+    <link href="./styles.css" rel="stylesheet">
+    <title>Login page</title>
+  </head>
+  
+  <body>
+    <div class="main_container">
+
+      <div class="login_container">
+        <h1>Login</h1>
+        <input type="email" placeholder="Email address">
+        <input type="password" placeholder="Password">
+        <button id="login_btn" class="login_btn"><a class="nav-link active" href="#home">Login</a></button>
+      </div>
+    </div>
+
+    <!-- You can also require other files to run in this process -->
+    <script src="./renderer.js"></script>
+    <script src="./login_script.js"></script>
+  </body>
+</html>
