@@ -9,6 +9,14 @@ body{
     height: 100vh;
 }
 
+a{
+    text-decoration: none;
+    color: white;
+}
+
+a:hover{
+    color: lightgray;
+}
 
 /*Login page starts here*/
 .main_container{
@@ -70,6 +78,7 @@ header{
     color: white;
     text-align: center;
     padding-top: 3vh;
+    width: 100vw;
 }
 
 header > h1{
@@ -118,14 +127,6 @@ header > h3{
     width: 10vw;
 }
 
-.side_menu_container li:first-child:hover{
-    color: white;
-}
-
-.side_menu_container li:hover{
-    color: lightgray;
-}
-
 .side_menu_container li:first-child{
     border: none;
 }
@@ -150,6 +151,33 @@ header > h3{
 
 .info tr td:nth-last-child(-n+2) {
     background-color: white;
+}
+
+.info img{
+    border-radius:50px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.info img:hover{
+    background-color: #ebebeb;
+}
+
+.info tr:last-child{
+    background-color: #EEF7FA;
+    text-align: center;
+}
+
+.info tr:last-child td:hover{
+    background-color: #d7eff7;
+}
+
+.info tr:last-child td{
+    background-color: #EEF7FA;
+}
+
+.add_new_seller{
+    text-align: white;
 }
 
 .icons{
