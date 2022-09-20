@@ -6,6 +6,7 @@
 
 body{
     font-family: 'Lato', sans-serif; 
+    height: 100vh;
 }
 
 
@@ -76,16 +77,20 @@ header > h1{
 }
 
 header > h3{
-    padding-top: 1h;
+    padding-top: 1vh;
     font-style: italic;
 }
 
 .seller_container{
     display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.seller_data_container{
+    display: flex;
     flex-direction: row;
     height: 100%;
-    top: 18vh;
-    position: fixed;
 }
 
 .side_menu_container{
@@ -147,10 +152,16 @@ header > h3{
     background-color: white;
 }
 
+.icons{
+    width: 25px;
+    height: 25px;
+}
 
-
-
-
+.transparent_btn{
+    background-color: white;
+    border: none;
+    outline: none;
+}
 
 @media screen and (max-width: 1200px) {
 
@@ -161,6 +172,20 @@ header > h3{
     .login_btn{
         width: 50%;
     }
+
+    .seller_container{
+        flex-direction: column;
+        width: 100%
+    }
+
+    .side_menu_container{
+        flex-direction: row;
+    }
+    
+    .side_menu_container > ul {
+        flex-direction: row;
+    }
+    
 
 }
 
