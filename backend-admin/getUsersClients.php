@@ -2,7 +2,7 @@
     header("Access-Control-Allow-Origin: *");
     include("connection.php");
 
-    $query = $mysqli->prepare("SELECT * FROM users WHERE user_types_id =3");
+    $query = $mysqli->prepare("SELECT * FROM users WHERE user_type =3");
     $query->execute();
     $array = $query->get_result();
 
