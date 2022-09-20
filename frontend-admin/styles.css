@@ -90,13 +90,13 @@ header > h3{
     font-style: italic;
 }
 
-.seller_container{
+.container{
     display: flex;
     flex-direction: column;
     height: 100vh;
 }
 
-.seller_data_container{
+.data_container{
     display: flex;
     flex-direction: row;
     height: 100%;
@@ -149,7 +149,7 @@ header > h3{
     padding: 2vh 2vw;
 }
 
-.info tr td:nth-last-child(-n+2) {
+.seller_info tr td:nth-last-child(-n+2) {
     background-color: white;
 }
 
@@ -163,12 +163,12 @@ header > h3{
     background-color: #ebebeb;
 }
 
-.info tr:last-child{
+.seller_info tr:last-child{
     background-color: #EEF7FA;
     text-align: center;
 }
 
-.info tr:last-child td:hover{
+.seller_info tr:last-child td:hover{
     background-color: #d7eff7;
 }
 
@@ -191,6 +191,13 @@ header > h3{
     outline: none;
 }
 
+/*Client page starts here*/
+.client_info tr td:last-child{
+    background-color: white;
+} 
+
+/*Client page ends here*/
+
 @media screen and (max-width: 1200px) {
 
     .login_container{
@@ -201,7 +208,7 @@ header > h3{
         width: 50%;
     }
 
-    .seller_container{
+    .container{
         flex-direction: column;
         width: 100%
     }
