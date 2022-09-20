@@ -195,8 +195,20 @@ header > h3{
 .client_info tr td:last-child{
     background-color: white;
 } 
-
 /*Client page ends here*/
+
+/*Statistics page starts here*/
+.charts_container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.charts{
+    width: 30vw;
+    height: 25vh;
+}
+/*Statistics page ends here*/
 
 @media screen and (max-width: 1200px) {
 
