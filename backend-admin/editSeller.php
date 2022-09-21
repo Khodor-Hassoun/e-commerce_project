@@ -14,9 +14,7 @@
     $query ->bind_param('s',$username);
     $query ->execute();$query ->store_result();
     $num_rows = $query->num_rows();
-    if($num_rows == 0){
-        $isUsernTaken = false;
-    }else{
+    if($num_rows != 0){
         http_response_code(400);
 
         echo json_encode(["error" => "400",
@@ -29,9 +27,7 @@
     $query->execute();
     $query ->execute();$query ->store_result();
     $num_rows = $query->num_rows();
-    if($num_rows == 0){
-        $isEmailTaken = false;
-    }else{
+    if($num_rows != 0){
         http_response_code(400);
 
         echo json_encode(["error" => "400",
@@ -39,18 +35,10 @@
         return;
     }
 
-    if($isUsernTaken){
-        echo 'Username is taken';
-    }
-    if($isEmailTaken){
-        echo 'Email Taken';
-    }
-    if($isEmailTaken == false && $isUsernTaken == false){
-        $query = $mysqli->prepare("UPDATE users SET first_name= ?,username= ?,email= ?,`password`= ? WHERE id= ?");
-        $query->bind_param('ssssi',$first_name,$username, $email, $password,$userId);
-        $query->execute();
-        echo json_encode(["User" =>"Updated"]);
-    }else{
-        echo json_encode(["Update" =>"Failed"]);
-    }
+
+    $query = $mysqli->prepare("UPDATE users SET first_name= ?,username= ?,email= ?,`password`= ? WHERE id= ?");
+    $query->bind_param('ssssi', $first_name, $username, $email, $password, $userId);
+    $query->execute();
+    echo json_encode(["User" => "Updated"]);
+
 ?>
