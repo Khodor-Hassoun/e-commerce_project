@@ -1,6 +1,6 @@
 <?php
-    include("headers.php");
-    include("connection.php");
+    include("headers/headers.php");
+    include("connection/connection.php");
 
     $product_id = $_GET["product_id"];
     $user_id = $_GET["user_id"];
@@ -9,14 +9,16 @@
     if(!isset($product_id) || empty($product_id) || !isset($user_id) || empty($user_id)){ 
         http_response_code(400);
         echo json_encode([
-            'status' => 400,'message' => 'Product ID and User ID cannot be empty']);
+            'error' => 400,
+            'message' => 'Product ID and User ID cannot be empty'
+        ]);
         
         return;   
     }   
 
 //Check if these product is like by the same user id
-$query = $mysqli->prepare("SELECT * FROM favourite_items WHERE product_id = ? and user_id = ?");
-$query->bind_param("ii", $product_id, $user_id);
+$query = $mysqli->prepare("SELECT id FROM likes WHERE product_id = ? and user_id = ?");
+$query->bind_param("ss", $product_id, $user_id);
 $query->execute();
 $res=$query->store_result();
 $num_rows = $query->num_rows;
@@ -33,9 +35,9 @@ $query = $mysqli->prepare("INSERT INTO favourite_items (product_id, user_id) VAL
 $query->bind_param("ii", $product_id, $user_id);
 $query->execute();
 
-$product= mysqli_insert_id($mysqli);
+
 //If last query id is not equal to product id,send an error
-if ($product=== null) {
+if ($product_id!= mysqli_insert_id($mysqli)) {
     http_response_code(400);
     echo json_encode(['error' => 400,'message' => "Error: Like not sent"
     ]);
