@@ -2,24 +2,27 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
     <link href="./styles/styles.css" rel="stylesheet">
     <title>Login page</title>
   </head>
   
   <body>
+    <!--Start of main container-->
     <div class="main_container">
-
+      <!--Start of login container-->
       <div class="login_container">
         <h1>Login</h1>
-        <input type="email" placeholder="Email address">
-        <input type="password" placeholder="Password">
-        <button id="login_btn" class="login_btn"><a class="nav-link active" href="#home">Login</a></button>
+        <input id="email" type="email" placeholder="Email address">
+        <input id="password" type="password" placeholder="Password">
+        <button id="login_btn" class="login_btn">Login</button>
+        <span id="error_message" class="error"></span>
       </div>
+      <!--End of login container-->
     </div>
 
-    <!-- You can also require other files to run in this process -->
+    <!--End of main container-->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./js/renderer.js"></script>
     <script src="./js/login_script.js"></script>
   </body>
