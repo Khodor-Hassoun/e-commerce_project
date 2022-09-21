@@ -7,32 +7,50 @@
     $first_name = $_POST["first_name"];
     $email = $_POST["email"];
     $password =hash('sha256', $_POST["password"]) ;
-    $flag = 1;
+    $isUsernTaken = true;
+    $isEmailTaken = true;
 
     $query = $mysqli("SELECT username FROM users WHERE username = ?");
     $query ->bind_param('s',$username);
-    $query ->execute();
-    $array = $query->get_result();
-    $response[0] = $array->fetch_all(MYSQLI_ASSOC);
-    if(($response[0])){
-        $response[0] = 1;
-        $flag = 0;
-    }else $response[0] = 0;
+    $query ->execute();$query ->store_result();
+    $num_rows = $query->num_rows();
+    if($num_rows == 0){
+        $isUsernTaken = false;
+    }else{
+        http_response_code(400);
 
-    $query = $mysqli->prepare("SELECT * FROM users where email = '$email'"); // checks for email if taken
+        echo json_encode(["error" => "400",
+                            "message" =>"UserName Taken"]);
+        return;
+    }
+
+    $query = $mysqli->prepare("SELECT * FROM users where email = ?"); // checks for email if taken
+    $query ->bind_param('s',$email);
     $query->execute();
-    $array = $query->get_result();
+    $query ->execute();$query ->store_result();
+    $num_rows = $query->num_rows();
+    if($num_rows == 0){
+        $isEmailTaken = false;
+    }else{
+        http_response_code(400);
 
-    $response[1] = $array->fetch_all(MYSQLI_ASSOC);
-    if(($response[1])){
-        $response[1] = 1;
-        $flag = 0;
-    }else $response[1] = 0;
-    
-    if($flag){
-        $query = $mysqli->prepare("UPDATE users SET first_name='$first_name',username='$username',email='$email',`password`='$password' WHERE id=$userId");
+        echo json_encode(["error" => "400",
+                            "message" =>"UserName Taken"]);
+        return;
+    }
+
+    if($isUsernTaken){
+        echo 'Username is taken';
+    }
+    if($isEmailTaken){
+        echo 'Email Taken';
+    }
+    if($isEmailTaken == false && $isUsernTaken == false){
+        $query = $mysqli->prepare("UPDATE users SET first_name= ?,username= ?,email= ?,`password`= ? WHERE id= ?");
+        $query->bind_param('ssssi',$first_name,$username, $email, $password,$userId);
         $query->execute();
-    }$response[2] = $flag;
-    $json = json_encode($response);
-    echo $json;
+        echo json_encode(["User" =>"Updated"]);
+    }else{
+        echo json_encode(["Update" =>"Failed"]);
+    }
 ?>

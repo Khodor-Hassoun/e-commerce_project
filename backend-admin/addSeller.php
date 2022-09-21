@@ -7,13 +7,13 @@
     $userTypeSeller = 2;
     $userTypeBuyer = 3;
     // I will now select the user to check if they exist
-    $query = $mysqli->prepare('SELECT * FROM users WHERE id=? AND user_types_id =?');
+    $query = $mysqli->prepare('SELECT * FROM users WHERE id=? AND user_type =?');
     $query ->bind_param('ii', $userId, $userTypeBuyer);
     $query->execute();
     $query ->store_result();
     $num_rows = $query->num_rows();
     if($num_rows == 0){
-        echo 'All are sellers';
+        echo json_encode(['Operation'=>'False']);
         echo var_dump(http_response_code());
     }else{
         if (isset($userId) && !empty($userId)){

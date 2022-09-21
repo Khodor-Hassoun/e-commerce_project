@@ -7,7 +7,11 @@
     // I need to get the client Id
     // When I GET the client Id, we change is_banned to 1 (true)
     // First we will check if the user exists in the database
-    if(!(isset($userId) && !empty($userId))){
+    if(!isset($userId) || empty($userId)){
+        http_response_code(400);
+
+        echo json_encode(["error" => "400",
+                            "message" =>"User not found"]);
         return;
     }
     $query = $mysqli ->prepare('SELECT * FROM users WHERE id=? AND is_banned = ?'); //Will return a single object
