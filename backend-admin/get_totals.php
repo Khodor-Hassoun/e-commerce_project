@@ -26,4 +26,17 @@
     $query->execute();
 
     $response["total_products"] = $query->get_result()->fetch_assoc();
+
+    //get total sellers 
+    $mysqli->prepare(
+
+        "SELECT  
+            COUNT(user_types.ID)
+        FROM user_types
+        WHERE user_types.type = 2;"
+    );
+    $query->execute();
+
+    $response["total_sellers"] = $query->get_result()->fetch_assoc();
+
 ?>
