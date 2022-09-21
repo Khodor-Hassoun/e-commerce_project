@@ -17,4 +17,15 @@
         return;   
     }
 
+    //Prepare and execute SQL query to retrieve all products of a certain seller
+    $query = $mysqli->prepare(
+        "SELECT * FROM products P
+        WHERE P.seller_id = (?)"
+        );
+        
+    $query->bind_param("i", $seller_id);
+    $query->execute();
+
+    $response = $query->get_result()->fetch_assoc();
+
 ?>
