@@ -17,7 +17,7 @@
     }
 
     //get total products
-    $mysqli->prepare(
+    $query = $mysqli->prepare(
 
         "SELECT  
             COUNT(products.ID)
@@ -28,7 +28,7 @@
     $response["total_products"] = $query->get_result()->fetch_assoc();
 
     //get total sellers 
-    $mysqli->prepare(
+    $query = $mysqli->prepare(
 
         "SELECT  
             COUNT(user_types.ID)
@@ -38,5 +38,19 @@
     $query->execute();
 
     $response["total_sellers"] = $query->get_result()->fetch_assoc();
+
+    //get total clients
+    $query = $mysqli->prepare(
+
+        "SELECT  
+            COUNT(user_types.ID)
+        FROM user_types
+        WHERE user_types.type = 3;"
+    );
+
+    $query->execute();
+    $response["total_clients"] = $query->get_result()->fetch_assoc();
+
+    echo json_encode($response);
 
 ?>
