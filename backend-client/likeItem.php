@@ -37,7 +37,7 @@ $query->execute();
 
 
 //If last query id is not equal to product id,send an error
-if ($product_id!= mysqli_insert_id($mysqli);) {
+if ($product_id!= mysqli_insert_id($mysqli)) {
     http_response_code(400);
     echo json_encode(['error' => 400,'message' => "Error: Like not sent"
     ]);
