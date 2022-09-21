@@ -1,4 +1,5 @@
 const getClientsAPI = "";
+const banClientAPI = "";
 
 const getClients = () =>{
     //Recieve data from the server
@@ -19,25 +20,46 @@ const getClients = () =>{
             clone.id= data[i].tweet_id;
             clone.classList.add("client");
 
-            //Get the tweet text and modify on it
+            //Add the first name
             let firstname = clone.querySelector("#firstname");
             firstname.textContent = data[i].firstname;
 
-            //Get username
+            //Add last name
             let lastname = clone.querySelector("#lastname");
             lastname.textContent = data[i].lastname;
 
-            //Get email
+            //Add email
             let email = clone.querySelector("#email");
             email.textContent = data[i].email;
 
-            //Get address
+            //Add address
             let address = clone.querySelector("#address");
             address.textContent = data[i].address;
 
-            //Get phone number
+            //Add phone number
             let phoneNumber = clone.querySelector("#phone_number");
-            phoneNumber.textContent = data[i].phone_number;            
+            phoneNumber.textContent = data[i].phone_number;      
+            
+            //Get ban button and save the user's id in it
+            let banButton = clone.querySelector("#ban_user");
+            banButton.setAttribute('id', data[i].id);
+
+            likeButton.addEventListener("click", (event)=>{
+                const data = new FormData();
+                userID = banButton.getAttribute('id');
+                data.append('user_id', userID);
+
+                axios.post(banClientAPI, data)
+                .then( data => {
+                    if (data.error !== undefined) {
+                        //Do nothing
+                        return
+                    }
+
+                    window.location.replace("client_page.html"); 
+                })
+
+            })
     }
 })
 }
