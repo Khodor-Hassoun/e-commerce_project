@@ -18,7 +18,7 @@ google.charts.load("current", {packages:['corechart']});
 
       var options = {
         title: "Users Insights",
-        width: 600,
+        width: 500,
         height: 400,
         bar: {groupWidth: "95%"},
         legend: { position: "none" },
@@ -46,7 +46,7 @@ function productsChart() {
 
     var options = {
       title: "Products Insights",
-      width: 600,
+      width: 500,
       height: 400,
       bar: {groupWidth: "95%"},
       legend: { position: "none" },
