@@ -24,6 +24,13 @@
     margin: 15px 45px 15px 45px;
 }
 
+.title {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: rgb(247, 251, 251);
+}
+
 
 /*Side menu*/
 
@@ -39,6 +46,9 @@
     justify-content: space-between;
     text-align: center;
 }
+
+
+/* link*/
 
 .side-menu-item a {
     text-decoration: none;
@@ -62,6 +72,9 @@ a:hover {
     flex-direction: column;
 }
 
+
+/*products container*/
+
 .main-container {
     display: flex;
     flex-direction: row;
@@ -79,8 +92,8 @@ a:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 15vw;
-    height: 50vh;
+    width: 20vw;
+    height: 46vh;
     background-color: white;
     border: 1px solid rgba(0, 0, 0, 0.8);
     border-radius: 10px;
@@ -91,7 +104,8 @@ a:hover {
 
 .grid-item img {
     width: 50%;
-    height: 50%;
+    height: 40%;
+    border-radius: 6px;
 }
 
 .grid-item-text {
@@ -116,7 +130,7 @@ a:hover {
 }
 
 .btn-style-1 {
-    background-color: rgba(18, 84, 146, 0.436);
+    background-color: rgba(118, 175, 232, 0.436);
     border: none;
     border-radius: 25px;
     padding: 5px;
@@ -125,11 +139,23 @@ a:hover {
 }
 
 .btn-style-2 {
-    background-color: red;
+    background-color: rgb(243, 132, 132);
     border-radius: 25px;
     border: none;
     padding: 5px;
     width: 80px;
+}
+
+.btn-style-1:hover {
+    background-color: rgba(5, 61, 118, 0.436);
+    color: white;
+    transition: 0.5s;
+}
+
+.btn-style-2:hover {
+    background-color: rgb(246, 21, 21);
+    color: white;
+    transition: 0.5s;
 }
 
 .add-icon {

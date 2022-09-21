@@ -52,10 +52,6 @@ a:hover {
     background-color: rgb(146, 192, 227);
 }
 
-a:active {
-    background-color: rgb(202, 244, 251);
-}
-
 .side-menu-item>a:first-child {
     margin-top: 50px;
     font-weight: bold;
@@ -75,9 +71,10 @@ a:active {
 }
 
 .title {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    margin: 20px auto auto 45%;
-    color: rgb(110, 150, 145)
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: rgb(247, 251, 251);
 }
 
 .grid-container {
@@ -92,8 +89,8 @@ a:active {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 15vw;
-    height: 50vh;
+    width: 20vw;
+    height: 46vh;
     background-color: white;
     border: 1px solid rgba(0, 0, 0, 0.8);
     border-radius: 10px;
@@ -104,7 +101,7 @@ a:active {
 
 .grid-item img {
     width: 50%;
-    height: 50%;
+    height: 40%;
     border-radius: 6px;
 }
 
