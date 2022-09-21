@@ -1,4 +1,5 @@
 const getSellerAPI = "";
+const deleteSellerAPI = "";
 
 const getSellers = () =>{
     //Recieve data from server
@@ -38,7 +39,33 @@ const getSellers = () =>{
 
             //Add phone number
             let phoneNumber = clone.querySelector("#phone_number");
-            phoneNumber.textContent = data[i].phone_number;            
+            phoneNumber.textContent = data[i].phone_number; 
+            
+            //Get edit button and save the user's id in it
+            let editUserBtn = clone.querySelector("#edit_user");
+            editUserBtn.setAttribute('id', data[i].id);
+            
+            //Get delete button and save the user's id in it
+            let deleteUserBtn = clone.querySelector("#delete_user");
+            deleteUserBtn.setAttribute('id', data[i].id);
+
+            deleteUserBtn.addEventListener("click", (event)=>{
+                const data = new FormData();
+                userID = banButton.getAttribute('id');
+                data.append('user_id', userID);
+
+                axios.post(deleteSellerAPI, data)
+                .then( data => {
+                    if (data.error !== undefined) {
+                        //Do nothing
+                        return
+                    }
+
+                    window.location.replace("client_page.html"); 
+                })
+            })
+
+            originalItem.after(clone);
     }
 })
 }

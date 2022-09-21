@@ -56,10 +56,12 @@ const getClients = () =>{
                         return
                     }
 
-                    window.location.replace("client_page.html"); 
-                })
+                    clone.style.backgroundcolor = "red";
 
+                })
             })
+
+            originalItem.after(clone);
     }
 })
 }
