@@ -68,4 +68,18 @@
             'error' => 400,
             'message' => 'category Exists']);
         return;}
+    
+    //Prepare and execute query to add a new category
+    $query = $mysqli->prepare("INSERT INTO `categories` (`description`, `thumbnail`, `name`, `user_id`)
+    VALUE (?,?,?,?)");
+
+    $query->bind_param("sssi", $description, $thumbnail, $name, $user_id);
+    $query->execute();
+
+
+    $json = json_encode(['message' => "success!"]);
+    echo $json;
+
+    $query->close();
+    $mysqli->close();
 ?>
