@@ -30,7 +30,7 @@
 .side-menu-container {
     background-color: rgba(31, 122, 140, 1);
     height: 100vh;
-    width: 10%;
+    width: 15%;
 }
 
 .side-menu-item {
@@ -45,7 +45,15 @@
     color: white;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
-    padding-bottom: 30px;
+    padding: 30px;
+}
+
+a:hover {
+    background-color: rgb(146, 192, 227);
+}
+
+a:active {
+    background-color: rgb(202, 244, 251);
 }
 
 .side-menu-item>a:first-child {
@@ -58,9 +66,18 @@
     flex-direction: column;
 }
 
+
+/*main body--top 5 products*/
+
 .main-container {
     display: flex;
     flex-direction: row;
+}
+
+.title {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 20px auto auto 45%;
+    color: rgb(110, 150, 145)
 }
 
 .grid-container {
@@ -108,12 +125,15 @@
     justify-content: space-between;
 }
 
+
+/* design button*/
+
 .button-position {
     display: flex;
 }
 
 .btn-style-1 {
-    background-color: rgba(18, 84, 146, 0.436);
+    background-color: rgba(118, 175, 232, 0.436);
     border: none;
     border-radius: 25px;
     padding: 5px;
@@ -122,11 +142,23 @@
 }
 
 .btn-style-2 {
-    background-color: red;
+    background-color: rgb(243, 132, 132);
     border-radius: 25px;
     border: none;
     padding: 5px;
     width: 80px;
+}
+
+.btn-style-1:hover {
+    background-color: rgba(5, 61, 118, 0.436);
+    color: white;
+    transition: 0.5s;
+}
+
+.btn-style-2:hover {
+    background-color: rgb(246, 21, 21);
+    color: white;
+    transition: 0.5s;
 }
 
 .add-icon {
