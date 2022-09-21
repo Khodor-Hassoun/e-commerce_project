@@ -1,6 +1,5 @@
 //Initialize APIs
-const loginAPI = "http://localhost/e-commerce/login.php";
-const axios = require('axios').default;
+const loginAPI = "http://localhost/test/signin.php";
 const button = document.getElementById("login_btn");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
