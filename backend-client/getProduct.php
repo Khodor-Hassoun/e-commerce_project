@@ -26,4 +26,20 @@
 
     $response = $query->get_result()->fetch_assoc();
 
+    //If response is empty, send back an error message
+    if (empty($response)) {
+        http_response_code(400);
+        echo json_encode([
+            'error' => 400,
+            'message' => 'unable to retrieve products'
+        ]);
+
+        return;
+    }
+
+    echo json_encode($response);
+
+    $query->close();
+    $mysqli->close();
+
 ?>
