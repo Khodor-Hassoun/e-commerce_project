@@ -1,7 +1,7 @@
 const getSellerAPI = "";
 
 const getSellers = () =>{
-    // Send the data to the database using POST method
+    //Recieve data from server
     axios.get(getSellerAPI)
     .then(
         data =>  {
@@ -14,11 +14,11 @@ const getSellers = () =>{
         //Loop over the response
         for(let i = 0; i < Object.keys(data).length; i++){
             //Make a clone of the seller table row
-            let originalItem = document.querySelector(".client");
+            let originalItem = document.querySelector(".seller");
             let clone = originalItem.cloneNode(true);
             clone.style.display ="block";
             clone.id= data[i].tweet_id;
-            clone.classList.add("client");
+            clone.classList.add("seller");
 
             //Add first name
             let firstname = clone.querySelector("#firstname");
