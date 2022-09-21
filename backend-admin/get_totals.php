@@ -16,4 +16,14 @@
         return;   
     }
 
+    //get total products
+    $mysqli->prepare(
+
+        "SELECT  
+            COUNT(products.ID)
+        FROM products;"
+    );
+    $query->execute();
+
+    $response["total_products"] = $query->get_result()->fetch_assoc();
 ?>
