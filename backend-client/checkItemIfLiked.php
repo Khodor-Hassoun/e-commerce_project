@@ -8,8 +8,7 @@
     //Check if ID's are not empty
     if(!isset($product_id) || empty($product_id) || !isset($user_id) || empty($user_id)){ 
         http_response_code(400);
-        echo json_encode([
-            'status' => 400,'message' => 'Product ID and User ID cannot be empty']);
+        echo json_encode(['status' => 400,'message' => 'Product ID and User ID cannot be empty']);
         
         return;   
     }   
