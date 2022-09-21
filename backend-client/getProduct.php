@@ -16,5 +16,14 @@
         return;
     }
 
+    //Prepare and execute SQL query to retrieve product's record
+    $query = $mysqli->prepare(
+        "SELECT * FROM products P
+        WHERE P.ID = (?)");
+
+    $query->bind_param("i", $product_id);
+    $query->execute();
+
+    $response = $query->get_result()->fetch_assoc();
 
 ?>
