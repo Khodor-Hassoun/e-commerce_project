@@ -18,8 +18,6 @@ google.charts.load("current", {packages:['corechart']});
 
       var options = {
         title: "Users Insights",
-        width: 500,
-        height: 400,
         bar: {groupWidth: "95%"},
         legend: { position: "none" },
       };
@@ -46,11 +44,14 @@ function productsChart() {
 
     var options = {
       title: "Products Insights",
-      width: 500,
-      height: 400,
       bar: {groupWidth: "95%"},
       legend: { position: "none" },
     };
     var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_products"));
     chart.draw(view, options);
 }
+
+$(window).resize(function(){
+  usersChart();
+  productsChart();
+});

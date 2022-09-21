@@ -23,8 +23,8 @@ a:hover{
     display: flex; 
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background-color: #022B3A ;
 }
 
@@ -203,6 +203,10 @@ header > h3{
     outline: none;
 }
 
+.client{
+    display: none;
+}
+
 /*Client page starts here*/
 .client_info tr td:last-child{
     background-color: white;
@@ -214,12 +218,15 @@ header > h3{
     display: flex;
     justify-content: center;
     flex-direction: row;
-    margin: 20vh 20vw;
+    position: fixed;
+    top:20vh;
+    left: 20vw;
 }
 
 .charts{
-    width: 30rem;
-    height: 25rem;
+    width: 35vw;
+    min-height: 380px;
+    padding: 0;
 }
 /*Statistics page ends here*/
 
@@ -227,6 +234,7 @@ header > h3{
 
     .login_container{
         width: 60%;
+        height: 50%;
     }
 
     .login_btn{
@@ -252,9 +260,11 @@ header > h3{
 
     .charts_container{
         flex-direction: column;
-        margin: 38vh 35vw;
-        margin-bottom: 5vh;
-        padding-bottom: 5vh;
+        left:35vw;
+    }
+
+    .charts{
+        width: 50vw;
     }
 
     .info{
@@ -264,8 +274,4 @@ header > h3{
         margin-left: 35vw;
         font-size: 12px
     }
-
-
 }
-
-/* Add styles here to customize the appearance of your app */

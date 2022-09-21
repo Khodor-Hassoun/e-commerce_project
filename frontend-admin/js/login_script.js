@@ -6,20 +6,23 @@ const password = document.getElementById("password");
 const error = document.getElementById("erorr_message");
 
 const login = () => {
-  axios.post(loginAPI, {
-    email: `${email.value}`,
-    password: `${password.value}`
-  })
-  .then(function (response) {
-     if(response.error != NULL ){
-      error.textContent = response.error;
-      return;
-    }
+  const data = new FormData();
+  data.append("email", email.value);
+  data.append("password", password.value)
 
-    window.location.replace("./seller.html");
-    localStorage.setItem("userID", response.id)
-    }
-  )
+  axios.post(loginAPI, data)
+  .then(function (response) {
+  if(response.error != null ){
+   error.textContent = response.error;
+   return;
+ }
+
+ window.location.replace("./seller_page.html");
+ localStorage.setItem("userID", response.id)
+ }
+);
+
+  
 }
   
 button.addEventListener("click", login);
