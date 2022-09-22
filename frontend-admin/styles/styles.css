@@ -257,7 +257,7 @@ header > h3{
     border-radius: 20px;
 }
 
-.modal_content #close{
+.modal_content .close{
     margin-left: auto;
     margin-top: 0;
 }
@@ -289,15 +289,15 @@ header > h3{
     margin-right: 1vw;
 }
   
-#close {
+.close {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
   
-#close:hover,
-#close:focus {
+.close:hover,
+.close:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;

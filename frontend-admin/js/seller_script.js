@@ -3,11 +3,18 @@ const deleteSellerAPI = "";
 const editUserModal = document.querySelector(".edit_user_modal");
 const addUserModal = document.querySelector(".add_user_modal");
 const addUserButton = document.getElementById("add_seller");
+const editUserButton = document.getElementById("edit_seller")
 const closeButton = document.getElementById("close");
+const closeButton2 = document.getElementById("close2");
 
 // When the user clicks on the button, open the modal
 addUserButton.onclick = function() {
   addUserModal.style.display = "block";
+}
+
+// When the user clicks on the button, open the modal
+editUserButton.onclick = function() {
+  editUserModal.style.display = "block";
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -15,10 +22,19 @@ closeButton.onclick = function() {
   editUserModal.style.display = "none";
 }
 
+// When the user clicks on <span> (x), close the modal
+closeButton2.onclick = function() {
+  addUserModal.style.display = "none";
+}
+
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == editUserModal) {
     editUserModal.style.display = "none";
+  }
+
+  if (event.target == addUserModal) {
+    addUserModal.style.display = "none";
   }
 }
 
