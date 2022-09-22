@@ -19,14 +19,14 @@
     $res=$query->store_result();
     $num_rows = $query->num_rows;
 
-    //if no,send a message that item is not in favourite items
+    //if no,send a message that item is not in wishlist
     if ($num_rows==0) {
         http_response_code(400);
         echo json_encode(['status' => 400,'message' => 'Item not in wishlist']);
         return;
     }
 
-    //delete liked item record from database
+    //delete wishlist item record from database
     $query = $mysqli->prepare("DELETE FROM wishlists WHERE product_id = ? and user_id = ? "); 
     $query->bind_param("ii", $product_id, $user_id);
     $query->execute();
