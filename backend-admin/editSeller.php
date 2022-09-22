@@ -63,10 +63,9 @@
     }
 
     // Update User
-    $query = $mysqli->prepare("UPDATE users SET `first_name` = ?, `username` = ?, `email` = ?,`password`= ?, `address`= ?, `phone_number` = ? WHERE id= ?");
-    $query->bind_param('sssssii', $first_name, $username, $email, $password, $address, $phoneNumber, $userId);
+    $query = $mysqli->prepare("UPDATE users SET `first_name` = ?, `username` = ?, `email` = ?,`password`= ?, `address`= ?, `phone_number` = ?, last_name = ? WHERE id= ?");
+    $query->bind_param('sssssisi', $firstName, $username, $email, $password, $address, $phoneNumber, $lastName ,$userId);
     $query->execute();
-    var_dump($query); die();
 
     echo json_encode(["User" => "Updated"]);
 
