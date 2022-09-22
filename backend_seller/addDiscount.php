@@ -2,7 +2,7 @@
 
     include("headers/headers.php");
     include ("connection/connection.php");
-
+    include ("jwtAPI.php");
 
     $code = $_POST["code"];
     $percentage = $_POST["percentage"];

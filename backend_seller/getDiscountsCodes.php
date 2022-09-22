@@ -1,6 +1,7 @@
 <?php
   include("headers/headers.php");
   include("connection/connection.php");
+  include ("jwtAPI.php");
 
   $seller_id = $_GET["seller_id"];
 

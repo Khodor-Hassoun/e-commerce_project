@@ -2,8 +2,10 @@
 
     header ("Access-Control-Allow-Origin:*");
     header ("Access-Control-Allow-Headers: *");
-    include ("connection.php");
-
+    include ("connection/connection.php");
+    include ("headers/headers.php");
+    include ("jwtAPI.php");
+    
 
     $description = $_POST["description"];
     $thumbnail = $_POST["thumbnail"];

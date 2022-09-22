@@ -2,6 +2,7 @@
 
 include("headers/headers.php");
 include("connection/connection.php");
+include ("jwtAPI.php");
 
 $product_id = $_GET["product_id"];
 //check if id is not empty
