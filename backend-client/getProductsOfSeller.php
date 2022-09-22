@@ -41,7 +41,4 @@
 
     echo json_encode($response);
 
-    $query->close();
-    $mysqli->close();
-
 ?>

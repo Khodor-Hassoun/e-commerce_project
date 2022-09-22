@@ -9,26 +9,25 @@
     if(!isset($product_id) || empty($product_id) || !isset($user_id) || empty($user_id)){ 
         http_response_code(400);
         echo json_encode(['status' => 400,'message' => 'Product ID and User ID cannot be empty']);
-        
         return;   
     }   
 
-    //Check if these product is liked by the same user id
-    $query = $mysqli->prepare("SELECT * FROM favourite_items WHERE product_id = ? and user_id = ?");
-    $query->bind_param("ii", $product_id, $user_id);
+    //Check if these product is in wishlist for the same user id
+    $query = $mysqli->prepare("SELECT * FROM wishlists WHERE user_id = ? and product_id = ?");
+    $query->bind_param("ii", $user_id, $product_id);
     $query->execute();
     $res=$query->store_result();
     $num_rows = $query->num_rows;
 
-    //if no,send a message that item is not in favourite items
+    //if no,send a message that item is not in wishlist
     if ($num_rows==0) {
         http_response_code(400);
-        echo json_encode(['status' => 400,'message' => 'Item not liked']);
+        echo json_encode(['status' => 400,'message' => 'Item not in wishlist']);
         return;
     }
 
-    //delete liked item record from database
-    $query = $mysqli->prepare("DELETE FROM favourite_items WHERE product_id = ? and user_id = ? "); 
+    //delete wishlist item record from database
+    $query = $mysqli->prepare("DELETE FROM wishlists WHERE product_id = ? and user_id = ? "); 
     $query->bind_param("ii", $product_id, $user_id);
     $query->execute();
 

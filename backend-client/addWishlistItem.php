@@ -14,8 +14,8 @@
         return;   
     }   
 
-    //Check if these product is liked by the same user id
-    $query = $mysqli->prepare("SELECT * FROM favourite_items WHERE product_id = ? and user_id = ?");
+    //Check if these product is found in wishlist of the same user id
+    $query = $mysqli->prepare("SELECT * FROM wishlists WHERE product_id = ? and user_id = ?");
     $query->bind_param("ii", $product_id, $user_id);
     $query->execute();
     $res=$query->store_result();
@@ -24,12 +24,12 @@
     //send a message that item is already liked
     if ($num_rows>0) {
         http_response_code(400);
-        echo json_encode(['status' => 400,'message' => 'Item already liked!']);
+        echo json_encode(['status' => 400,'message' => 'Item already found in wishlist!']);
         return;
     }
 
-    //Insert like item record to database
-    $query = $mysqli->prepare("INSERT INTO favourite_items (product_id, user_id) VALUE (?, ?) "); 
+    //Insert wishlist item record to database
+    $query = $mysqli->prepare("INSERT INTO wishlists (product_id, user_id) VALUE (?, ?) "); 
     $query->bind_param("ii", $product_id, $user_id);
     $query->execute();
 
@@ -37,7 +37,7 @@
     //If last query id is not equal to product id,send an error
     if ($product=== null) {
         http_response_code(400);
-        echo json_encode(['error' => 400,'message' => "Error: Like not sent"]);
+        echo json_encode(['error' => 400,'message' => "Error: wishlist item not sent"]);
         
         return;
     }
