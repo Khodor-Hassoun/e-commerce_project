@@ -1,14 +1,30 @@
 <?php
-    header("Access-Control-Allow-Origin: *");
+    require_once('headers.php');
     include('connection.php');
 
-    $userId = $_POST["userId"];
-    $username = $_POST["username"];
-    $first_name = $_POST["first_name"];
-    $email = $_POST["email"];
+    // initilize variables
+    $username = trim($_POST['username']);
+    $email = $_POST['email'];
+    $firstName = $_POST['firstName'];
+    $lastName = $_POST['lastName'];
+    $address = $_POST['address'];
+    $phoneNumber = $_POST['phoneNumber'];
     $password =hash('sha256', $_POST["password"]) ;
-    $isUsernTaken = true;
-    $isEmailTaken = true;
+    $userTypeSeller = 2;
+
+
+    // Check if the inputs are correct
+    if (
+        !isset($username) || empty($username)
+        || !isset($email) || empty($email)
+        || !isset($firstName) || empty($firstName)
+        || !isset($lastName) || empty($lastName)
+        || !isset($password) || empty($password)
+    ) {
+        http_response_code(400);
+        echo json_encode(['Error' =>"400", "Message" => "Incomplete data"]);
+        return;
+    }
 
     // Check usernames
     $query = $mysqli("SELECT username FROM users WHERE username = ?");

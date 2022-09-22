@@ -1,16 +1,17 @@
 <?php
-    header("Access-Control-Allow-Origin: *");
     include('connection.php');
+    require_once('headers.php');
 
     // initilize variables
-    // $userId = $_POST['id'];
     $username = trim($_POST['username']);
     $email = $_POST['email'];
     $firstName = $_POST['firstName'];
     $lastName = $_POST['lastName'];
+    $address = $_POST['address'];
+    $phoneNumber = $_POST['phoneNumber'];
     $password =hash('sha256', $_POST["password"]) ;
     $userTypeSeller = 2;
-    $isBanned = 0;
+
 
     // Check if the inputs are correct
     if (
@@ -59,9 +60,9 @@
     }
 
     // Insert data into db
-    $query = $mysqli->prepare("INSERT INTO users (`username`, `password`, `email`, `first_name`, `last_name`, `is_banned`, `user_type`) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $query ->bind_param('sssssii',$username, $password, $email, $firstName, $lastName, $isBanned, $userTypeSeller);
-    $query ->execute();
+    $query = $mysqli->prepare("INSERT INTO users (`username`, `password`, `email`, `first_name`, `last_name`, `address`, `phone_number`, `user_type_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $query ->bind_param('ssssssii',$username, $password, $email, $firstName, $lastName, $address, $phoneNumber, $userTypeSeller);
+    var_dump($query ->execute()); 
 
     // Success response
     $response = [];

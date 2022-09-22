@@ -1,9 +1,10 @@
 <?php
-     header("Access-Control-Allow-Origin: *");
+     require_once('headers.php');
      include('connection.php');
 
     //  Initialize variable
      $userId = $_GET['id'];
+     $user_type_id = 2;
 
     // Check if data is set
      if(!isset($userId) || empty($userId)){
@@ -13,8 +14,8 @@
      }
 
     //  Get user
-     $query = $mysqli ->prepare('SELECT * FROM users WHERE id = ?');
-     $query ->bind_param('i',$userId);
+     $query = $mysqli ->prepare('SELECT * FROM users WHERE id = ? and user_type_id = ?');
+     $query ->bind_param('ii',$userId, $user_type_id);
      $query->execute();
      $query->store_result();
 
@@ -24,20 +25,22 @@
         http_response_code(400);
 
         echo json_encode(["error" => "400",
-                            "message" =>"User Doesn't exist"]);
+                            "message" =>"Seller Doesn't exist"]);
         return;
      }
 
     // Delete user
      $query = $mysqli->prepare('DELETE FROM users WHERE id =?');
      $query->bind_param('i',$userId);
+     
     //  Check if failed
      if(!($query ->execute())){
         http_response_code(400);
 
         echo json_encode(["error" => "400",
-                            "message" =>"Deletion Failed"]);
+                          "message" =>"Deletion Failed"]);
+      return;
      }
-     echo json_encode(['Deletion' =>'Successful']);
 
+     echo json_encode(['Deletion' =>'Successful']);
 ?>
