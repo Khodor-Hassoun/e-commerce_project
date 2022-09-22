@@ -1,39 +1,23 @@
 <?php
-// initilize variables
-    // $userId = $_POST['id'];
-    $username = trim($_POST['username']);
-    $email = $_POST['email'];
-    $firstName = $_POST['firstName'];
-    $lastName = $_POST['lastName'];
-    $password =hash('sha256', $_POST["password"]) ;
-    $userTypeSeller = 3;
-    $isBanned = 0;
+// DataBase connection
+include("connection.php");
 
-    // Check if the inputs are correct
-    if (
-        !isset($username) || empty($username)
-        || !isset($email) || empty($email)
-        || !isset($firstName) || empty($firstName)
-        || !isset($lastName) || empty($lastName)
-        || !isset($password) || empty($password)
-    ) {
-        http_response_code(400);
-        echo json_encode(['Error' =>"400", "Message" => "Incomplete data"]);
-        return;
-    }
+//files needed
+require_once("headers.php");
+require('functions.php');
 
-    // Get usernames
-    $query = $mysqli->prepare("SELECT username FROM users WHERE username = ?");
-    $query ->bind_param('s',$username);
-    $query ->execute();
-    $query ->store_result();
+//sanitize the data
+$productName = check_input($_POST['name']);
 
-    //Check if username exists 
-    $num_rows = $query->num_rows();
-    if($num_rows != 0){
-        http_response_code(400);
-
-        echo json_encode(["error" => "400",
-                            "message" =>"Username Taken"]);
-        return;
-    }
+// Check if the input is exists
+if (
+    !isset($productName) || empty($productName)
+) {
+    http_response_code(400);
+    echo json_encode(['Error' => "400", "Message" => "Incomplete data"]);
+    return;
+}
+//search for an item
+$query = $mysqli->prepare("SELECT name FROM products where name LIKE'?");
+$query->bind_param("s", "%{$productName}%");
+$query->execute();
