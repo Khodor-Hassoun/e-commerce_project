@@ -3,6 +3,7 @@
     include('connection.php');
 
     // initilize variables
+    $userId = $_POST['id'];
     $username = trim($_POST['username']);
     $email = $_POST['email'];
     $firstName = $_POST['firstName'];
@@ -12,24 +13,28 @@
     $password =hash('sha256', $_POST["password"]) ;
     $userTypeSeller = 2;
 
+    //  Get user
+    $query = $mysqli ->prepare('SELECT * FROM users WHERE id = ? and user_type_id = ?');
+    $query ->bind_param('ii',$userId, $userTypeSeller);
+    $query->execute();
+    $query->store_result();
 
-    // Check if the inputs are correct
-    if (
-        !isset($username) || empty($username)
-        || !isset($email) || empty($email)
-        || !isset($firstName) || empty($firstName)
-        || !isset($lastName) || empty($lastName)
-        || !isset($password) || empty($password)
-    ) {
-        http_response_code(400);
-        echo json_encode(['Error' =>"400", "Message" => "Incomplete data"]);
-        return;
+   //  Check if user exists
+    $num_rows =$query->num_rows();
+    if($num_rows == 0){
+       http_response_code(400);
+
+       echo json_encode(["error" => "400",
+                           "message" =>"Seller Doesn't exist"]);
+       return;
     }
 
+
     // Check usernames
-    $query = $mysqli("SELECT username FROM users WHERE username = ?");
+    $query = $mysqli->prepare("SELECT username FROM users WHERE username = ?");
     $query ->bind_param('s',$username);
-    $query ->execute();$query ->store_result();
+    $query ->execute();
+    $query ->store_result();
 
     // If username exists
     $num_rows = $query->num_rows();
@@ -58,9 +63,11 @@
     }
 
     // Update User
-    $query = $mysqli->prepare("UPDATE users SET first_name= ?,username= ?,email= ?,`password`= ? WHERE id= ?");
-    $query->bind_param('ssssi', $first_name, $username, $email, $password, $userId);
+    $query = $mysqli->prepare("UPDATE users SET `first_name` = ?, `username` = ?, `email` = ?,`password`= ?, `address`= ?, `phone_number` = ? WHERE id= ?");
+    $query->bind_param('sssssii', $first_name, $username, $email, $password, $address, $phoneNumber, $userId);
     $query->execute();
+    var_dump($query); die();
+
     echo json_encode(["User" => "Updated"]);
 
 ?>

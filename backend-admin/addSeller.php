@@ -62,7 +62,7 @@
     // Insert data into db
     $query = $mysqli->prepare("INSERT INTO users (`username`, `password`, `email`, `first_name`, `last_name`, `address`, `phone_number`, `user_type_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
     $query ->bind_param('ssssssii',$username, $password, $email, $firstName, $lastName, $address, $phoneNumber, $userTypeSeller);
-    var_dump($query ->execute()); 
+    $query ->execute(); 
 
     // Success response
     $response = [];

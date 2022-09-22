@@ -1,5 +1,5 @@
 <?php
-    header("Access-Control-Allow-Origin: *");
+    require_once("headers.php");
     include("connection.php");
 
     $query = $mysqli->prepare("SELECT * FROM users");
