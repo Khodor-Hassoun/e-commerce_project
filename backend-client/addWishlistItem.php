@@ -28,7 +28,7 @@
         return;
     }
 
-    //Insert like item record to database
+    //Insert wishlist item record to database
     $query = $mysqli->prepare("INSERT INTO wishlists (product_id, user_id) VALUE (?, ?) "); 
     $query->bind_param("ii", $product_id, $user_id);
     $query->execute();
@@ -37,7 +37,7 @@
     //If last query id is not equal to product id,send an error
     if ($product=== null) {
         http_response_code(400);
-        echo json_encode(['error' => 400,'message' => "Error: Like not sent"]);
+        echo json_encode(['error' => 400,'message' => "Error: wishlist item not sent"]);
         
         return;
     }
