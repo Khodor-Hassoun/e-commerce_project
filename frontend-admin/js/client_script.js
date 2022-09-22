@@ -1,5 +1,5 @@
-const getClientsAPI = "";
-const banClientAPI = "";
+const getClientsAPI = "http://localhost/e-commerce_project/backend-admin/getUsersClients.php";
+const banClientAPI = "http://localhost/e-commerce_project/backend-admin/banClients.php";
 
 const getClients = () =>{
     //Recieve data from the server
