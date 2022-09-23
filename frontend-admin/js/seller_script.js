@@ -1,11 +1,21 @@
 const getSellerAPI = "http://localhost/backend/getSellers.php";
-const deleteSellerAPI = "http://localhost/backend/banClient.php";
+const deleteSellerAPI = "http://localhost/backend/deleteSeller.php";
+const addSellerAPI = "http://localhost/backend/addSeller.php";
 const editUserModal = document.querySelector(".edit_user_modal");
 const addUserModal = document.querySelector(".add_user_modal");
 const addUserButton = document.getElementById("add_seller");
 const editUserButton = document.getElementById("edit_seller")
 const closeButton = document.getElementById("close");
 const closeButton2 = document.getElementById("close2");
+const email = document.getElementById("email");
+const username = document.getElementById("username");
+const password = document.getElementById("password");
+const firstName = document.getElementById("first_name");
+const lastName = document.getElementById("last_name");
+const address = document.getElementById("address");
+const phoneNumber = document.getElementById("phone_number");
+const addSellerBtn = document.getElementById("add_seller_btn");
+
 const config = {
   headers: {
     Authorization: localStorage.getItem("token")
@@ -22,7 +32,7 @@ closeButton.onclick = function() {
   addUserModal.style.display = "none";
 }
 
-// When the user clicks on <span> (x), close the modal
+// When the user clicks on x, close the modal
 closeButton2.onclick = function() {
   editUserModal.style.display = "none";
 }
@@ -104,6 +114,8 @@ const getSellers = () =>{
                         return
                     }
 
+                    clone.style.backgroundcolor = "red";
+
                     window.location.replace("seller_page.html"); 
                 })
             })
@@ -112,5 +124,29 @@ const getSellers = () =>{
     }
 })
 }
+
+const addSeller = () => {
+      const data = new FormData();
+      data.append("email", email.value);
+      data.append("password", password.value);
+      data.append("first_name", firstName.value);
+      data.append("last_name", lastName);
+      data.append("address", address.value);
+      data.append("phone_number", phoneNumber.value);
+
+
+      //Send data to the server using axios
+      axios(addSellerAPI, data, config)
+      .then(
+          data =>  {
+          //Show error
+          if (data.message == "") {
+              //Do nothing
+              return
+          }
+          window.location.replace("seller_page.html"); 
+      })
+}
+
 
 getSellers();

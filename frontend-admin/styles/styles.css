@@ -287,8 +287,9 @@ header > h3{
     width: 67%;
 }
 
-.name_container input:first-child{
-    margin-right: 1vw;
+.name_container input:nth-child(2){
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
 }
   
 .close {

@@ -62,8 +62,6 @@ const getClients = () =>{
                         return
                     }
 
-                    clone.style.backgroundcolor = "red";
-
                 })
             })
 
