@@ -1,6 +1,9 @@
+//Intialize APIs
 const getSellerAPI = "http://localhost/backend/getSellers.php";
 const deleteSellerAPI = "http://localhost/backend/deleteSeller.php";
 const addSellerAPI = "http://localhost/backend/addSeller.php";
+
+//Intialize variables
 const editUserModal = document.querySelector(".edit_user_modal");
 const addUserModal = document.querySelector(".add_user_modal");
 const addUserButton = document.getElementById("add_seller");
@@ -140,6 +143,8 @@ const addSeller = () => {
               //Do nothing
               return
           }
+
+          //refresh page
           window.location.replace("seller_page.html"); 
       })
 }
