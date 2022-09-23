@@ -18,6 +18,6 @@
         $response[] = $a;
     }
 
-$json = json_encode($response);
-echo $json;
+    $json = json_encode($response);
+    echo $json;
 ?>
