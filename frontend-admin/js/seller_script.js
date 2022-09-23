@@ -17,11 +17,6 @@ addUserButton.onclick = function() {
   addUserModal.style.display = "block";
 }
 
-// When the user clicks on the button, open the modal
-editUserButton.onclick = function() {
-  editUserModal.style.display = "block";
-}
-
 // When the user clicks on <span> (x), close the modal
 closeButton.onclick = function() {
   addUserModal.style.display = "none";
@@ -89,6 +84,11 @@ const getSellers = () =>{
             //Get edit button and save the user's id in it
             let editUserBtn = clone.querySelector("#edit_seller");
             editUserBtn.setAttribute('id', data.data[i].id);
+
+            // When the user clicks on the button, open the modal
+            editUserBtn.onclick = function() {
+              editUserModal.style.display = "block";
+            }
             
             //Get delete button and save the user's id in it
             let deleteUserBtn = clone.querySelector("#delete_seller");

@@ -145,7 +145,7 @@ header > h3{
     display: flex;
     width: 100%;
     border-collapse:collapse;
-    margin: 20vh 22vw;
+    margin: 20vh 34vw;
     position: fixed;
 }
 
@@ -343,10 +343,18 @@ header > h3{
 
     .info{
         display: flex;
-        width: 50%;
+        max-width: 40%;
         border-collapse:collapse;
-        margin-left: 35vw;
-        font-size: 12px;
+        margin-left: 28vw;
+        font-size: 10px;
+    }
+
+    .info tr{
+        padding: 0.3vh 0.3vw;
+    }
+
+    .seller_info tr td:nth-last-child(-n+2){
+        display: none;
     }
 
     .modal_content {
