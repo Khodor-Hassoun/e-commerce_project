@@ -59,7 +59,7 @@
                     <a href="#">Options</a>
                     <a href="#">Add Product</a>
                     <a href="#">Top 5 products</a>
-                    <a href="#">Add Category</a>
+                    <a href="#" id="category">Add Category</a>
                     <a href="#">Discount</a>
                 </div>
             </div>
@@ -185,7 +185,34 @@
                 </div>
             </div>
         </section>
+
+        <!-- Pop up for add category -->
+        <div class="popup-container">
+            <section class="popup">
+                <div class="close-btn-pop">
+                    <img src="./images/back-btn.png" alt="">
+                </div>
+                <form action="#" class="popup-form">
+                    <input type="file" name="thumbnail" id="thumbnail">
+                    <label for="thumbnail" class="">
+                        <div class="thumbnail-div">
+
+                        </div>
+                    </label>
+                    <div class="pop-form-input">
+                        <label for="name">Category name</label>
+                        <input type="text" name="name" id="name">
+                    </div>
+                    
+                    <div class="pop-form-input">
+                        <label for="description">Category descroption</label>
+                        <textarea name="description" id="desc" cols="30" rows="10"></textarea>
+                    </div>
+
+                </form>
+            </section>
+        </div>
     </body>
-</body>
+    <script src="./js/add-category.js"></script>
 
 </html>
