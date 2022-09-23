@@ -1,7 +1,7 @@
 const getClientsAPI = "http://localhost/e-commerce_project/backend-admin/getUsersClients.php";
 const banClientAPI = "http://localhost/e-commerce_project/backend-admin/banClients.php";
 
-let config = {
+const config = {
     headers: {
       Authorization: localStorage.getItem("token"),
     }

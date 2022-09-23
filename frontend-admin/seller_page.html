@@ -34,7 +34,7 @@
                         <th>Phone number</th>
                     </tr>
     
-                    <tr class="seller">
+                    <tr class="seller" style="display: none;">
                         <td id="firstname"></td>
                         <td id="lastname"></td>
                         <td id="email"></td>
@@ -53,7 +53,7 @@
     </div>
 
     <!--Start of modal-->
-    <div class="modal edit_user_modal">
+    <div id="add_seller" class="modal add_user_modal">
         <!--Start of modal content-->
         <div class="modal_content">
             <span id="close" class="close">&times;</span>
@@ -75,7 +75,7 @@
     <!--End of modal-->
 
     <!--Start of modal-->
-    <div class="modal add_user_modal">
+    <div class="modal edit_user_modal">
         <!--Start of modal content-->
         <div class="modal_content">
             <span id="close2" class="close">&times;</span>
@@ -96,6 +96,7 @@
     </div>
     <!--End of modal-->
     <script src="./js/renderer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./js/seller_script.js"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-const getSellerAPI = "";
+const getSellerAPI = "http://localhost/backend/getSellers.php";
 const deleteSellerAPI = "";
 const editUserModal = document.querySelector(".edit_user_modal");
 const addUserModal = document.querySelector(".add_user_modal");
@@ -6,6 +6,11 @@ const addUserButton = document.getElementById("add_seller");
 const editUserButton = document.getElementById("edit_seller")
 const closeButton = document.getElementById("close");
 const closeButton2 = document.getElementById("close2");
+const config = {
+  headers: {
+    Authorization: localStorage.getItem("token")
+  }
+}
 
 // When the user clicks on the button, open the modal
 addUserButton.onclick = function() {
@@ -19,12 +24,12 @@ editUserButton.onclick = function() {
 
 // When the user clicks on <span> (x), close the modal
 closeButton.onclick = function() {
-  editUserModal.style.display = "none";
+  addUserModal.style.display = "none";
 }
 
 // When the user clicks on <span> (x), close the modal
 closeButton2.onclick = function() {
-  addUserModal.style.display = "none";
+  editUserModal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
@@ -40,51 +45,52 @@ window.onclick = function(event) {
 
 const getSellers = () =>{
     //Recieve data from server
-    axios.get(getSellerAPI)
+    axios.get(getSellerAPI, config)
     .then(
         data =>  {
+          console.log(data.data);
         //Show error
-        if (data.message !== undefined) {
+        if (data.data.message !== undefined) {
             //Do nothing
             return
         }
 
         //Loop over the response
-        for(let i = 0; i < Object.keys(data).length; i++){
+        for(let i = 0; i < Object.keys(data.data).length; i++){
             //Make a clone of the seller table row
             let originalItem = document.querySelector(".seller");
             let clone = originalItem.cloneNode(true);
             clone.style.display ="block";
-            clone.id= data[i].tweet_id;
+            clone.id = data.data[i].id;
             clone.classList.add("seller");
 
             //Add first name
             let firstname = clone.querySelector("#firstname");
-            firstname.textContent = data[i].firstname;
+            firstname.textContent = data.data[i].first_name;
 
             //Add last name
             let lastname = clone.querySelector("#lastname");
-            lastname.textContent = data[i].lastname;
+            lastname.textContent = data.data[i].last_name;
 
             //Add email
             let email = clone.querySelector("#email");
-            email.textContent = data[i].email;
+            email.textContent = data.data[i].email;
 
             //Add address
             let address = clone.querySelector("#address");
-            address.textContent = data[i].address;
+            address.textContent = data.data[i].address;
 
             //Add phone number
             let phoneNumber = clone.querySelector("#phone_number");
-            phoneNumber.textContent = data[i].phone_number; 
+            phoneNumber.textContent = data.data[i].phone_number; 
             
             //Get edit button and save the user's id in it
-            let editUserBtn = clone.querySelector("#edit_user");
-            editUserBtn.setAttribute('id', data[i].id);
+            let editUserBtn = clone.querySelector("#edit_seller");
+            editUserBtn.setAttribute('id', data.data[i].id);
             
             //Get delete button and save the user's id in it
-            let deleteUserBtn = clone.querySelector("#delete_user");
-            deleteUserBtn.setAttribute('id', data[i].id);
+            let deleteUserBtn = clone.querySelector("#delete_seller");
+            deleteUserBtn.setAttribute('id', data.data[i].id);
 
             deleteUserBtn.addEventListener("click", (event)=>{
                 const data = new FormData();
