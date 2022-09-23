@@ -2,7 +2,12 @@
 
 include("headers/headers.php");
 include("connection/connection.php");
-include ("jwtAPI.php");
+require_once("jwtFunc.php");
+
+//Check JWT token
+if(!jwtAuth()){
+    return;
+}
 
 $product_id = $_GET["product_id"];
 //check if id is not empty

@@ -1,10 +1,14 @@
 <?php
-
     header ("Access-Control-Allow-Origin:*");
     header ("Access-Control-Allow-Headers: *");
     include ("connection/connection.php");
     include ("headers/headers.php");
-    include ("jwtAPI.php");
+    require_once("jwtFunc.php");
+
+    //Check JWT token
+    if(!jwtAuth()){
+        return;
+    }
     
 
     $description = $_POST["description"];

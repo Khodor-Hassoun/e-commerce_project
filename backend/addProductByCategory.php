@@ -2,7 +2,13 @@
 
 include("headers/headers.php");
 include("connection/connection.php");
-include ("jwtAPI.php");
+require_once("jwtFunc.php");
+
+//Check JWT token
+if(!jwtAuth()){
+    return;
+}
+
 $category_id = $_POST["category_id"];
 $seller_id = $_POST["seller_id"];
 $quantity = $_POST["quantity"];
