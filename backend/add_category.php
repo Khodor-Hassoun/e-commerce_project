@@ -1,6 +1,4 @@
 <?php
-    header ("Access-Control-Allow-Origin:*");
-    header ("Access-Control-Allow-Headers: *");
     include ("connection/connection.php");
     include ("headers/headers.php");
     require_once("jwtFunc.php");
@@ -10,7 +8,6 @@
         return;
     }
     
-
     $description = $_POST["description"];
     $thumbnail = $_POST["thumbnail"];
     $name = $_POST["name"];

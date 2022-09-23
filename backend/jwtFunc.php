@@ -1,6 +1,6 @@
 <?php 
 
-require __DIR__."/../vendor/autoload.php";
+require __DIR__."/vendor/autoload.php";
 
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
@@ -8,7 +8,7 @@ use Firebase\JWT\Key;
 function jwtAuth(){
     $publicKey = file_get_contents("./public-key.pem");
 
-    $auth = getallheaders()["Authorization"];
+    $auth = getallheaders()["Authorization"] ?? null;
 
     $publicKey = file_get_contents("./public-key.pem");
 
