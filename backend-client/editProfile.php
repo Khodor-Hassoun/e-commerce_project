@@ -1,6 +1,12 @@
 <?php
     include("headers.php");
     include("connection.php");
+    require_once("jwtFunc.php");
+
+    //Check JWT token
+    if(!jwtAuth()){
+        return;
+    }
 
     $id = $_POST["id"];
     $username = $_POST["username"];

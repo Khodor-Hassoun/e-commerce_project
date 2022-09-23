@@ -5,6 +5,12 @@ include("connection.php");
 //files needed
 require_once("headers.php");
 require('functions.php');
+require_once("jwtFunc.php");
+
+    //Check JWT token
+    if(!jwtAuth()){
+        return;
+    }
 
 //sanitize the data
 $productName = check_input($_POST['name']);

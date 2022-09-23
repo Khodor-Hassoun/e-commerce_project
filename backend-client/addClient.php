@@ -1,6 +1,12 @@
 <?php
     header("Access-Control-Allow-Origin: *");
     include('connection.php');
+    require_once("jwtFunc.php");
+
+    //Check JWT token
+    if(!jwtAuth()){
+        return;
+    }
 
     // initilize variables
     // $userId = $_POST['id'];

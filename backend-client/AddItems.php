@@ -1,6 +1,12 @@
 <?php
     include("connection.php");
     require_once("headers.php");
+    require_once("jwtFunc.php");
+
+    //Check JWT token
+    if(!jwtAuth()){
+        return;
+    }
 
     $product_id = $_POST["product_id"];
     $client_id = $_POST["client_id"];

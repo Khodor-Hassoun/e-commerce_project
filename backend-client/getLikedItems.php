@@ -1,6 +1,12 @@
 <?php
     include("headers.php");
     include("connection.php");
+    require_once("jwtFunc.php");
+
+    //Check JWT token
+    if(!jwtAuth()){
+        return;
+    }
 
     $user_id = $_GET["user_id"];
 

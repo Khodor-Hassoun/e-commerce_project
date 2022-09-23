@@ -2,6 +2,12 @@
 
     include('connection.php');
     require_once('headers.php');
+    require_once("jwtFunc.php");
+
+    //Check JWT token
+    if(!jwtAuth()){
+        return;
+    }
 
     // Random character generator
     function getPassword($n) {
