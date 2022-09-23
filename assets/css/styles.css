@@ -1,0 +1,266 @@
+            /* CSS Reset */
+            
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            /* Nav Bar*/
+            
+            .navbar {
+                height: 20%;
+                background-color: #022B3A;
+                color: white;
+            }
+            
+            .navbar-container {
+                display: flex;
+                justify-content: space-between;
+            }
+            
+            .navbar-item {
+                margin: 15px 45px 15px 45px;
+                margin-left: 10px;
+                font-size: 26gitpx;
+            }
+            
+            .search-field {
+                display: flex;
+                margin-left: 0px;
+            }
+            
+            input[type=text] {
+                margin-top: 10px;
+                height: 50px;
+                width: 300px;
+                border-radius: 7px;
+            }
+            
+            .title {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                color: rgb(247, 251, 251);
+            }
+            
+            .title h1 {
+                font-size: 20px;
+            }
+            /*Side menu*/
+            
+            .side-menu-container {
+                background-color: rgba(31, 122, 140, 1);
+                height: 110vh;
+                width: 15%;
+            }
+            
+            .side-menu-item {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                text-align: center;
+            }
+            /* link*/
+            
+            .side-menu-item a {
+                text-decoration: none;
+                color: white;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 14px;
+                padding: 30px;
+            }
+            
+            a:hover {
+                background-color: rgb(146, 192, 227);
+            }
+            
+            .side-menu-item>a:first-child {
+                margin-top: 50px;
+                font-weight: bold;
+            }
+            
+            .link-style {
+                display: flex;
+                flex-direction: column;
+            }
+            /*products container*/
+            
+            .main-container {
+                display: flex;
+                flex-direction: row;
+            }
+            
+            .grid-container {
+                margin: 20px auto 10px auto;
+                display: grid;
+                gap: 25px 25px;
+                grid-template-columns: auto auto auto auto;
+                padding: 10px;
+            }
+            
+            .grid-item {
+                align-items: center;
+                width: 20vw;
+                height: 46vh;
+                background-color: white;
+                border: 1px solid rgba(0, 0, 0, 0.8);
+                border-radius: 10px;
+                padding: 20px;
+                font-size: 30px;
+                text-align: center;
+            }
+            
+            .grid-item img {
+                width: 50%;
+                height: 40%;
+                border-radius: 6px;
+            }
+            
+            .grid-item-text {
+                text-align: left;
+                margin-top: 15px;
+                font-size: 12px;
+                font-family: Georgia, 'Times New Roman', Times, serif;
+            }
+            
+            .grid-item-text p {
+                padding: 7px;
+            }
+            
+            .like-icon {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            
+            .button-position {
+                display: flex;
+            }
+            
+            .btn-style-1 {
+                background-color: rgba(118, 175, 232, 0.436);
+                border: none;
+                border-radius: 25px;
+                padding: 5px;
+                width: 80px;
+                margin-right: 10px;
+            }
+            
+            .btn-style-2 {
+                background-color: rgb(243, 132, 132);
+                border-radius: 25px;
+                border: none;
+                padding: 5px;
+                width: 80px;
+            }
+            
+            .btn-style-1:hover {
+                background-color: rgba(5, 61, 118, 0.436);
+                color: white;
+                transition: 0.5s;
+            }
+            
+            .btn-style-2:hover {
+                background-color: rgb(246, 21, 21);
+                color: white;
+                transition: 0.5s;
+            }
+            
+            .add-icon {
+                margin: auto;
+            }
+            /* The Modal (background) */
+            
+            .modal {
+                display: none;
+                /* Hidden by default */
+                position: fixed;
+                /* Stay in place */
+                z-index: 1;
+                /* Sit on top */
+                padding-top: 100px;
+                /* Location of the box */
+                left: 0;
+                top: 0;
+                width: 100%;
+                /* Full width */
+                height: 100%;
+                /* Full height */
+                overflow: auto;
+                /* Enable scroll if needed */
+                background-color: rgb(0, 0, 0);
+                /* Fallback color */
+                background-color: rgba(0, 0, 0, 0.4);
+                /* Black w/ opacity */
+            }
+            /* Modal Content */
+            
+            .modal-content {
+                display: flex;
+                flex-direction: column;
+                background-color: #fefefe;
+                margin: auto;
+                padding: 20px;
+                border: 1px solid #888;
+                width: 80%;
+            }
+            /* The Close Button */
+            
+            .close {
+                color: #aaaaaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+            }
+            
+            .close:hover,
+            .close:focus {
+                color: #000;
+                text-decoration: none;
+                cursor: pointer;
+            }
+            
+            .input {
+                height: 30px;
+                width: 200px;
+                border-radius: 7px;
+            }
+            
+            @media only screen and (max-width: 600px) {
+                /* .navbar-container {
+                    display: flex;
+                    flex-direction: column;
+                }*/
+                .title h1 {
+                    font-size: 14px;
+                }
+                .navbar-item {
+                    font-size: 20px;
+                }
+                input[type=text] {
+                    height: 30px;
+                    width: 100px;
+                    border-radius: 7px;
+                }
+                .grid-container {
+                    grid-template-columns: repeat(auto-fill, 186px);
+                    margin: 13px 150px 10px auto;
+                }
+                .grid-item {
+                    width: 45vw;
+                    height: 40vh;
+                }
+                .side-menu-container {
+                    width: 25%;
+                    height: auto;
+                }
+                .side-menu-item a {
+                    font-size: 12px;
+                }
+                .grid-item-text {
+                    text-align: left;
+                    margin-top: 15px;
+                    font-size: 12px;
+                    font-family: Georgia, 'Times New Roman', Times, serif;
+                }
+            }
