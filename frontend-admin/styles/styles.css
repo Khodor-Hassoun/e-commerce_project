@@ -145,7 +145,8 @@ header > h3{
     display: flex;
     width: 100%;
     border-collapse:collapse;
-    margin: 20vh 34vw;
+    margin: 20vh 30vw;
+    overflow-y: scroll;
     position: fixed;
 }
 
@@ -330,7 +331,7 @@ header > h3{
     }
 
     .side_menu_container{
-        width: 27vw;
+        width: 20vw;
         font-size: 12px
     }
 
@@ -344,18 +345,14 @@ header > h3{
 
     .info{
         display: flex;
-        max-width: 40%;
+        width: 70%;
         border-collapse:collapse;
-        margin-left: 28vw;
-        font-size: 10px;
+        margin-left: 25vw;
+        font-size: 12px;
     }
 
     .info tr{
         padding: 0.3vh 0.3vw;
-    }
-
-    .seller_info tr td:nth-last-child(-n+2){
-        display: none;
     }
 
     .modal_content {
