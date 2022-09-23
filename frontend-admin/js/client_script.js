@@ -50,7 +50,7 @@ const getClients = () =>{
             let banButton = clone.querySelector("#ban_user");
             banButton.setAttribute('id', data[i].id);
 
-            likeButton.addEventListener("click", (event)=>{
+            banButton.addEventListener("click", (event)=>{
                 const data = new FormData();
                 userID = banButton.getAttribute('id');
                 data.append('user_id', userID);

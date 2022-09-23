@@ -1,5 +1,5 @@
 const getSellerAPI = "http://localhost/backend/getSellers.php";
-const deleteSellerAPI = "";
+const deleteSellerAPI = "http://localhost/backend/banClient.php";
 const editUserModal = document.querySelector(".edit_user_modal");
 const addUserModal = document.querySelector(".add_user_modal");
 const addUserButton = document.getElementById("add_seller");
@@ -95,18 +95,16 @@ const getSellers = () =>{
             deleteUserBtn.setAttribute('id', data.data[i].id);
 
             deleteUserBtn.addEventListener("click", (event)=>{
-                const data = new FormData();
-                userID = banButton.getAttribute('id');
-                data.append('user_id', userID);
+                userID = deleteUserBtn.getAttribute('id');
 
-                axios.post(deleteSellerAPI, data)
+                axios.get(deleteSellerAPI + "?id=" + userID, config)
                 .then( data => {
                     if (data.error !== undefined) {
                         //Do nothing
                         return
                     }
 
-                    window.location.replace("client_page.html"); 
+                    window.location.replace("seller_page.html"); 
                 })
             })
 
