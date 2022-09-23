@@ -55,14 +55,16 @@ const getSellers = () =>{
             return
         }
 
+        // const table = document.getElementById('sellers_table');
+
         //Loop over the response
         for(let i = 0; i < Object.keys(data.data).length; i++){
-            //Make a clone of the seller table row
+
+            //Get original seller row and make a clone
             let originalItem = document.querySelector(".seller");
             let clone = originalItem.cloneNode(true);
-            clone.style.display ="block";
             clone.id = data.data[i].id;
-            clone.classList.add("seller");
+            clone.style.display="table-row-group";
 
             //Add first name
             let firstname = clone.querySelector("#firstname");
@@ -108,7 +110,7 @@ const getSellers = () =>{
                 })
             })
 
-            originalItem.after(clone);
+            originalItem.before(clone);
     }
 })
 }

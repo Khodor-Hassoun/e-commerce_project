@@ -204,6 +204,10 @@ header > h3{
     outline: none;
 }
 
+.seller{
+    display: none;
+}
+
 /*Client page starts here*/
 .client_info tr td:last-child{
     background-color: white;
