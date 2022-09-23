@@ -1,9 +1,15 @@
 const getClientsAPI = "http://localhost/e-commerce_project/backend-admin/getUsersClients.php";
 const banClientAPI = "http://localhost/e-commerce_project/backend-admin/banClients.php";
 
+let config = {
+    headers: {
+      Authorization: localStorage.getItem("token"),
+    }
+  }
+
 const getClients = () =>{
     //Recieve data from the server
-    axios.get(getClientsAPI)
+    axios.get(getClientsAPI, config)
     .then(
         data =>  {
         if (data.message !== undefined) {
