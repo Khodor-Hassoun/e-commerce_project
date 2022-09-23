@@ -1,6 +1,12 @@
 <?php
     include('connection.php');
     require_once('headers.php');
+    require_once("jwtFunc.php");
+
+    //Check JWT token
+    if(!jwtAuth()){
+        return;
+    }
 
     // initilize variables
     $username = trim($_POST['username']);
@@ -12,9 +18,8 @@
     $password =hash('sha256', $_POST["password"]) ;
     $userTypeSeller = 2;
 
-
-    // Check if the inputs are correct
-    if (
+    //Check if the inputs are correct
+    if(
         !isset($username) || empty($username)
         || !isset($email) || empty($email)
         || !isset($firstName) || empty($firstName)

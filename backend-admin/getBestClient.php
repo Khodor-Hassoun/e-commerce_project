@@ -1,6 +1,12 @@
 <?php
     include ("connection.php");
     require_once("headers.php");
+    require_once("jwtFunc.php");
+
+    //Check JWT token
+    if(!jwtAuth()){
+        return;
+    }
 
     //Prepare and execute query to get best client of the week based on how much they paid
     $query = $mysqli->prepare(
