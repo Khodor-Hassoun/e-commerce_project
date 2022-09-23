@@ -7,13 +7,13 @@ const addUserButton = document.getElementById("add_seller");
 const editUserButton = document.getElementById("edit_seller")
 const closeButton = document.getElementById("close");
 const closeButton2 = document.getElementById("close2");
-const email = document.getElementById("email");
-const username = document.getElementById("username");
-const password = document.getElementById("password");
-const firstName = document.getElementById("first_name");
-const lastName = document.getElementById("last_name");
-const address = document.getElementById("address");
-const phoneNumber = document.getElementById("phone_number");
+const new_email = document.getElementById("new_email");
+const new_username = document.getElementById("new_username");
+const new_password = document.getElementById("new_password");
+const new_firstName = document.getElementById("new_first_name");
+const new_lastName = document.getElementById("new_last_name");
+const new_address = document.getElementById("new_address");
+const new_phoneNumber = document.getElementById("new_phone_number");
 const addSellerBtn = document.getElementById("add_seller_btn");
 
 const config = {
@@ -27,7 +27,7 @@ addUserButton.onclick = function() {
   addUserModal.style.display = "block";
 }
 
-// When the user clicks on <span> (x), close the modal
+// When the user clicks on x, close the modal
 closeButton.onclick = function() {
   addUserModal.style.display = "none";
 }
@@ -53,14 +53,11 @@ const getSellers = () =>{
     axios.get(getSellerAPI, config)
     .then(
         data =>  {
-          console.log(data.data);
         //Show error
         if (data.data.message !== undefined) {
             //Do nothing
             return
         }
-
-        // const table = document.getElementById('sellers_table');
 
         //Loop over the response
         for(let i = 0; i < Object.keys(data.data).length; i++){
@@ -92,7 +89,7 @@ const getSellers = () =>{
             phoneNumber.textContent = data.data[i].phone_number; 
             
             //Get edit button and save the user's id in it
-            let editUserBtn = clone.querySelector("#edit_seller");
+            let editUserBtn = clone.querySelector(".edit_seller");
             editUserBtn.setAttribute('id', data.data[i].id);
 
             // When the user clicks on the button, open the modal
@@ -101,9 +98,10 @@ const getSellers = () =>{
             }
             
             //Get delete button and save the user's id in it
-            let deleteUserBtn = clone.querySelector("#delete_seller");
+            let deleteUserBtn = clone.querySelector(".delete_seller");
             deleteUserBtn.setAttribute('id', data.data[i].id);
 
+            //When the user clicks on the delete button, a seller gets deleted
             deleteUserBtn.addEventListener("click", (event)=>{
                 userID = deleteUserBtn.getAttribute('id');
 
@@ -113,8 +111,6 @@ const getSellers = () =>{
                         //Do nothing
                         return
                     }
-
-                    clone.style.backgroundcolor = "red";
 
                     window.location.replace("seller_page.html"); 
                 })
@@ -127,16 +123,16 @@ const getSellers = () =>{
 
 const addSeller = () => {
       const data = new FormData();
-      data.append("email", email.value);
-      data.append("password", password.value);
-      data.append("first_name", firstName.value);
-      data.append("last_name", lastName);
-      data.append("address", address.value);
-      data.append("phone_number", phoneNumber.value);
-
+      data.append("email", new_email.value);
+      data.append("username", new_username.value);
+      data.append("password", new_password.value);
+      data.append("firstName", new_firstName.value);
+      data.append("lastName", new_lastName.value);
+      data.append("address", new_address.value);
+      data.append("phoneNumber", new_phoneNumber.value);
 
       //Send data to the server using axios
-      axios(addSellerAPI, data, config)
+      axios.post(addSellerAPI, data, config)
       .then(
           data =>  {
           //Show error
@@ -150,3 +146,4 @@ const addSeller = () => {
 
 
 getSellers();
+addSellerBtn.addEventListener("click", addSeller);
