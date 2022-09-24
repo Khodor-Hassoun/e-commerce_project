@@ -44,7 +44,7 @@ thumbnail.addEventListener('change',()=>{
 categoryForm.addEventListener('submit',(e)=>{
     e.preventDefault()
     const data = new FormData()
-    data.append("thumbnail",'abdulalah')
+    data.append("thumbnail",image64)
     data.append("name", catName.value)
     data.append("description",description.value)
     data.append("seller_id",9)

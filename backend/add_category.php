@@ -70,13 +70,28 @@
         echo json_encode([
             'error' => 400,
             'message' => 'category Exists']);
-        return;}
+        return;
+    }
+    
+    $img = base64_decode(str_replace('data:image/png;base64,', '', $thumbnail));
+    $split_image = 'png';
+    //Save the file by using a random name
+    $file_name = sprintf("images/%s.png", bin2hex(random_bytes(10)));
+
+    //If file not saved in folder, send back an error
+    if(!file_put_contents($file_name, $img)){
+        http_response_code(400);
+        echo json_encode([
+            'error' => 400,
+            'message' => "Error: Invalid image"
+    ]);
+    }
     
     //Prepare and execute query to add a new category
     $query = $mysqli->prepare("INSERT INTO `categories` (`description`, `thumbnail`, `name`, `seller_id`)
     VALUE (?,?,?,?)");
 
-    $query->bind_param("sssi", $description, $thumbnail, $name, $seller_id);
+    $query->bind_param("sssi", $description, $file_name, $name, $seller_id);
     $query->execute();
 
 
