@@ -13,6 +13,7 @@ body{
     height: auto;
 }
 
+/*Start of header*/
 .header{
     width: 100%;
     display: flex;
@@ -62,3 +63,17 @@ body{
     width: 18px;
     height: 18px;
 }
+/*End of header*/
+
+/*Start of ads container*/
+
+.ads_container{
+    height: 70vh;
+    max-width: 100%;
+}
+
+.ad{
+    height: 100%;
+    width: 100%;
+}
+
