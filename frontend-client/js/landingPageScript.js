@@ -2,6 +2,8 @@
 const loginAPI = "http://localhost/backend/signin.php";
 const signupAPI = "http://localhost/backend/signup.php";
 const resetPassAPI = "http://localhost/backend/resetClientPw.php";
+const searchAPI = "";
+
 //Initialize variables
 const button = document.getElementById("login_btn");
 const email = document.getElementById("email");
@@ -33,6 +35,10 @@ const config = {
     }
 }
 let data;
+let slideIndex = 0;
+
+
+
 
 //When the user clicks on reset password, a new modal appears
 resetPassButton.onclick = function() {
@@ -74,6 +80,29 @@ window.onclick = function(event) {
   if (event.target == resetPassModal) {
     resetPassModal.style.display = "none";
   }
+}
+
+const search = () => {
+    //Get search input and filter it
+    filteredUsername = searchInput.value.toLowerCase().trim();
+
+    //Send data to the server using fetch
+    axios.get(searchAPI + filteredUsername)
+    .then(response=>response.json())
+    .then(data => {
+        //Check if there's an error
+        if(data.message !== undefined){
+            //Do nothing
+            return
+        }
+
+        //Create a list item and add it results
+        let li = document.createElement("li");
+        li.appendChild(document.createTextNode(data.username));
+        li.id = data.id
+        searchResult.innerHTML = '';
+        searchResult.appendChild(li);
+    })
 }
 
 const login = () => {
@@ -152,6 +181,17 @@ const resetPass = () =>{
      })
 }
 
+//search once the user type on the search bar
+searchInput.onkeyup = function() {
+    search();
+
+    if(searchInput.value == ""){
+        searchResult.style.display = "none";
+        searchResult.innerHTML = '';
+    }
+}
+
 signupButton.addEventListener("click", createNewAccount)
 button.addEventListener("click", login);
 resetEmail.addEventListener("click", resetPass);
+showSlides();
