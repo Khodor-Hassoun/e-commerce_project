@@ -13,7 +13,7 @@
     $seller_id = $_POST["seller_id"];   
 
     //Validate seller id
-    if(!isset($seller_id) || empty($seller)){ 
+    if(!isset($seller_id) || empty($seller_id)){ 
         http_response_code(400);
         echo json_encode([
             'error' => 400,
@@ -38,18 +38,12 @@
 
     $query->bind_param("i", $seller_id);
     $query->execute();
+    $array = $query->get_result();
 
-    $response = $query->get_result()->fetch_assoc();
+    $response = [];
 
-    //If response is empty, send back an error message
-    if (empty($response)) {
-        http_response_code(400);
-        echo json_encode([
-            'error' => 400,
-            'message' => 'unable to retrieve products'
-        ]);
-
-        return;
+    while($a = $array->fetch_assoc()){
+        $response[] = $a;
     }
 
     echo json_encode($response);
