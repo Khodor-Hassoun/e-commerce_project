@@ -66,7 +66,6 @@ body{
 /*End of header*/
 
 /*Start of ads container*/
-
 .ads_container{
     height: 70vh;
     max-width: 100%;
@@ -76,4 +75,55 @@ body{
     height: 100%;
     width: 100%;
 }
+/*End ads container*/
 
+/*Start of sellers container*/
+.sellers_container{
+    max-width: 100%;
+    padding: 0 5vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.section_header{
+    color: #022B3A;
+    height: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*End of sellers container*/
+
+/*Start of stock container*/
+.stock_container{
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.categories{
+    height: 100%;
+    background-color: #1F7A8C;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.products{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.product{
+    width: 500px;
+    height: 500px;
+    border-radius: 20px;
+}
