@@ -67,7 +67,8 @@ body{
 
 /*Start of ads container*/
 .ads_container{
-    height: 70vh;
+    max-height: 70vh;
+    min-height: 20vh;
     max-width: 100%;
 }
 
@@ -192,7 +193,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 35vh;
+    min-height: 35vh;
     max-width: 100%;
     color: white;
     background-color: #1F7A8C;
@@ -221,9 +222,21 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    flex-wrap: wrap;
     align-items: center;
-    width: 20vw;
     text-align: center;
 }
-
 /*End of about us section*/
+
+/*Start of footer section*/
+footer{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    height: 5vh;
+    color: white;
+    padding: 0 5vw;
+    background-color: #022B3A;
+    font-size: 12px;
+}
+/*End of footer section*/
