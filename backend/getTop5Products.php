@@ -13,7 +13,7 @@
     $seller_id = $_POST["seller_id"];   
 
     //Validate seller id
-    if(!isset($seller_id) || empty($seller)){ 
+    if(!isset($seller_id) || empty($seller_id)){ 
         http_response_code(400);
         echo json_encode([
             'error' => 400,
