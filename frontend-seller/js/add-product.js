@@ -146,20 +146,20 @@ axios.get(getProductsApi,{
         const btnDiv = document.createElement('div')
         btnDiv.classList.add("butoon-position")
 
-        const editBtn = document.createElement("input")
+        const editBtn = document.createElement("button")
         editBtn.classList.add("btn-style-1")
         editBtn.classList.add('edit')
-        editBtn.setAttribute('type', 'button')
-        editBtn.value = 'Edit'
+        // editBtn.setAttribute('type', 'button')
+        editBtn.textContent = 'Edit'
         btnDiv.append(editBtn)
 
-        const deleteBtn = document.createElement("input")
+        const deleteBtn = document.createElement("button")
         deleteBtn.classList.add("btn-style-2")
         deleteBtn.classList.add('delete')
-        deleteBtn.setAttribute('type', 'button')
-        deleteBtn.value = 'Delete'
-
+        // deleteBtn.setAttribute('type', 'button')
+        deleteBtn.textContent = 'Delete'
         btnDiv.append(deleteBtn)
+        
         gridItemText.append(btnDiv)
 
         // append all to grid item card. append grid item card to the container
