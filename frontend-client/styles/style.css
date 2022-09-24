@@ -430,6 +430,18 @@ footer{
         width: 70%; 
     }
 
+    .modal_content {
+        width: 70%;
+    }
+
+    .name_container{
+        width: 83%;
+    }
+
+    .create_account{
+        width: 60%;
+    }
+
     .textfield{
         width: 80%;
     }

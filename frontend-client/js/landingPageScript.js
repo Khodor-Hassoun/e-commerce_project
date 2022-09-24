@@ -1,5 +1,6 @@
 //Initialize APIs
 const loginAPI = "http://localhost/backend/signin.php";
+const signupAPI = "http://localhost/backend/signup.php";
 const button = document.getElementById("login_btn");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
@@ -10,6 +11,18 @@ const close = document.getElementById("close");
 const close2 = document.getElementById("close2");
 const open_signup = document.getElementById("open_signup");
 const signupModal = document.getElementById("signup_modal");
+const new_username = document.getElementById("new_username");
+const new_password = document.getElementById("new_password");
+const new_firstName = document.getElementById("new_first_name");
+const new_lastName = document.getElementById("new_last_name");
+const new_address = document.getElementById("new_address");
+const new_phoneNumber = document.getElementById("new_phone_number");
+const signupButton = document.getElementById("create_account");
+const config = {
+    headers: {
+      Authorization: localStorage.getItem("token")
+    }
+  }
 
 if(localStorage.getItem("userID"))
 
@@ -73,5 +86,31 @@ const login = () => {
  }
 );
 }
+
+const createNewAccount = () => {
+    const data = new FormData();
+    data.append("email", new_email.value);
+    data.append("username", new_username.value);
+    data.append("password", new_password.value);
+    data.append("firstName", new_firstName.value);
+    data.append("lastName", new_lastName.value);
+    data.append("address", new_address.value);
+    data.append("phoneNumber", new_phoneNumber.value);
+
+    //Send data to the server using axios
+    axios.post(signupAPI, data, config)
+    .then(
+        data =>  {
+        //Show error
+        if (data.message == "") {
+            //Do nothing
+            return
+        }
+
+        //refresh page
+        window.location.replace("seller_page.html"); 
+    })
+}
   
+signupButton.addEventListener("click", createNewAccount)
 button.addEventListener("click", login);
