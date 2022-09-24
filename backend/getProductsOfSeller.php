@@ -10,7 +10,7 @@
         return;
     }
 
-    $seller_id = $_POST["seller_id"];   
+    $seller_id = $_GET["seller_id"];   
 
     //Validate seller id
     if(!isset($seller_id) || empty($seller_id)){ 
