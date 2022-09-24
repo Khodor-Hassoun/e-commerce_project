@@ -12,7 +12,6 @@ $username = trim($_POST['username']);
 $email = $_POST['email'];
 $firstName = $_POST['firstName'];
 $lastName = $_POST['lastName'];
-$address = $_POST['address'];
 $phoneNumber = $_POST['phoneNumber'];
 $password =hash('sha256', $_POST["password"]) ;
 $userTypeID = 3;
@@ -25,7 +24,6 @@ if(
     || !isset($firstName) || empty($firstName)
     || !isset($lastName) || empty($lastName)
     || !isset($password) || empty($password)
-    || !isset($address) || empty($address)
 
 ) {
     http_response_code(400);
@@ -57,8 +55,8 @@ if(
      return;
  }
 //Prepare and execute SQL query to add a new user
-$query = $mysqli->prepare("INSERT INTO `users` (`username`, `password`, `email`, `first_name`, `last_name`, `address`, `phone_number`, `is_banned`, `user_type_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);"); 
-$query->bind_param("sssssssii", $username,$password, $email,  $firstName,$lastName,$address,$phoneNumber,$isBanned,$userTypeID);
+$query = $mysqli->prepare("INSERT INTO `users` (`username`, `password`, `email`, `first_name`, `last_name`, `phone_number`, `is_banned`, `user_type_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);"); 
+$query->bind_param("sssssssii", $username,$password, $email,  $firstName,$lastName,$phoneNumber,$isBanned,$userTypeID);
 $query->execute();
 
 $userID = mysqli_insert_id($mysqli);
