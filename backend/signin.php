@@ -33,7 +33,11 @@ if(!isset($password)  || empty($password)){
 $password = hash("sha256", $password);
 
 //Prepare and execute SQL query to log in
-$query = $mysqli->prepare("SELECT id  FROM users WHERE email = ? AND password = ?");
+$query = $mysqli->prepare("SELECT users.id, type 
+FROM users
+INNER JOIN user_types
+ON users.user_type_id = user_types.id
+WHERE email = ?  AND password = ? ");
 $query->bind_param("ss", $email, $password);
 $query->execute();
 
