@@ -2,7 +2,6 @@ const sellerContainer=document.querySelector(".sellers");
 const getSellerAPI="http://localhost/backend/getSellers.php";
 const getSellerCategoriesAPI="http://localhost/backend/getCategories.php";
 const categoriesUl=document.querySelector(".categories_list");
-let clicked=false;
 const getSellers=()=>{
     axios.get(getSellerAPI)
     .then(response =>  {
@@ -51,7 +50,6 @@ const getSellerCategories=(id)=>{
                     categoriesUl.appendChild(li);
             }
         }
-        //Loop over the response
     });
     
 }
