@@ -277,7 +277,7 @@
                 width: 20vw;
                 height: 20vw;
                 border-radius: 50%;
-                background-image: url('../images/category.png');
+                /* background-image: url('../images/category.png'); */
                 background-position: center;
                 background-size: cover;
                 border:solid #000

@@ -1,8 +1,8 @@
 // Popup Variables
-const addCategory = document.getElementById('category');
+const addCategory = document.querySelector('.add-icon');
 const backBtn = document.querySelector('.close-btn-pop');
 const popupContainer = document.querySelector('.popup-container');
-
+const thumbDiv = document.querySelector('.thumbnail-div')
 // Form data variables
 const addCategoryApi = 'http://localhost/e-commerce_project/backend/add_category.php'
 const thumbnail = document.getElementById('thumbnail');
@@ -10,6 +10,12 @@ const catName = document.querySelector('#name');
 const description = document.querySelector('#desc')
 let image64= ''
 const categoryForm = document.querySelector('.popup-form')
+
+const config={
+    headers:{
+        Authorization: localStorage.getItem("token")
+    }
+}
 
 
 addCategory.addEventListener('click',()=>{
@@ -28,11 +34,13 @@ thumbnail.addEventListener('change',()=>{
 
     reader.addEventListener('load',()=>{
         console.log(reader.result)
+        thumbDiv.src= `${reader.result}`
+        image64 = reader.result
     })
 
-    image64 = reader.readAsDataURL(file)
+    reader.readAsDataURL(file)
+    // thumbDiv.src= `${reader.result}`
 })
-
 categoryForm.addEventListener('submit',(e)=>{
     e.preventDefault()
     const data = new FormData()
@@ -40,7 +48,7 @@ categoryForm.addEventListener('submit',(e)=>{
     data.append("name", catName.value)
     data.append("description",description.value)
     
-    axios.post(addCategoryApi, data)
+    axios.post(addCategoryApi, data,config)
         .then(res=>{
             console.log(res)
         })
