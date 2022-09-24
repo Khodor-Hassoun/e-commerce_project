@@ -180,3 +180,9 @@ body{
     height: 230px;
     border-radius: 20px;
 }
+/*End of stock container*/
+
+.divider{
+    color:#022B3A;
+    margin-top:5vh;
+}
