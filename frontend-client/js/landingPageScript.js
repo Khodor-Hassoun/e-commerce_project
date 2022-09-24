@@ -2,6 +2,7 @@
 const loginAPI = "http://localhost/backend/signin.php";
 const signupAPI = "http://localhost/backend/signup.php";
 const resetPassAPI = "http://localhost/backend/resetClientPw.php";
+const getRandProductAPI = "http://localhost/backend/getRandProducts.php";
 const searchAPI = "";
 
 //Initialize variables
@@ -37,8 +38,17 @@ const config = {
 let data;
 let slideIndex = 0;
 
-
-
+function showSlides() {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}
+  slides[slideIndex-1].style.display = "block";
+  setTimeout(showSlides, 2000); // Change image every 2 seconds
+}
 
 //When the user clicks on reset password, a new modal appears
 resetPassButton.onclick = function() {
@@ -189,6 +199,64 @@ searchInput.onkeyup = function() {
         searchResult.style.display = "none";
         searchResult.innerHTML = '';
     }
+}
+
+const getRandPost = () => {
+    // Send the data to the database using POST method
+    axios(getRandProductAPI)
+    .then(
+        response =>  { 
+         //Loop over the response
+         for(let i = 0; i < Object.keys(response).length; i++){
+             //Make a clone of the tweet model
+             let originalProduct = document.getElementById("seller");
+             let clone = originalProduct.cloneNode(true);
+             clone.style.display ="flex";
+             clone.id= data[i].id;
+             clone.classList.add("seller");
+ 
+             //Get the tweet text and modify on it
+             let paragraph = clone.querySelector(".tweet_text");
+             paragraph.textContent = data[i].tweet;
+ 
+             //Get username
+             let username = clone.querySelector(".username");
+             username.textContent = "@" + data[i].username;
+ 
+             //Get name
+             let name = clone.querySelector(".name");
+             if(data[i].name != null){
+                 name.textContent = data[i].name;
+             }
+ 
+             //Get Profile picture
+             let profilePic = clone.querySelector(".profile_pic");
+             if(data[i].profile_picture != null){
+                 profilePic.src = "data:image/png;base64," + data[i].profile_picture;
+             }
+ 
+             //Get the image if avaiable and show it
+             let image = clone.querySelector(".tweet_image");
+             if(data[i].image == null){
+                 image.style.display = "none";
+             }
+             else{
+                 image.src = "data:image/png;base64," + data[i].image;
+             }
+             
+             //Get likes
+             let likes = clone.querySelector(".likes_number");
+             likes.textContent = data[i].likes_count;
+             likes.id = data[i].id;
+ 
+             //Get like buttons, and save the tweet id as an attribute
+             let likeButton = clone.querySelector(".like_btn");
+             likeButton.setAttribute('data', data[i].tweet_id);
+       
+             //Add div after the original tweet
+             originalTweet.after(clone);
+         }
+     })
 }
 
 signupButton.addEventListener("click", createNewAccount)
