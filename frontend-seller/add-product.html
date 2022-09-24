@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src * self blob: data: gap:; style-src * self 'unsafe-inline' blob: data: gap:; script-src * 'self' 'unsafe-eval' 'unsafe-inline' blob: data: gap:; object-src * 'self' blob: data: gap:; img-src * self 'unsafe-inline' blob: data: gap:; connect-src self * 'unsafe-inline' blob: data: gap:; frame-src * self blob: data: gap:;">
     <link rel="stylesheet" href="./css/styles.css">
     <script src="https://kit.fontawesome.com/8c9f3af1d6.js" crossorigin="anonymous"></script>
     <title>Add Product</title>
@@ -203,7 +204,7 @@
                     <div class="inner-quan-cat">
                         <label for="category">Category:</label>
                         <select name="category" id="category">
-                            <option value="1">Tools</option>
+                            <option value="1" selected >Categories</option>
                         </select>
                     </div>
                     <div class="inner-quan-cat">
@@ -225,5 +226,6 @@
 
     
 </body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="./js/add-product.js"></script>
 </html>
