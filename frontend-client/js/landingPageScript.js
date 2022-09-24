@@ -8,8 +8,10 @@ const password = document.getElementById("password");
 const error = document.getElementById("error");
 const signinModal = document.getElementById("signin_modal");
 const signinButton = document.getElementById("signin_btn");
+const resetPassModal = document.getElementById("reset_modal");
 const close = document.getElementById("close");
 const close2 = document.getElementById("close2");
+const close3 = document.getElementById("close3");
 const open_signup = document.getElementById("open_signup");
 const signupModal = document.getElementById("signup_modal");
 const new_email = document.getElementById("new_email");
@@ -21,20 +23,23 @@ const new_address = document.getElementById("new_address");
 const new_phoneNumber = document.getElementById("new_phone_number");
 const signupButton = document.getElementById("create_account");
 const resetPassButton = document.getElementById("forgot_pass");
+const resetPassEmail = document.getElementById("reset_email");
+const resetStatus = document.getElementById("email_status");
+const resetEmail = document.getElementById("reset_password");
 const config = {
     headers: {
       Authorization: localStorage.getItem("token")
     }
-  }
+}
+let data;
 
-if(localStorage.getItem("userID"))
+resetPassButton.onclick = function() {
+    signinModal.style.display = "none";
+    resetPassModal.style.display = "block";
+}
 
 signinButton.onclick = function() {
     signinModal.style.display = "block";
-}
-
-close.onclick = function() {
-    signinModal.style.display = "none";
 }
 
 open_signup.onclick = function() {
@@ -42,8 +47,15 @@ open_signup.onclick = function() {
     signupModal.style.display = "block";
 }
 
+close.onclick = function() {
+    signinModal.style.display = "none";
+}
+
 close2.onclick = function() {
     signupModal.style.display = "none";
+}
+close3.onclick = function() {
+    resetPassModal.style.display = "none";
 }
 
 window.onclick = function(event) {
@@ -53,10 +65,13 @@ window.onclick = function(event) {
   if (event.target == signupModal) {
     signupModal.style.display = "none";
   }
+  if (event.target == resetPassModal) {
+    resetPassModal.style.display = "none";
+  }
 }
 
 const login = () => {
-    const data = new FormData();
+    data = new FormData();
     data.append("email", email.value);
     data.append("password", password.value);
 
@@ -91,7 +106,7 @@ const login = () => {
 }
 
 const createNewAccount = () => {
-    const data = new FormData();
+    data = new FormData();
     data.append("email", new_email.value);
     data.append("username", new_username.value);
     data.append("password", new_password.value);
@@ -114,19 +129,16 @@ const createNewAccount = () => {
 }
 
 const resetPass = () =>{
+    data = new FormData();
+    data.append("email", resetPassEmail.value);
+
      //Send data to the server using axios
-     axios.post(signupAPI, data)
-     .then(
-         response =>  {
- 
-         localStorage.setItem("userID", response.data.id)
-         localStorage.setItem("token", response.data.token)
- 
-         //refresh page
-         window.location.replace("landingPage.html");
+     axios.post(resetPassAPI, data, config)
+     .then(response =>  {
+        resetStatus.textContent = "Email sent!";
      })
 }
 
 signupButton.addEventListener("click", createNewAccount)
 button.addEventListener("click", login);
-resetPassButton.addEventListener("click", resetPass);
+resetEmail.addEventListener("click", resetPass);
