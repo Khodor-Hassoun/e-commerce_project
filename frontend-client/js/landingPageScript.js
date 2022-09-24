@@ -2,6 +2,7 @@
 const loginAPI = "http://localhost/backend/signin.php";
 const signupAPI = "http://localhost/backend/signup.php";
 const resetPassAPI = "http://localhost/backend/resetClientPw.php";
+//Initialize variables
 const button = document.getElementById("login_btn");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
@@ -33,20 +34,24 @@ const config = {
 }
 let data;
 
+//When the user clicks on reset password, a new modal appears
 resetPassButton.onclick = function() {
     signinModal.style.display = "none";
     resetPassModal.style.display = "block";
 }
 
+//When the user clicks on the sign in button, a modal appears
 signinButton.onclick = function() {
     signinModal.style.display = "block";
 }
 
+//Open sign up modal instead of sign in
 open_signup.onclick = function() {
     signinModal.style.display = "none";
     signupModal.style.display = "block";
 }
 
+//Close modals
 close.onclick = function() {
     signinModal.style.display = "none";
 }
@@ -58,6 +63,7 @@ close3.onclick = function() {
     resetPassModal.style.display = "none";
 }
 
+//Close modals if clicked outside of them
 window.onclick = function(event) {
   if (event.target == signinModal) {
     signinModal.style.display = "none";
@@ -71,10 +77,12 @@ window.onclick = function(event) {
 }
 
 const login = () => {
+    //Save data
     data = new FormData();
     data.append("email", email.value);
     data.append("password", password.value);
 
+    //Send request to the server using axios
     axios.post(loginAPI, data)
     .then(function (response) {
     if(response.message != null ){
@@ -82,16 +90,17 @@ const login = () => {
         return;
     }
 
-    localStorage.setItem("userID", response.data.id)
-    localStorage.setItem("token", response.data.token)
-
-    console.log(response.data);
-
+    //Check if the user is banned
     if(response.data.is_banned == 1){
         error.textContent = "Banned account";
         return;
     }
 
+    //Save the token and the user ID on login
+    localStorage.setItem("userID", response.data.id)
+    localStorage.setItem("token", response.data.token)
+
+    //Check the type of the user and redirect accordingly
     if(response.data.type == "client"){
         window.location.replace("landingPage.html");
     }
@@ -106,6 +115,7 @@ const login = () => {
 }
 
 const createNewAccount = () => {
+    //Save user's data
     data = new FormData();
     data.append("email", new_email.value);
     data.append("username", new_username.value);
@@ -120,6 +130,7 @@ const createNewAccount = () => {
     .then(
         response =>  {
 
+        //Save token and ID in the local storage
         localStorage.setItem("userID", response.data.id)
         localStorage.setItem("token", response.data.token)
 
@@ -129,12 +140,14 @@ const createNewAccount = () => {
 }
 
 const resetPass = () =>{
+    //Get the email from the user
     data = new FormData();
     data.append("email", resetPassEmail.value);
 
-     //Send data to the server using axios
-     axios.post(resetPassAPI, data, config)
-     .then(response =>  {
+    //Send data to the server using axios
+    axios.post(resetPassAPI, data, config)
+    .then(response =>  {
+        //On response, show message
         resetStatus.textContent = "Email sent!";
      })
 }
