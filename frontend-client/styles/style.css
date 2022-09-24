@@ -79,7 +79,7 @@ body{
 
 /*Start of sellers container*/
 .seller_container{
-    height: 40vh;
+    height: 35vh;
     max-width: 100%;
     padding: 0 5vw;
     display: flex;
@@ -100,15 +100,15 @@ body{
 }
 
 .seller{
-    width: 250px;
-    height: 250px;
+    width: 230px;
+    height: 230px;
     border-radius: 50%;
     box-shadow: 1px 1px 8px #a1a1a1;
-    margin-right: 1vw;
+    margin-right: 2vw;
 }
 
 .seller:last-child{
-    margin-right: 0vw;
+    margin-right: 0;
 }
 
 /*End of sellers container*/
