@@ -7,6 +7,7 @@ const gridContainer = document.querySelector(".grid-container")
 const getCategory = "http://localhost/e-commerce_project/backend/getCategories.php"
 const addpProductApi = 'http://localhost/e-commerce_project/backend/addProductByCategory.php'
 const getProductsApi = 'http://localhost/e-commerce_project/backend/getProductsOfSeller.php'
+const getProductLikes = 'http://localhost/e-commerce_project/backend/getProductLikes.php'
 const thumbnail = document.getElementById('thumbnail');
 const prodName = document.querySelector('#name');
 const description = document.querySelector('#desc')
@@ -96,7 +97,30 @@ axios.get(getProductsApi,{
             }
 
         }
+        // Get likes
+        const likeDiv = document.querySelector('.like-icon')
+        const p = document.createElement('p')
+
+        axios.get(getProductLikes,{
+            params:{
+                product_id: parseInt(object.id)
+            }
+        })
+        .then(res=>{
+            p.textContent = `Likes: ${res.data.likes}`
+            likeDiv.append(p)
+            gridItemText.append(likeDiv)
+            
+        })
+        .catch(e=>{
+            console.log(e)
+        })
         gridItem.append(image)
+        gridItem.append(gridItemText)
+        gridContainer.append(gridItem)
+
+        
+        gridItemText.append(likeDiv)
         gridItem.append(gridItemText)
         gridContainer.append(gridItem)
     }

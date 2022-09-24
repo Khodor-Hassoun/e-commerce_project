@@ -23,7 +23,7 @@
     }
 
     //Prepare and execute SQL query to retrieve product's record
-    $query = $mysqli->prepare("SELECT product_id, COUNT(id) FROM favorite_items WHERE product_id = ?");
+    $query = $mysqli->prepare("SELECT product_id, COUNT(id) as likes FROM favourite_items WHERE product_id = ?");
 
     $query->bind_param("i", $product_id);
     $query->execute();
