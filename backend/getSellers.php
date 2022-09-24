@@ -1,7 +1,6 @@
 <?php
     require_once("headers.php");
     include("connection.php");
-    require_once("jwtFunc.php");
 
     //Execute a query to get all sellers
     $query = $mysqli->prepare("SELECT * FROM users WHERE user_type_id =2");
