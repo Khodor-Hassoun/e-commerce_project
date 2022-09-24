@@ -3,17 +3,14 @@
     include("connection.php");
     require_once("jwtFunc.php");
 
-    //Check JWT token
-    if(!jwtAuth()){
-        return;
-    }
-
+    //Execute a query to get all sellers
     $query = $mysqli->prepare("SELECT * FROM users WHERE user_type_id =2");
     $query->execute();
     $array = $query->get_result();
 
     $response = [];
 
+    //Save data in an array
     while($a = $array->fetch_assoc()){
         $response[] = $a;
     }
