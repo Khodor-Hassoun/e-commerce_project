@@ -18,6 +18,18 @@ if (
     return;
 }
 //search for an item
-$query = $mysqli->prepare("SELECT name FROM products where name LIKE'?");
+$query = $mysqli->prepare("SELECT * FROM products where name LIKE'?");
 $query->bind_param("s", "%{$productName}%");
 $query->execute();
+
+$array = $query->get_result();
+
+$response = [];
+
+while($a = $array->fetch_assoc()){
+    $response[] = $a;
+}
+
+echo json_encode($response);
+
+?>
