@@ -345,6 +345,56 @@ footer{
 
 /*End of sign in modal*/
 
+/*Start of sign up modal*/
+.modal_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%; 
+    height: fit-content;
+    margin: 10% auto;
+    border-radius: 20px;
+}
+
+.modal_content .close{
+    margin-left: auto;
+    margin-top: 0;
+}
+
+.modal_content input{
+    margin: 1vh 0;
+}
+
+.create_account{
+    margin-top: 2vh;
+    width: 35%;
+    background-color: #1F7A8C;
+    padding: 1vh 1vw;
+    color: white;
+    font-size: 18px;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+}
+
+.name_container{
+    display: flex;
+    flex-direction: row;
+    align-items: space-between;
+    width: 67%;
+}
+
+.name_container input:nth-child(2){
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+}
+
+/*End of sign up modal*/
+
 @media screen and (max-width: 800px) {
     .product{
         max-width: 290px;

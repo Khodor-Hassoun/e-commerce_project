@@ -7,6 +7,9 @@ const error = document.getElementById("error");
 const signinModal = document.getElementById("signin_modal");
 const signinButton = document.getElementById("signin_btn");
 const close = document.getElementById("close");
+const close2 = document.getElementById("close2");
+const open_signup = document.getElementById("open_signup");
+const signupModal = document.getElementById("signup_modal");
 
 if(localStorage.getItem("userID"))
 
@@ -18,9 +21,21 @@ close.onclick = function() {
     signinModal.style.display = "none";
 }
 
+open_signup.onclick = function() {
+    signinModal.style.display = "none";
+    signupModal.style.display = "block";
+}
+
+close2.onclick = function() {
+    signupModal.style.display = "none";
+}
+
 window.onclick = function(event) {
   if (event.target == signinModal) {
     signinModal.style.display = "none";
+  }
+  if (event.target == signupModal) {
+    signupModal.style.display = "none";
   }
 }
 

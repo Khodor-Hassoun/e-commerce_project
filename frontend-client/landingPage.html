@@ -176,12 +176,37 @@
             <button class="transparent_btn right">Forgot password?</button>
 
             <button id="login_btn" class="login_btn">Login</button>
-            <p>Dont have and account? <button class="transparent_btn">Sign up</button></p>
+            <p>Dont have and account? <button id="open_signup" class="transparent_btn">Sign up</button></p>
             <p id="error" class="error"></p>
           
         </div>
       </div>
     <!--End of sign in modal-->
+
+    <!--Start of sign up modal-->
+    <div id="signup_modal" class="modal add_user_modal">
+        <!--Start of modal content-->
+        <div class="modal_content">
+            <span id="close2" class="close">&times;</span>
+
+            <h1 class="login_title">Sign up</h1>
+            <input class="textfield" id="new_email" type="email" placeholder="email">
+            <input class="textfield" id="new_password" type="password" placeholder="Password">
+
+            <div class="name_container">
+                <input class="textfield" id="new_username" type="text" placeholder="username">
+                <input class="textfield" id="new_first_name" type="text" placeholder="first name">
+                <input class="textfield" id="new_last_name" type="text" placeholder="last name">
+            </div>
+
+            <input class="textfield" id="new_address" type="text" placeholder="Address">
+            <input class="textfield" id="new_phone_number" type="number" placeholder="Phone number">
+
+            <button id="add_seller_btn" class="create_account">Create account</button>
+        </div>
+         <!--End of modal content-->
+    </div>
+    <!--End of sign up modal-->
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="js/landingPageScript.js"></script>
