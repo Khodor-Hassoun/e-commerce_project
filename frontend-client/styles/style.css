@@ -44,10 +44,12 @@ body{
     margin-left: 5vw;
     width: 15%;
     font-family: Arial, FontAwesome;
+    padding: 1vh 0;
 }
 
 .search::placeholder{
     color: rgb(134, 134, 134);
+    padding: 1vh 1vw;
 }
 
 .user_option{
@@ -265,18 +267,25 @@ footer{
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 60%; 
+    width: 30%; 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-radius: 20px;
 }
   
+.login_title{
+    color:#1F7A8C;
+    margin-bottom: 4vh;
+}
+
 .close {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
+    margin-left: auto;
 }
   
 .close:hover,
@@ -286,7 +295,7 @@ footer{
     cursor: pointer;
 }
 
-input{
+.textfield{
     width: 60%;
     border: 1px solid black;
     margin: 1vh 0;
@@ -297,7 +306,7 @@ input{
 }
 
 .login_btn{
-    margin-top: 5vh;
+    margin: 3vh 0;
     border-radius: 20px;
     background-color: #1F7A8C;
     color:white;
@@ -331,7 +340,7 @@ input{
 .right{
     text-align: right;
     width: fit-content;
-    margin-left: 50%;
+    margin-left: 40%;
 }
 
 /*End of sign in modal*/
@@ -352,8 +361,7 @@ input{
     }
 
     .title{
-        font-size: 16x;
-        margin-right: 13vw;
+        font-size: 14x;
     }
 
     .search{
@@ -366,5 +374,27 @@ input{
 
     .sellers_title{
         font-size: 22px;
+    }
+
+    .signin_modal_content{
+        width: 70%; 
+    }
+
+    .textfield{
+        width: 80%;
+    }
+
+    .login_btn{
+        width: 50%;
+    }
+
+    .seller{
+        width: 160px;
+        height: 160px;
+        margin-right: 5vw;
+    }
+
+    .user_options{
+        width: 20%;
     }
 }
