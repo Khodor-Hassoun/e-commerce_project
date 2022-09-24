@@ -69,6 +69,7 @@ $jwt = JWT::encode($payload, $privateKey, 'RS256');
 $response = [];
 $response['token'] = $jwt;
 $response['id'] = $array['id'];
+$response['type'] = $array['type'];
 $json = json_encode($response);
 echo $json;
 
