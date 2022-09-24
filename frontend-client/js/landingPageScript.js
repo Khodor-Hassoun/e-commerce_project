@@ -1,6 +1,7 @@
 //Initialize APIs
 const loginAPI = "http://localhost/backend/signin.php";
 const signupAPI = "http://localhost/backend/signup.php";
+const resetPassAPI = "http://localhost/backend/resetClientPw.php";
 const button = document.getElementById("login_btn");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
@@ -11,6 +12,7 @@ const close = document.getElementById("close");
 const close2 = document.getElementById("close2");
 const open_signup = document.getElementById("open_signup");
 const signupModal = document.getElementById("signup_modal");
+const new_email = document.getElementById("new_email");
 const new_username = document.getElementById("new_username");
 const new_password = document.getElementById("new_password");
 const new_firstName = document.getElementById("new_first_name");
@@ -18,6 +20,7 @@ const new_lastName = document.getElementById("new_last_name");
 const new_address = document.getElementById("new_address");
 const new_phoneNumber = document.getElementById("new_phone_number");
 const signupButton = document.getElementById("create_account");
+const resetPassButton = document.getElementById("forgot_pass");
 const config = {
     headers: {
       Authorization: localStorage.getItem("token")
@@ -98,19 +101,32 @@ const createNewAccount = () => {
     data.append("phoneNumber", new_phoneNumber.value);
 
     //Send data to the server using axios
-    axios.post(signupAPI, data, config)
+    axios.post(signupAPI, data)
     .then(
-        data =>  {
-        //Show error
-        if (data.message == "") {
-            //Do nothing
-            return
-        }
+        response =>  {
+
+        localStorage.setItem("userID", response.data.id)
+        localStorage.setItem("token", response.data.token)
 
         //refresh page
-        window.location.replace("seller_page.html"); 
+        window.location.replace("landingPage.html");
     })
 }
-  
+
+const resetPass = () =>{
+     //Send data to the server using axios
+     axios.post(signupAPI, data)
+     .then(
+         response =>  {
+ 
+         localStorage.setItem("userID", response.data.id)
+         localStorage.setItem("token", response.data.token)
+ 
+         //refresh page
+         window.location.replace("landingPage.html");
+     })
+}
+
 signupButton.addEventListener("click", createNewAccount)
 button.addEventListener("click", login);
+resetPassButton.addEventListener("click", resetPass);
