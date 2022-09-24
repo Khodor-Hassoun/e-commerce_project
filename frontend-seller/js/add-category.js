@@ -11,11 +11,11 @@ const description = document.querySelector('#desc')
 let image64= ''
 const categoryForm = document.querySelector('.popup-form')
 
-const config={
-    headers:{
-        Authorization: localStorage.getItem("token")
-    }
-}
+// const config={
+//     headers:{
+//         Authorization: localStorage.getItem("token")
+//     }
+// }
 
 
 addCategory.addEventListener('click',()=>{
@@ -47,9 +47,11 @@ categoryForm.addEventListener('submit',(e)=>{
     data.append("thumbnail",image64)
     data.append("name", catName.value)
     data.append("description",description.value)
+    data.append("seller_id",9)
     
-    axios.post(addCategoryApi, data,config)
+    axios.post(addCategoryApi, data)
         .then(res=>{
+            console.log(data)
             console.log(res)
         })
         .catch(e=>{
