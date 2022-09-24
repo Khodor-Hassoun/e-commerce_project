@@ -1,14 +1,18 @@
+// Variables for hiding and showinng popup / addding products
 const addProduct = document.querySelector('.add-icon');
 const backBtn = document.querySelector('.close-btn-pop');
 const popupContainer = document.querySelector('.popup-container');
 const thumbDiv = document.querySelector('.thumbnail-div');
 const gridContainer = document.querySelector(".grid-container")
 
+// Apis used in this page
 const getCategory = "http://localhost/e-commerce_project/backend/getCategories.php"
 const addpProductApi = 'http://localhost/e-commerce_project/backend/addProductByCategory.php'
 const getProductsApi = 'http://localhost/e-commerce_project/backend/getProductsOfSeller.php'
 const getProductLikes = 'http://localhost/e-commerce_project/backend/getProductLikes.php'
 const thumbnail = document.getElementById('thumbnail');
+
+// Variables for add product api
 const prodName = document.querySelector('#name');
 const description = document.querySelector('#desc')
 const catName = document.getElementById("category");
@@ -17,7 +21,18 @@ const price = document.getElementById('price')
 let image64= ''
 const productForm = document.querySelector('.popup-form')
 
+// Array of objects for get category api
 const catNameArray = []
+
+// For hiding and showing the popup
+addProduct.addEventListener('click',()=>{
+    popupContainer.classList.add('show')
+})
+
+backBtn.addEventListener('click',()=>{
+    popupContainer.classList.remove('show')
+})
+
 const config={
     headers:{
         Authorization: localStorage.getItem("token")
@@ -36,18 +51,14 @@ axios.get(getCategory,{
         const catOption = document.createElement('option')
         // get category id
         catOption.value = object.id
-
         // get innerText
         catOption.textContent = `${object.name}`
         catName.append(catOption)
 
-        // insert in categories in array of objects to use later
+        // insert categories into array of objects to use for products
         let id = object.id
         let objName = object.name
-        // const catObj = {id :objName}
-        // const catObj = {objName}
         catNameArray[objName] = id
-
     }
 })
 .catch(e=>{
@@ -58,7 +69,7 @@ axios.get(getCategory,{
 // Get the products of the seller
 axios.get(getProductsApi,{
     params:{
-        seller_id:9
+        seller_id:9   //CRITICAL TO BE LOCALSTORAGE userID
     }
 })
 .then(res =>{
@@ -71,7 +82,7 @@ axios.get(getProductsApi,{
                 categoryName = catname
             }
         }
-
+        // Start with building the product card
         const gridItem = document.createElement('div')
         gridItem.classList.add("grid-item")
 
@@ -81,6 +92,7 @@ axios.get(getProductsApi,{
         const gridItemText = document.createElement('div')
         gridItemText.classList.add("grid-item-text")
 
+        // The loop is for item name, category name and price
         for( let i=0;i<3;i++){
             const p =document.createElement('p')
             if(i == 0){
@@ -97,7 +109,7 @@ axios.get(getProductsApi,{
             }
 
         }
-        // Get likes
+        // Get likes from '''''favourite_items''''''' table in db
         const likeDiv = document.querySelector('.like-icon')
         const p = document.createElement('p')
 
@@ -108,16 +120,18 @@ axios.get(getProductsApi,{
         })
         .then(res=>{
             p.textContent = `Likes: ${res.data.likes}`
-            likeDiv.append(p)
+            // likeDiv.append(p)
             // gridItemText.append(likeDiv)
             
         })
         .catch(e=>{
             console.log(e)
         })
+        likeDiv.append(p)
         gridItem.append(image)
         gridItemText.append(likeDiv)
 
+        // Edit and delete buttons
         const btnDiv = document.createElement('div')
         btnDiv.classList.add("butoon-position")
 
@@ -135,20 +149,17 @@ axios.get(getProductsApi,{
         btnDiv.append(deleteBtn)
         gridItemText.append(btnDiv)
 
-
-
-
-
-
+        // append all to grid item card. append grid item card to the container
         gridItem.append(gridItemText)
         gridContainer.append(gridItem)
-    }
-    
+    } 
 })
 .catch(e=>{
     console.log(e)
 })
 
+
+// For adding a product 
 // Get base64 from image
 thumbnail.addEventListener('change',()=>{
     const file = thumbnail.files[0]
@@ -163,17 +174,9 @@ thumbnail.addEventListener('change',()=>{
     reader.readAsDataURL(file)
 })
 
-addProduct.addEventListener('click',()=>{
-    popupContainer.classList.add('show')
-})
-
-backBtn.addEventListener('click',()=>{
-    popupContainer.classList.remove('show')
-})
-
 // Add a product
 productForm.addEventListener("submit",(e)=>{
-    e.preventDefault()
+    e.preventDefault() //THIS SHOULD GO WHEN GOING LIVE. USED WHEN TESTING THE APIS
     const data =new FormData()
     data.append('thumbnail', image64)
     data.append('category_id',parseInt(catName.value))
