@@ -309,9 +309,6 @@
             .inner-quan-cat >*{
                 margin: 3px 0;
             }
-            /* .inner-quan-cat:last-child{
-                margin-right: 100px;
-            } */
             .show{
                 pointer-events: all;
                 opacity: 1;

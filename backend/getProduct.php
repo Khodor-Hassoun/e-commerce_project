@@ -3,12 +3,12 @@
     // DataBase connection
     include("connection.php");
     require_once("headers.php");
-    require_once("jwtFunc.php");
+    // require_once("jwtFunc.php");
 
     //Check JWT token
-    if(!jwtAuth()){
-        return;
-    }
+    // if(!jwtAuth()){
+    //     return;
+    // }
 
     $product_id = $_POST["product_id"];
 
