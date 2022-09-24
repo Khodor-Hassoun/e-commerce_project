@@ -33,7 +33,7 @@ if(!isset($password)  || empty($password)){
 $password = hash("sha256", $password);
 
 //Prepare and execute SQL query to log in
-$query = $mysqli->prepare("SELECT users.id, type 
+$query = $mysqli->prepare("SELECT users.id, type, users.is_banned
 FROM users
 INNER JOIN user_types
 ON users.user_type_id = user_types.id
@@ -70,6 +70,7 @@ $response = [];
 $response['token'] = $jwt;
 $response['id'] = $array['id'];
 $response['type'] = $array['type'];
+$response['is_banned'] = $array['is_banned'];
 $json = json_encode($response);
 echo $json;
 
