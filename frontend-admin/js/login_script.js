@@ -17,6 +17,11 @@ const login = () => {
    return;
  }
 
+ if(response.data.type != "admin"){
+      error.textContent = "Invalid user";
+      return;
+ }
+
  localStorage.setItem("userID", response.data.id)
  localStorage.setItem("token", response.data.token)
 
