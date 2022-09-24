@@ -58,8 +58,8 @@
     }
 
     //check if category name exists
-    $query = $mysqli->prepare("SELECT name FROM categories WHERE name = ? AND user_id = ?");
-    $query->bind_param("si", $name, $user_id);
+    $query = $mysqli->prepare("SELECT name FROM categories WHERE name = ? AND seller_id = ?");
+    $query->bind_param("si", $name, $seller_id);
     $query->execute();
 
     $query->store_result();
@@ -73,10 +73,10 @@
         return;}
     
     //Prepare and execute query to add a new category
-    $query = $mysqli->prepare("INSERT INTO `categories` (`description`, `thumbnail`, `name`, `user_id`)
+    $query = $mysqli->prepare("INSERT INTO `categories` (`description`, `thumbnail`, `name`, `seller_id`)
     VALUE (?,?,?,?)");
 
-    $query->bind_param("sssi", $description, $thumbnail, $name, $user_id);
+    $query->bind_param("sssi", $description, $thumbnail, $name, $seller_id);
     $query->execute();
 
 
