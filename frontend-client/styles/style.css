@@ -78,7 +78,7 @@ body{
 /*End ads container*/
 
 /*Start of sellers container*/
-.sellers_container{
+.items_container{
     max-width: 100%;
     padding: 0 5vw;
     display: flex;
@@ -94,6 +94,8 @@ body{
     justify-content: center;
     align-items: center;
 }
+
+
 /*End of sellers container*/
 
 /*Start of stock container*/
