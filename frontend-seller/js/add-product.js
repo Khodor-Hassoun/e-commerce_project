@@ -55,7 +55,7 @@ axios.get(getCategory,{
 })
 
 
-// Get the products
+// Get the products of the seller
 axios.get(getProductsApi,{
     params:{
         seller_id:9
@@ -109,18 +109,37 @@ axios.get(getProductsApi,{
         .then(res=>{
             p.textContent = `Likes: ${res.data.likes}`
             likeDiv.append(p)
-            gridItemText.append(likeDiv)
+            // gridItemText.append(likeDiv)
             
         })
         .catch(e=>{
             console.log(e)
         })
         gridItem.append(image)
-        gridItem.append(gridItemText)
-        gridContainer.append(gridItem)
-
-        
         gridItemText.append(likeDiv)
+
+        const btnDiv = document.createElement('div')
+        btnDiv.classList.add("butoon-position")
+
+        const editBtn = document.createElement("input")
+        editBtn.classList.add("btn-style-1")
+        editBtn.setAttribute('type', 'button')
+        editBtn.value = 'Edit'
+        btnDiv.append(editBtn)
+
+        const deleteBtn = document.createElement("input")
+        deleteBtn.classList.add("btn-style-2")
+        deleteBtn.setAttribute('type', 'button')
+        deleteBtn.value = 'Delete'
+
+        btnDiv.append(deleteBtn)
+        gridItemText.append(btnDiv)
+
+
+
+
+
+
         gridItem.append(gridItemText)
         gridContainer.append(gridItem)
     }
