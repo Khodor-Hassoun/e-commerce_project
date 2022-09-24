@@ -10,8 +10,9 @@ const prodName = document.querySelector('#name');
 const description = document.querySelector('#desc')
 const catName = document.getElementById("category");
 const quantity = document.getElementById("quantity");
+const price = document.getElementById('price')
 let image64= ''
-const categoryForm = document.querySelector('.popup-form')
+const productForm = document.querySelector('.popup-form')
 
 const config={
     headers:{
@@ -61,3 +62,26 @@ addProduct.addEventListener('click',()=>{
 backBtn.addEventListener('click',()=>{
     popupContainer.classList.remove('show')
 })
+
+productForm.addEventListener("submit",(e)=>{
+    e.preventDefault()
+    const data =new FormData()
+    data.append('thumbnail', image64)
+    data.append('category_id',parseInt(catName.value))
+    data.append('seller_id',9)
+    data.append('quantity', parseInt(quantity.value))
+    data.append('name', prodName.value)
+    data.append('description',description.value)
+    data.append('price',parseInt(price.value))
+
+    axios.post(addpProductApi, data)
+    .then(res=>{
+        console.log(data)
+        console.log(res)
+    })
+    .catch(e=>{
+        console.log(e)
+    })
+    
+})
+
