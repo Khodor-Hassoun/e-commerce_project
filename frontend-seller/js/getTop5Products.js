@@ -2,7 +2,7 @@ const gridContainer=document.querySelector(".grid-container");
 const getAPI="http://localhost/backend/getTop5Products.php";
 const getTopProducts=()=>{
     const data = new FormData();
-    data.append("seller_id", 2);
+    data.append("seller_id", localStorage.getItem("userID"));
     axios.post(getAPI,data)
     .then(response =>  {
         //Show error
