@@ -166,10 +166,11 @@
             </div>
             <div class="grid-item ">
                 <div class="add-icon">
-                    <button id="myBtn">open</button>
-                    <div id="myModal" class="modal">
+                    <!-- <button id="myBtn">open</button> -->
+                    <i class="fa-solid fa-cart-plus fa-5x"></i>
+                    <!-- <div id="myModal" class="modal">
 
-                        <!-- Modal content -->
+                        Modal content
                         <div class="modal-content">
                             <input type="file" placeholder="enter a file">
                             <input type="text" placeholder="Item name">
@@ -180,16 +181,49 @@
                             <p>Some text in the Modal..</p>
                         </div>
 
+                    </div> -->
+                </div>
+            </div>      
+    </section>
+    <div class="popup-container">
+        <section class="popup">
+            <div class="close-btn-pop">
+                <img src="./images/back-btn.png" alt="">
+            </div>
+            <form action="#" class="popup-form">
+                <input type="file" name="thumbnail" id="thumbnail">
+                <label for="thumbnail" class="">
+                    <img class="thumbnail-div" src="./images/category.png">
+                </label>
+                <div class="pop-form-input">
+                    <label for="name">Category name</label>
+                    <input type="text" name="name" id="name">
+                </div>
+                <div class="pop-form-input quan-cat">
+                    <div class="inner-quan-cat">
+                        <label for="category">Category:</label>
+                        <select name="category" id="category">
+                            <option value="1">Tools</option>
+                        </select>
+                    </div>
+                    <div class="inner-quan-cat">
+                        <label for="quantity">Quantity</label>
+                        <input type="number" name="quantity" id="quantity">
                     </div>
                 </div>
-            </div>
-        </div>
+                
+                <div class="pop-form-input">
+                    <label for="description">Category description</label>
+                    <textarea name="description" id="desc" cols="30" rows="10"></textarea>
+                </div>
+                <button id="sumbit-btn">Submit</button>
+            </form>
+        </section>
+    </div>
+    
 
 
-        </div>
-        <script src="../javascript.js"></script>
-
+    
 </body>
-</body>
-
+<script src="./js/add-product.js"></script>
 </html>
