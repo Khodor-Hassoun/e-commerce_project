@@ -1,7 +1,7 @@
 <?php
 
-include("headers/headers.php");
-include("connection/connection.php");
+include("headers.php");
+include("connection.php");
 require_once("jwtFunc.php");
 
 //Check JWT token
@@ -26,19 +26,6 @@ if(!isset($category_id) || empty($category_id) || !isset($seller_id) || empty($s
     return;
 }   
 
-//check if category is valid in database
-$query = $mysqli->prepare("SELECT * FROM categories WHERE id = ? AND seller_id=?");
-$query->bind_param("si", $category_id,$seller_id);
-$query->execute();
-$res=$query->store_result();
-$num_rows = $query->num_rows;
-    
-if($num_rows == 0){
-    http_response_code(400);
-    echo json_encode(['status' => 400,'message' => 'Category not found']); 
-    return;
-}
-
 //decode base64 to image and upload it to images folder
 $img = base64_decode(str_replace('data:image/png;base64,', '', $thumbnail));
     $split_image = 'png';
@@ -55,8 +42,8 @@ $img = base64_decode(str_replace('data:image/png;base64,', '', $thumbnail));
 }
 
 //insert new product
-$query = $mysqli->prepare("INSERT INTO products (thumbnail, name, description, category_id, quantity, price, views) VALUES (?, ?, ?, ?, ?, ?, ?) "); 
-$query->bind_param("sssiiii", $file_name, $name,$description, $category_id, $quantity, $price, $views);
+$query = $mysqli->prepare("INSERT INTO products (thumbnail, name, description, category_id, quantity, price, views, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?) "); 
+$query->bind_param("sssiiiii", $file_name, $name,$description, $category_id, $quantity, $price, $views, $seller_id);
 $query->execute();
 $product_id = mysqli_insert_id($mysqli);
 
