@@ -10,9 +10,10 @@ const getCategory = "http://localhost/e-commerce_project/backend/getCategories.p
 const addpProductApi = 'http://localhost/e-commerce_project/backend/addProductByCategory.php'
 const getProductsApi = 'http://localhost/e-commerce_project/backend/getProductsOfSeller.php'
 const getProductLikes = 'http://localhost/e-commerce_project/backend/getProductLikes.php'
-const thumbnail = document.getElementById('thumbnail');
+const deleteProductApi = 'http://localhost/e-commerce_project/backend/deleteProduct.php'
 
 // Variables for add product api
+const thumbnail = document.getElementById('thumbnail');
 const prodName = document.querySelector('#name');
 const description = document.querySelector('#desc')
 const catName = document.getElementById("category");
@@ -20,6 +21,10 @@ const quantity = document.getElementById("quantity");
 const price = document.getElementById('price')
 let image64= ''
 const productForm = document.querySelector('.popup-form')
+
+// Arrays for the delete and edit buttons
+const deleteBtns = document.getElementsByClassName('delete')
+const editBtns = document.getElementsByClassName('edit')
 
 // Array of objects for get category api
 const catNameArray = []
@@ -93,7 +98,7 @@ axios.get(getProductsApi,{
         gridItemText.classList.add("grid-item-text")
 
         // The loop is for item name, category name and price
-        for( let i=0;i<3;i++){
+        for( let i=0;i<4;i++){
             const p =document.createElement('p')
             if(i == 0){
                 p.textContent = `Item: ${object.name}`
@@ -106,6 +111,12 @@ axios.get(getProductsApi,{
             if(i == 2){
                 p.textContent = `Price: ${object.price} $`
                 gridItemText.appendChild(p)
+            }
+            // Insert ID for deletion later- CRITICAL TO BE HIDDEN
+            if(i==3){
+                p.textContent= `${object.id}`
+                p.setAttribute('class','productID')
+                gridItemText.append(p)
             }
 
         }
@@ -137,12 +148,14 @@ axios.get(getProductsApi,{
 
         const editBtn = document.createElement("input")
         editBtn.classList.add("btn-style-1")
+        editBtn.classList.add('edit')
         editBtn.setAttribute('type', 'button')
         editBtn.value = 'Edit'
         btnDiv.append(editBtn)
 
         const deleteBtn = document.createElement("input")
         deleteBtn.classList.add("btn-style-2")
+        deleteBtn.classList.add('delete')
         deleteBtn.setAttribute('type', 'button')
         deleteBtn.value = 'Delete'
 
@@ -158,6 +171,40 @@ axios.get(getProductsApi,{
     console.log(e)
 })
 
+// For deleting products
+const prodIds = document.getElementsByClassName('productID')
+
+for( let i=0; i<deleteBtns.length;i++){
+    deleteBtns[i].addEventListener("submit",()=>{
+        axios.get(deleteProductApi,{
+            params:{
+                product_id: parseInt(prodIds[i].textContent)
+            }
+        })
+        .then(res=>{
+            console.log(res.data)
+        })
+        .catch(e=>{
+            console.log(e)
+        })
+    })
+}
+// let i = 0
+// for( let button of deleteBtns){
+//     button.addEventListener("click",()=>{
+//         axios.get(deleteProductApi,{
+//             params:{
+//                 product_id: parseInt(prodIds[i].textContent)
+//             }
+//         })
+//         .then(res=>{
+//             console.log(res.data)
+//         })
+//         .catch(e=>{
+//             console.log(e)
+//         })
+//     })
+// }
 
 // For adding a product 
 // Get base64 from image
