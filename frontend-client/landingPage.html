@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src * self blob: data: gap:; style-src * self 'unsafe-inline' blob: data: gap:; script-src * 'self' 'unsafe-eval' 'unsafe-inline' blob: data: gap:; object-src * 'self' blob: data: gap:; img-src * self 'unsafe-inline' blob: data: gap:; connect-src self * 'unsafe-inline' blob: data: gap:; frame-src * self blob: data: gap:;">
     <link rel="stylesheet" href="path/to/bootstrap/css/bootstrap.min.css">
     <link href="styles/style.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
@@ -170,17 +171,19 @@
         <div class="signin_modal_content">
             <span id="close" class="close">&times;</span>
             <h1 class="login_title">Login</h1>
-            <input class="textfield" type="email" placeholder="email">
-            <input class="textfield" type="password" placeholder="Password">
+            <input id="email" class="textfield" type="email" placeholder="email">
+            <input id="password" class="textfield" type="password" placeholder="Password">
             <button class="transparent_btn right">Forgot password?</button>
 
-            <button class="login_btn">Login</button>
+            <button id="login_btn" class="login_btn">Login</button>
             <p>Dont have and account? <button class="transparent_btn">Sign up</button></p>
+            <p id="error" class="error"></p>
           
         </div>
       </div>
     <!--End of sign in modal-->
 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="js/landingPageScript.js"></script>
 </body>
 </html>
