@@ -47,7 +47,7 @@ categoryForm.addEventListener('submit',(e)=>{
     data.append("thumbnail",image64)
     data.append("name", catName.value)
     data.append("description",description.value)
-    data.append("seller_id",9)
+    data.append("seller_id",localStorage.getItem("userID"))
     
     axios.post(addCategoryApi, data)
         .then(res=>{
