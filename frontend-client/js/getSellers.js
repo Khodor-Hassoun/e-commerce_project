@@ -15,7 +15,6 @@ const getSellers=()=>{
             img.classList.add("seller");
             img.src = '';
             sellerContainer.appendChild(img);
-
         }
     });
 }
