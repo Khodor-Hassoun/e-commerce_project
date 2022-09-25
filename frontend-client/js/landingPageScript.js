@@ -46,6 +46,7 @@ const resetPassEmail = document.getElementById("reset_email");
 const resetStatus = document.getElementById("email_status");
 const resetEmail = document.getElementById("reset_password");
 const adElement = document.querySelector('#ad');
+const messagesButton = document.getElementById("check_messages");
 const ads = [];
 const config = {
     headers: {
@@ -259,4 +260,8 @@ window.onclick = function(event) {
     if(event.target == editProfileModal){
         editProfileModal.style.display = "none";
     }
+}
+
+messagesButton.onclick = function() {
+    window.location.replace("messages.html");
 }
