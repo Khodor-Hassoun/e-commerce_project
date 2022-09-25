@@ -2,7 +2,7 @@
 const loginAPI = "http://localhost/backend/signin.php";
 const signupAPI = "http://localhost/backend/signup.php";
 const resetPassAPI = "http://localhost/backend/resetClientPw.php";
-const getRandProductAPI = "http://localhost/backend/getRandProducts.php";
+const getRandAdsAPI = "http://localhost/backend/getRandAds.php";
 const searchAPI = "";
 
 //Initialize variables
@@ -30,25 +30,24 @@ const resetPassButton = document.getElementById("forgot_pass");
 const resetPassEmail = document.getElementById("reset_email");
 const resetStatus = document.getElementById("email_status");
 const resetEmail = document.getElementById("reset_password");
+const adElement = document.querySelector('#ad');
+const ads = [];
 const config = {
     headers: {
       Authorization: localStorage.getItem("token")
     }
 }
 let data;
-let slideIndex = 0;
+let index = 0;
 
-function showSlides() {
-  let i;
-  let slides = document.getElementsByClassName("mySlides");
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  slideIndex++;
-  if (slideIndex > slides.length) {slideIndex = 1}
-  slides[slideIndex-1].style.display = "block";
-  setTimeout(showSlides, 2000); // Change image every 2 seconds
+function changeImage() {
+   adElement.src = ads[index];
+   index > 9 ? index = 0 : index++;
 }
+
+window.onload = function () {
+    setInterval(changeImage, 5000);
+};
 
 //When the user clicks on reset password, a new modal appears
 resetPassButton.onclick = function() {
@@ -90,6 +89,17 @@ window.onclick = function(event) {
   if (event.target == resetPassModal) {
     resetPassModal.style.display = "none";
   }
+}
+
+const getRandomAds=()=>{
+    axios.get(getRandAdsAPI)
+    .then(response =>  {
+       
+        //Loop over the response
+        for(let i = 0; i < response.data.length; i++){
+            ads.push(response.data[i].content);
+        }
+    });
 }
 
 const search = () => {

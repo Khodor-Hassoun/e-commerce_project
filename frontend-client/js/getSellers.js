@@ -23,7 +23,6 @@ const getSellers=()=>{
         }
         //Loop over the response
         for(let i = 0; i < response.data.length; i++){
-            console.log(response);
             const img=document.createElement("img");
             img.classList.add("seller");
             img.src = imagesGenertor[Math.floor(Math.random()*imagesGenertor.length)];;
@@ -38,7 +37,7 @@ const getSellers=()=>{
 const getSellerCategories=(id)=>{
     const data = new FormData();
     data.append("id", id);
-    axios.post(getSellerCategoriesAPI,data)
+    axios.get(getSellerCategoriesAPI + "?id=" + id)
     .then(response =>  {
         //Show error
         if (response.error != null) {
@@ -49,16 +48,21 @@ const getSellerCategories=(id)=>{
                 categoriesUl.innerHTML = "";
                 const li=document.createElement("li");
                 li.innerText="No Categories";
-                li.style.fontSize="smaller";
+                li.classList.add("categoriesItem");
                 categoriesUl.appendChild(li);
             
         }
         else{
             categoriesUl.innerHTML = "";
+            const header =document.createElement("h4");
+            header.innerText= "Categories";
+            header.classList.add("categoriesHeader");
+            categoriesUl.appendChild(header);
             for(let i = 0; i < response.data.length; i++){   
                     const li=document.createElement("li");
                     li.innerText=response.data[i].name;
-                    li.style.fontSize="smaller";
+                    li.classList.add("categoriesItem");
+                    li.classList.add("hover-underline-animation");
                     categoriesUl.appendChild(li);
             }
         }
