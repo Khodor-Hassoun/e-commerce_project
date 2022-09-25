@@ -40,13 +40,19 @@ const config = {
 let data;
 let index = 0;
 
-function changeImage() {
+function changeImage(){
    adElement.src = ads[index];
-   index > 9 ? index = 0 : index++;
+   index > ads.length ? index = 0 : index++;
 }
 
 window.onload = function () {
-    setInterval(changeImage, 5000);
+    if(empty(ads)){
+        return;
+    }
+    else{
+        setInterval(changeImage, 5000);
+    }
+    
 };
 
 //When the user clicks on reset password, a new modal appears
@@ -214,4 +220,4 @@ searchInput.onkeyup = function() {
 signupButton.addEventListener("click", createNewAccount)
 button.addEventListener("click", login);
 resetEmail.addEventListener("click", resetPass);
-showSlides();
+getRandomAds();
