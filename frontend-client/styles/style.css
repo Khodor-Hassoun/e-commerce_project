@@ -505,6 +505,11 @@ footer{
     display: none;
 }
 
+.logout_btn{
+    margin-top: 1vh;
+    color: #BC4749
+}
+
 @media screen and (max-width: 800px) {
     .product{
         max-width: 290px;

@@ -74,7 +74,7 @@ const startChat=(id)=>{
                 
             } 
             chatDiv.appendChild(btmDiv)
-            }
+      }
     });
 
 }
