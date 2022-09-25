@@ -80,7 +80,7 @@ const startChat=(sellerid)=>{
                 
             } 
             chatDiv.appendChild(btmDiv)
-            }
+      }
     });
 
 }

@@ -12,6 +12,8 @@ const loginButton = document.getElementById("login_btn");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 const error = document.getElementById("error");
+const errorEdit = document.getElementById("error_edit");
+const errorCreate = document.getElementById("error_create");
 const signinModal = document.getElementById("signin_modal");
 const editProfileModal = document.getElementById("edit_modal");
 const signinButton = document.getElementById("signin_btn");
@@ -36,6 +38,7 @@ const edit_lastName = document.getElementById("edit_last_name");
 const edit_address = document.getElementById("edit_address");
 const edit_phoneNumber = document.getElementById("edit_phone_number");
 const editButton = document.getElementById("edit_profile");
+const logoutButton = document.getElementById("logout");
 const signupButton = document.getElementById("create_account");
 const editPorfileButton = document.getElementById("edit_profile");
 const resetPassButton = document.getElementById("forgot_pass");
@@ -114,8 +117,9 @@ const login = () => {
     else{
         error.textContent = "Invalid input";
     }
- }
-);
+ })
+  .catch((e)=>
+  error.textContent = "Invalid input");
 }
 
 const createNewAccount = () => {
@@ -141,6 +145,8 @@ const createNewAccount = () => {
         //refresh page
         window.location.replace("landingPage.html");
     })
+    .catch((e)=>
+     errorCreate.textContent = "Invalid input");
 }
 
 const resetPass = () =>{
@@ -154,6 +160,8 @@ const resetPass = () =>{
         //On response, show message
         resetStatus.textContent = "Email sent!";
      })
+    .catch((e)=>
+      resetStatus.textContent = "Invalid input");
 }
 
 const editProfile = () => {
@@ -173,12 +181,24 @@ const editProfile = () => {
         response =>  {
             editProfileModal.style.display = "none";
     })
+    .catch((e)=>
+    errorEdit.textContent = "Invalid input");
+}
+
+const logout = () => {
+    wishlistButton.style.display = "none";
+    cartButton.style.display = "none";
+    editProfileModal.style.display = "none";
+
+    localStorage.removeItem("userID");
+    localStorage.removeItem("token");
 }
 
 signupButton.addEventListener("click", createNewAccount);
 loginButton.addEventListener("click", login);
 resetEmail.addEventListener("click", resetPass);
 editButton.addEventListener("click", editProfile);
+logoutButton.addEventListener("click", logout);
 getRandomAds();
 
 if(localStorage.getItem("userID")){
