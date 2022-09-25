@@ -1,8 +1,6 @@
 <?php
-
-    // DataBase connection
+    include("headers.php");
     include("connection.php");
-    require_once("headers.php");
     // require_once("jwtFunc.php");
 
     //Check JWT token
@@ -10,22 +8,18 @@
     //     return;
     // }
 
-    $product_id = $_POST["product_id"];
+    $product_id = $_GET["product_id"];
 
-    //Validate product id
-    if(!isset($product_id) || empty($product_id)){
-
+    //Check if ID is not empty
+    if(!isset($product_id) || empty($product_id)){ 
         http_response_code(400);
-        echo json_encode([
-            'error' => 400,
-            'message' => 'Invalid product id']);
-        return;
-    }
+        echo json_encode(['status' => 400,'message' => 'User ID cannot be empty']);
+        
+        return;   
+    }   
 
-    //Prepare and execute SQL query to retrieve product's record
-    $query = $mysqli->prepare(
-        "SELECT * FROM products P
-        WHERE P.ID = (?)");
+    //Check if their's favourite items  for this user id
+    $query = $mysqli->prepare("SELECT product_id, COUNT(user_id) as views FROM views WHERE product_id = ?");
 
     $query->bind_param("i", $product_id);
     $query->execute();
@@ -37,7 +31,7 @@
         http_response_code(400);
         echo json_encode([
             'error' => 400,
-            'message' => 'unable to retrieve products'
+            'message' => 'Product does not have any views'
         ]);
 
         return;

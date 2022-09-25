@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src * self blob: data: gap:; style-src * self 'unsafe-inline' blob: data: gap:; script-src * 'self' 'unsafe-eval' 'unsafe-inline' blob: data: gap:; object-src * 'self' blob: data: gap:; img-src * self 'unsafe-inline' blob: data: gap:; connect-src self * 'unsafe-inline' blob: data: gap:; frame-src * self blob: data: gap:;">
+    <link rel="stylesheet" href="./css/styles.css">
+    <script src="https://kit.fontawesome.com/8c9f3af1d6.js" crossorigin="anonymous"></script>
+    <title>Add Product</title>
+</head>
+
+<body>
+    <!--Start header section-->
+    <header>
+        <!--Start navbar section-->
+        <nav>
+            <div class="navbar">
+                <div class="navbar-container">
+                    <div class="title">
+                        <p class="navbar-item">ShopNerd</p>
+                        <h1>Add Product</h1>
+                    </div>
+                    <i class="fa-solid fa-user navbar-item"></i>
+                </div>
+            </div>
+        </nav>
+        <!-- end navbar section-->
+    </header>
+    <!-- end header section-->
+
+    <!--start side menu-->
+    <section class="main-container">
+        <div class="side-menu-container">
+            <div class="side-menu-item">
+                <!-- <div class="link-style">
+                       
+                        <div class="underline"></div> 
+                                        </div> -->
+                <a href="#">Options</a>
+                <a href="#">Add Product</a>
+                <a href="#">Top 5 products</a>
+                <a href="#">Add Category</a>
+                <a href="#">Discount</a>
+
+            </div>
+        </div>
+        <!-- end  sidebar menu-->
+        <!-- start grid section for prdoducts-->
+        <main class="revenue-container">
+            <section class="revenue-content">
+
+            </section>
+            <section class="discount-content">
+                <div class="discount-btn">
+                    <button>Generate:</button>
+                </div>
+                <div class="discount-code">
+                    <p>Hello this is a code</p>
+                </div>
+                <div class="discount-code">
+                    <p>Hello this is a code</p>
+                </div>
+                <div class="discount-code">
+                    <p>Hello this is a code</p>
+                </div>
+                <div class="discount-code">
+                    <p>Hello this is a code</p>
+                </div>
+                <div class="discount-code">
+                    <p>Hello this is a code</p>
+                </div>
+                <div class="discount-code">
+                    <p>Hello this is a code</p>
+                </div>
+            </section>
+        </main>
+
+
+        <!-- Generate codes for popup -->
+        <div class="popup-container">
+            <section class="discount-pop">
+                <div class="close-btn-pop-three">
+                    <img src="./images/back-btn.png" alt="">
+                </div>
+                <h1>Discount Generator</h1>
+                <div class="discount-input">
+                    <div class="discount-input-div">
+                        <label for="percentage">Add percentage</label>
+                        <input type="number" name="percentage" id="percentage" placeholder="Percentage">
+                    </div>
+                    <div class="discount-input-div">
+                        <label for="percentage">Add Code</label>
+                        <input type="text" name="percentage" id="percentage" placeholder="Code">
+                    </div>
+
+                </div>
+     
+                <button class="pop-discount-pop btn-style-1">Generate</button>
+            </section>
+        </div>
+        
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="./js/revenue.js"></script>
+</html>

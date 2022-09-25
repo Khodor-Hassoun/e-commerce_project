@@ -10,7 +10,7 @@
     //     return;
     // }
 
-    $product_id = $_POST["product_id"];
+    $product_id = $_GET["product_id"];
 
     //Validate product id
     if(!isset($product_id) || empty($product_id)){
@@ -23,9 +23,7 @@
     }
 
     //Prepare and execute SQL query to retrieve product's record
-    $query = $mysqli->prepare(
-        "SELECT * FROM products P
-        WHERE P.ID = (?)");
+    $query = $mysqli->prepare("SELECT product_id, COUNT(id) as likes FROM favourite_items WHERE product_id = ?");
 
     $query->bind_param("i", $product_id);
     $query->execute();
@@ -37,7 +35,7 @@
         http_response_code(400);
         echo json_encode([
             'error' => 400,
-            'message' => 'unable to retrieve products'
+            'message' => 'Product does not have any likes'
         ]);
 
         return;

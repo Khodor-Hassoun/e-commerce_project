@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src * self blob: data: gap:; style-src * self 'unsafe-inline' blob: data: gap:; script-src * 'self' 'unsafe-eval' 'unsafe-inline' blob: data: gap:; object-src * 'self' blob: data: gap:; img-src * self 'unsafe-inline' blob: data: gap:; connect-src self * 'unsafe-inline' blob: data: gap:; frame-src * self blob: data: gap:;">
     <link rel="stylesheet" href="./css/styles.css">
     <script src="https://kit.fontawesome.com/8c9f3af1d6.js" crossorigin="anonymous"></script>
     <title>Add Product</title>
@@ -17,12 +18,8 @@
         <nav>
             <div class="navbar">
                 <div class="navbar-container">
-                    <div class="search-field">
-                        <i class="fa-solid fa-magnifying-glass navbar-item"></i>
-                        <input type="text" placeholder="Search..">
-                    </div>
                     <div class="title">
-                        <p class="navbar-item">ZAAKH online store</p>
+                        <p class="navbar-item">ShopNerd</p>
                         <h1>Add Product</h1>
                     </div>
                     <i class="fa-solid fa-user navbar-item"></i>
@@ -46,12 +43,21 @@
                 <a href="#">Top 5 products</a>
                 <a href="#">Add Category</a>
                 <a href="#">Discount</a>
+                <a href="#">Ads</a>
 
             </div>
         </div>
         <!-- end  sidebar menu-->
         <!-- start grid section for prdoducts-->
         <div class="grid-container">
+            <div class="grid-item ">
+                <div class="add-icon">
+                    <!-- <button id="myBtn">open</button> -->
+                    <i class="fa-solid fa-cart-plus fa-5x"></i>
+                </div>
+            </div>  
+
+            <!-- Working on this -->
             <div class="grid-item">
                 <img src="./images/pic1.jpg">
                 <div class="grid-item-text">
@@ -67,129 +73,122 @@
                         <input type="button" value="Delete" class="btn-style-2">
                     </div>
                 </div>
-            </div>
-            <div class="grid-item">
-                <img src="./images/pic1.jpg">
-                <div class="grid-item-text">
-                    <p>Item:</p>
-                    <p>Categories:Electronics</p>
-                    <p> Price:8$</p>
-                    <div class="like-icon">
-                        <p>Views:112</p>
-                        <i class="fa-regular fa-heart"></i>
-                    </div>
-                    <div class="button-position">
-                        <input type="button" value="Edit" class="btn-style-1">
-                        <input type="button" value="Delete" class="btn-style-2">
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <img src="../assets/images/pic1.jpg">
-                <div class="grid-item-text">
-                    <p>Item:</p>
-                    <p>Categories:Electronics</p>
-                    <p> Price:8$</p>
-                    <div class="like-icon">
-                        <p>Views:112</p>
-                        <i class="fa-regular fa-heart"></i>
-                    </div>
-                    <div class="button-position">
-                        <input type="button" value="Edit" class="btn-style-1">
-                        <input type="button" value="Delete" class="btn-style-2">
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <img src="../assets/images/pic1.jpg">
-                <div class="grid-item-text">
-                    <p>Item:</p>
-                    <p>Categories:Electronics</p>
-                    <p> Price:8$</p>
-                    <div class="like-icon">
-                        <p>Views:112</p>
-                        <i class="fa-regular fa-heart"></i>
-                    </div>
-                    <div class="button-position">
-                        <input type="button" value="Edit" class="btn-style-1">
-                        <input type="button" value="Delete" class="btn-style-2">
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <img src="../assets/images/pic1.jpg">
-                <div class="grid-item-text">
-                    <p>Item:</p>
-                    <p>Categories:Electronics</p>
-                    <p> Price:8$</p>
-                    <div class="like-icon">
-                        <p>Views:112</p>
-                        <i class="fa-regular fa-heart"></i>
-                    </div>
-                    <div class="button-position">
-                        <input type="button" value="Edit" class="btn-style-1">
-                        <input type="button" value="Delete" class="btn-style-2">
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <img src="../assets/images/pic1.jpg">
-                <div class="grid-item-text">
-                    <p>Item:</p>
-                    <p>Categories:Electronics</p>
-                    <p> Price:8$</p>
-                    <div class="like-icon">
-                        <p>Views:112</p>
-                        <i class="fa-regular fa-heart"></i>
-                    </div>
-                    <div class="button-position">
-                        <input type="button" value="Edit" class="btn-style-1">
-                        <input type="button" value="Delete" class="btn-style-2">
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <img src="../assets/images/pic1.jpg">
-                <div class="grid-item-text">
-                    <p>Item:</p>
-                    <p>Categories:Electronics</p>
-                    <p> Price:8$</p>
-                    <div class="like-icon">
-                        <p>Views:112</p>
-                        <i class="fa-regular fa-heart"></i>
-                    </div>
-                    <div class="button-position">
-                        <input type="button" value="Edit" class="btn-style-1">
-                        <input type="button" value="Delete" class="btn-style-2">
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item ">
-                <div class="add-icon">
-                    <button id="myBtn">open</button>
-                    <div id="myModal" class="modal">
-
-                        <!-- Modal content -->
-                        <div class="modal-content">
-                            <input type="file" placeholder="enter a file">
-                            <input type="text" placeholder="Item name">
-                            <input type="text" placeholder="Category">
-                            <input type="text" placeholder="Price">
-                            <input type="text" placeholder="Description">
-                            <span class="close">&times;</span>
-                            <p>Some text in the Modal..</p>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+            </div>      
+            <!-- Js code built from this -->
         </div>
+    </section>
+   
+    <div class="popup-container">
+        <section class="popup">
+            <div class="close-btn-pop">
+                <img src="./images/back-btn.png" alt="">
+            </div>
+            <form action="#" class="popup-form" id="add-form">
+                <input type="file" name="thumbnail" id="thumbnail">
+                <label for="thumbnail" class="">
+                    <img class="thumbnail-div" src="./images/category.png">
+                </label>
+                <div class="pop-form-input">
+                    <label for="name">Product name</label>
+                    <input type="text" name="name" id="name">
+                </div>
+                <div class="pop-form-input quan-cat">
+                    <div class="inner-quan-cat">
+                        <label for="category">Category:</label>
+                        <select name="category" id="category">
+                            <option value="1" selected >Categories</option>
+                        </select>
+                    </div>
+                    <div class="inner-quan-cat">
+                        <label for="quantity">Quantity</label>
+                        <input type="number" name="quantity" id="quantity">
+                    </div>
+                    <div class="inner-quan-cat">
+                        <label for="price">Price</label>
+                        <input type="number" name="price" id="price">
+                    </div>
+                </div>
+                
+                <div class="pop-form-input">
+                    <label for="description">Product description</label>
+                    <textarea name="description" id="desc" cols="30" rows="10"></textarea>
+                </div>
+                <button id="submit-btn" class="btn-style-1">Submit</button>
+            </form>
+        </section>
+    </div>
+    
+
+    <!-- Edit product -->
+    <div class="popup-container2">
+        <section class="popup">
+            <div class="close-btn-pop-two">
+                <img src="./images/back-btn.png" alt="">
+            </div>
+            <form action="#" class="popup-form" id="edit-form">
+                <input type="file" name="thumbnail" id="thumbnail-two">
+                <label for="thumbnail" class="">
+                    <img class="thumbnail-div" src="./images/category.png">
+                </label>
+                <div class="pop-form-input">
+                    <label for="name">Product name</label>
+                    <input type="text" name="name" id="name-two">
+                </div>
+                <div class="pop-form-input quan-cat">
+                    <div class="inner-quan-cat">
+                        <label for="category">Category:</label>
+                        <select name="category" id="category-two">
+                            <option value="1" selected >Categories</option>
+                        </select>
+                    </div>
+                    <div class="inner-quan-cat">
+                        <label for="quantity">Quantity</label>
+                        <input type="number" name="quantity" id="quantity-two">
+                    </div>
+                    <div class="inner-quan-cat">
+                        <label for="price">Price</label>
+                        <input type="number" name="price" id="price-two">
+                    </div>
+                </div>
+                
+                <div class="pop-form-input">
+                    <label for="description">Product description</label>
+                    <textarea name="description" id="desc-two" cols="30" rows="10"></textarea>
+                </div>
+                <input type="text" id="edit-prod-id" style="display: none;">
+                <input type="text" id="seller-id" style="display: none;">
+                <button id="edit-btn" class="btn-style-1">Submit</button>
+            </form>
+        </section>
+    </div>
+    <div class="popup-container">
+        <section class="ads-popup">
+            <div class="close-btn-pop-two">
+                <img src="./images/back-btn.png" alt="">
+            </div>
+            <div class="ads-popup-content">
+                <form action="#" class="ad-form">
+                    <div>
+                        <label for="product">Select product to display:</label>
+                        <select name="product" id="ad-product">
+                            <option value="1">Product 1</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="ad-time">Choose dues date</label>
+                        <input type="text" name="product" id="ad-time">
+                    </div>
+                    <button class="btn-style-1 btn-center">Submit ad:</button>
+    
+                </form>
+            </div>
+        </section>
+    </div>
+    
 
 
-        </div>
-        <script src="../javascript.js"></script>
-
+    
 </body>
-</body>
-
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<!-- <script src="./js/add-product.js"></script> -->
 </html>
