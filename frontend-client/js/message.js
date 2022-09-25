@@ -40,8 +40,7 @@ const startChat=(sellerid)=>{
     inputMessage.setAttribute("type", "text");
     inputMessage.classList.add("message-input");
     inputMessage.placeholder="Type Your Message Here..";
-    inputValue=inputMessage.value;
-    console.log(inputValue)
+
     btmDiv.appendChild(inputMessage);
     
     const sendBtn=document.createElement("button");
@@ -49,7 +48,8 @@ const startChat=(sellerid)=>{
     sendBtn.innerText="Send";
     sendBtn.id=sellerid;
     sendBtn.addEventListener("click",function(){//on clicking on send button, sendMessage function will be executed
-        sendMessage(sellerid)
+        inputValue=inputMessage.value;
+        sendMessage(sellerid,inputValue)
        })
     btmDiv.appendChild(sendBtn);
     const data = new FormData();
@@ -88,10 +88,9 @@ const startChat=(sellerid)=>{
 
 }
 
-const sendMessage=(id)=>{//post input data and user ids to database
-    alert(inputValue)
+const sendMessage=(id,value)=>{//post input data and user ids to database
     const data = new FormData();
-   data.append("sender_id",1)
+   data.append("sender_id",userID)
     data.append("reciever_id", id);
     data.append("message", value);
     axios.post(addMessageAPI,data)
@@ -101,9 +100,7 @@ const sendMessage=(id)=>{//post input data and user ids to database
             console.log("error")
             return
         }
-        else{
-            alert("sent")
-        }
+       
         
     });
 }
