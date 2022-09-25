@@ -52,6 +52,11 @@ body{
     padding: 1vh 1vw;
 }
 
+.add_user_modal{
+    animation: blowUpModal .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+ }
+        
+
 .user_option{
     all: unset;
     cursor: pointer;
