@@ -11,9 +11,7 @@ const unlikeAPI = "http://localhost/backend/unlikeItem.php?user_id=" + localStor
 const isFavoredAPI = "http://localhost/backend/isFavored.php?user_id=" + localStorage.getItem("userID");
 const addToWishlistAPI = "http://localhost/backend/addWishlistItem.php?user_id=" + localStorage.getItem("userID");
 const rmFromWishlistAPI = "http://localhost/backend/RemoveItemFromWishlist.php?user_id=" + localStorage.getItem("userID");
-const inCartAPI = "http://localhost/backend/inCart.php?user_id=" + localStorage.getItem("userID");
-const addToCartAPI = "";
-const rmFromCartAPI = "";
+const addToCartAPI = "http://localhost/backend/addToCart.php?user_id=" + localStorage.getItem("userID");
 
 //Initialize variables
 const sellerContainer=document.querySelector(".sellers");
@@ -337,34 +335,22 @@ const openProduct = (event) => {
         )
 
         //Get favorite buttons, and save the product id
-        let cartButton = clone.querySelector(".fav_button");
+        let cartButton = clone.querySelector(".cart_button");
         cartButton.setAttribute('data', response.data.id);
 
-        //Check if the post is favored or not
-        axios.get(inCartAPI + "&product_id=" + response.data.id, config)
-        .then(response =>{
+        //When favorite button is clicked, send a request to the server
+        cartButton.addEventListener('click', (event) => {
+            let productID = event.currentTarget.getAttribute('data');
 
-            //Save the result of the product is favored or not, change the button accordingly
-            cartButton.setAttribute('isFavored', response.data);
-            cartButton.querySelector("#fav_image").src = data ? "images/yellowstar" : "images/star.png";
+            //Send data to the server using axios
+            axios(addToCartAPI + "&product_id=" + productID, config)
+            .then(response =>  {
+                //Change button image on click
+                console.log("hi")
+                
+            })
+        });
 
-            //When favorite button is clicked, send a request to the server
-            cartButton.addEventListener('click', (event) => {
-                let productID = event.currentTarget.getAttribute('data');
-                let isFavored = event.currentTarget.getAttribute('isFavored') === "true";
-                const wishListAPI = isFavored ? rmFromWishlistAPI : addToWishlistAPI;
-
-                //Send data to the server using axios
-                axios(wishListAPI + "&product_id=" + productID, config)
-                .then(response =>  {
-                    //Change button image on click
-                    cartButton.setAttribute('isFavored', !isFavored);
-                    cartButton.querySelector("#fav_image").src = isFavored ? "images/star.png" : "images/yellowstar.png";
-                })
-            });
-        }
-        )
-        
         //Add div after the original tweet
         originalModal.before(clone);
         originalModal.style.display = "none";
@@ -374,7 +360,8 @@ const openProduct = (event) => {
                 clone.style.display = "none";
             }
         }
-        })
+        }
+    )
 }
 
 window.onclick = function(event) {
