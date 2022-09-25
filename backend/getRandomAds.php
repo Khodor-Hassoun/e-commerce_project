@@ -8,7 +8,7 @@
     $query = $mysqli->prepare(
         "SELECT * FROM ads 
          ORDER BY rand()
-         LIMIT 1");
+         LIMIT 10");
     $query->execute();
     $array = $query->get_result();
 
