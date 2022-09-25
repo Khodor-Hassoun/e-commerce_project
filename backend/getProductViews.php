@@ -3,10 +3,10 @@
     include("connection.php");
     require_once("jwtFunc.php");
 
-    //Check JWT token
-    // if(!jwtAuth()){
-    //     return;
-    // }
+    Check JWT token
+    if(!jwtAuth()){
+        return;
+    }
 
     $product_id = $_GET["product_id"];
 
