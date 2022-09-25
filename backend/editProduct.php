@@ -51,4 +51,8 @@
     $query->execute();
     echo json_encode(["message" => "success"]);
 
+<<<<<<< HEAD
 ?>
+=======
+?>
+>>>>>>> main

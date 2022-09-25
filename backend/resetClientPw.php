@@ -28,15 +28,6 @@
         return;
     }
 
-    // $subject = "Reset Password";
-    // $body = "Hi, your new password is ".$password;
-    // $headers = "From: khodorhassoun26@gmail.com";
-    // if (mail('khodorhassoun26@gmail.com', $subject, $body, $headers)) {
-    //     echo "Email successfully sent to...";
-    // } else {
-    //     echo "Email sending failed!";
-    // }
-
     $query = $mysqli->prepare('UPDATE users SET password=? WHERE email=?');
     $query->bind_param('ss',hash('sha256',$password),$to_email);
     $query->execute();
@@ -58,8 +49,5 @@
     } else {
         echo "Email sending failed!";
     }
-
-
-
 
 ?>

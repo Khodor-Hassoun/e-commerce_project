@@ -1,9 +1,15 @@
 const getClientsAPI = "http://localhost/e-commerce_project/backend-admin/getUsersClients.php";
 const banClientAPI = "http://localhost/e-commerce_project/backend-admin/banClients.php";
 
+const config = {
+    headers: {
+      Authorization: localStorage.getItem("token"),
+    }
+  }
+
 const getClients = () =>{
     //Recieve data from the server
-    axios.get(getClientsAPI)
+    axios.get(getClientsAPI, config)
     .then(
         data =>  {
         if (data.message !== undefined) {
@@ -44,7 +50,7 @@ const getClients = () =>{
             let banButton = clone.querySelector("#ban_user");
             banButton.setAttribute('id', data[i].id);
 
-            likeButton.addEventListener("click", (event)=>{
+            banButton.addEventListener("click", (event)=>{
                 const data = new FormData();
                 userID = banButton.getAttribute('id');
                 data.append('user_id', userID);
@@ -55,8 +61,6 @@ const getClients = () =>{
                         //Do nothing
                         return
                     }
-
-                    clone.style.backgroundcolor = "red";
 
                 })
             })

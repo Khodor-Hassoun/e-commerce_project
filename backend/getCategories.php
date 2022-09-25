@@ -3,9 +3,7 @@
     include("connection.php");
     require_once("headers.php");
 
-
     $seller_id = $_GET['id'];
-
 
     if(!isset($seller_id) || empty($seller_id)){
 
@@ -29,7 +27,4 @@
 
     $json = json_encode($response);
     echo $json;
-
-
-
 ?>

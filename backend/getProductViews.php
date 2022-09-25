@@ -42,4 +42,8 @@
     $query->close();
     $mysqli->close();
 
+<<<<<<< HEAD
 ?>
+=======
+?>
+>>>>>>> main

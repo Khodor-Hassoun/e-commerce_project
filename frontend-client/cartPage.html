@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src * self blob: data: gap:; style-src * self 'unsafe-inline' blob: data: gap:; script-src * 'self' 'unsafe-eval' 'unsafe-inline' blob: data: gap:; object-src * 'self' blob: data: gap:; img-src * self 'unsafe-inline' blob: data: gap:; connect-src self * 'unsafe-inline' blob: data: gap:; frame-src * self blob: data: gap:;">
+    <link rel="stylesheet" href="path/to/bootstrap/css/bootstrap.min.css">
+    <link href="styles/style.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <title>Main page</title>
+</head>
+<body>
+    <!--Start of main container-->
+    <div class="main_container">
+        <!--Start of header-->
+        <div class="header header_cart">
+            <h1 class="title">ShopNerd</h1>
+        </div>
+        <!--End of header-->
+
+        <div class="cart_container">
+            <div class="list_container cart">
+                <h1 class="list_title">Cart</h1>
+                <ul class="cart_items">
+                </ul>
+
+                <button class="login_btn">Place order</button>
+            </div>
+        </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./js/cartScript.js"></script>
+</body>
+</html>
