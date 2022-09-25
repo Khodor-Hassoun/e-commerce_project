@@ -13,6 +13,8 @@
     $email = $_POST["email"];
     $first_name = $_POST["first_name"];
     $last_name = $_POST["last_name"];
+    $address = $_POST["address"];
+    $phone_number = $_POST["phone_number"];
 
     // Check if username exists
     $query = $mysqli->prepare("SELECT username FROM users WHERE username = ?");
@@ -42,8 +44,8 @@
     }
 
     // Update User
-    $query = $mysqli->prepare("UPDATE users SET first_name= ?, last_name= ?,username= ?,email= ? WHERE id= ?");
-    $query->bind_param('ssssi', $first_name, $last_name, $username, $email, $id);
+    $query = $mysqli->prepare("UPDATE users SET first_name= ?, last_name= ?,username= ?,email= ?, address = ?, phone_number = ? WHERE id= ?");
+    $query->bind_param('ssssi', $first_name, $last_name, $username, $email, $address, $phone_number, $id);
     $query->execute();
 
     echo json_encode(["message" => "success"]);
