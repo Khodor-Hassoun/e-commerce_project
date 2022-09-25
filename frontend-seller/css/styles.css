@@ -462,6 +462,29 @@ a:hover {
 .close-btn-pop-three img{
     width: 100%;
 }
+.ads-popup{
+    width: 360px;
+    height: 300px;
+    background-color: white;
+    justify-content: space-between;
+    align-items: center;
+    padding: 35px 5px;
+    border: 1px solid black;
+    border-radius: 25px;
+}
+.ads-popup-content{
+    margin-top: 30px;
+    height: 70%;
+}
+.ad-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+.btn-center{
+    align-self: center;
+}
 @media only screen and (max-width: 600px) {
 
     /* .navbar-container {
