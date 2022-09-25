@@ -620,7 +620,7 @@ footer{
 }
 
 /*Start of Wish list page*/
-.items_container{
+.item_container{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -657,6 +657,19 @@ footer{
     margin-top: 1vh;
     font-size: 20px;
     color: black;
+}
+
+.header_cart{
+    height: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cart_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /*End of Wish list page*/
@@ -770,5 +783,9 @@ footer{
 
     .list_container ul li{
         font-size: 16px;
+    }
+
+    .cart{
+        width: 90%;
     }
 }
