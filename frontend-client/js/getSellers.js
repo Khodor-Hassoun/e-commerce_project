@@ -48,6 +48,7 @@ const getSellerCategories=(id)=>{
         }
         if(response.data.length==0){
                 categoriesUl.innerHTML = "";
+
                 const li=document.createElement("li");
                 li.innerText="No Categories";
                 li.classList.add("categoriesItem");
@@ -56,6 +57,7 @@ const getSellerCategories=(id)=>{
         }
         else{
             categoriesUl.innerHTML = "";
+
             const header =document.createElement("h4");
             header.innerText= "Categories";
             header.classList.add("categoriesHeader");
@@ -68,7 +70,42 @@ const getSellerCategories=(id)=>{
                 li.classList.add("hover-underline-animation");
                 categoriesUl.appendChild(li);
 
-                li.addEventListener("click", getProductsByCat(id, response.data[i].id))
+                li.addEventListener("click", (event) => {
+                    productsDiv.innerHTML = "";
+                    const data = new FormData();
+                    data.append("seller_id", id);
+                    data.append("category_id", response.data[i].id);
+
+                    axios.post(getProductsByCatAPI, data)
+                    .then(response =>  {
+                    //Show error
+                    if (response.error != null) {
+                        console.log("error")
+                        return
+                    }
+
+                    //Loop over the response
+                    for(let i = 0; i < response.data.length; i++){
+                    const product=document.createElement("div");
+                    product.classList.add("product");
+                    productsDiv.appendChild(product);
+                    const image=document.createElement("img");
+                    image.classList.add("product_image");
+                    image.src = response.data[i].thumbnail;
+                    product.appendChild(image);
+                    const productDesc=document.createElement("div");
+                    productDesc.classList.add("product_desc");
+                    product.appendChild(productDesc);
+                    const h4=document.createElement("h4");
+                    h4.innerText=response.data[i].name;
+                    const span=document.createElement("span");
+                    span.innerText=response.data[i].price;
+                    productDesc.appendChild(h4);
+                    productDesc.appendChild(span);
+                }
+    });
+
+                })
             }
         }
     });
@@ -104,43 +141,6 @@ const getRandomProducts=()=>{
         }
     });
 }
-
-const getProductsByCat = (sellerID, categoryID) => {
-    const data = new FormData();
-    data.append("seller_id", sellerID);
-    data.append("category_id", categoryID);
-
-    axios.post(getProductsByCatAPI, data)
-    .then(response =>  {
-        //Show error
-        if (response.error != null) {
-            console.log("error")
-            return
-        }
-
-        productsDiv.innerHTML = "";
-        //Loop over the response
-        for(let i = 0; i < response.data.length; i++){
-            const product=document.createElement("div");
-            product.classList.add("product");
-            productsDiv.appendChild(product);
-            const image=document.createElement("img");
-            image.classList.add("product_image");
-            image.src = response.data[i].thumbnail;
-            product.appendChild(image);
-            const productDesc=document.createElement("div");
-            productDesc.classList.add("product_desc");
-            product.appendChild(productDesc);
-            const h4=document.createElement("h4");
-            h4.innerText=response.data[i].name;
-            const span=document.createElement("span");
-            span.innerText=response.data[i].price;
-            productDesc.appendChild(h4);
-            productDesc.appendChild(span);
-        }
-    });
-}
-
 
 const loadPage=()=>{
     getSellers();

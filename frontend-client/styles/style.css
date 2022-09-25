@@ -173,7 +173,7 @@ body{
     list-style-type: none;
     font-size: 18px;
     text-align: center;
-
+    cursor: pointer;
 }
 
 .hover-underline-animation {
@@ -519,5 +519,13 @@ footer{
 
     .user_options{
         width: 20%;
+    }
+
+    .categoriesHeader{
+        font-size: 16px;
+    }
+    
+    .categoriesItem{
+        font-size: 14px;
     }
 }
