@@ -4,6 +4,7 @@ const getSellerAPI="http://localhost/backend/getSellers.php";
 const getMessagesAPI="http://localhost/backend/getMessages.php";
 const addMessageAPI="http://localhost/backend/addMessage.php";
 let inputValue;
+const userID=localStorage.getItem("userID");
 
 const getSellers=()=>{//get sellers and show them in sellers div
     axios.get(getSellerAPI)
@@ -53,7 +54,7 @@ const startChat=(sellerid)=>{
     btmDiv.appendChild(sendBtn);
     const data = new FormData();
     data.append("seller_id", sellerid);
-    data.append("user_id", 41)
+    data.append("user_id", userID)
     
     axios.post(getMessagesAPI,data)
     .then(response =>  {
@@ -75,7 +76,7 @@ const startChat=(sellerid)=>{
             for(let i = 0; i < response.data.length; i++){
                 const message=document.createElement("div");
                 message.classList.add("message");
-                if((response.data[i].sender_id==sellerid && response.data[i].reciever_id==41) || (response.data[i].sender_id==41 && response.data[i].reciever_id==sellerid)){
+                if((response.data[i].sender_id==sellerid && response.data[i].reciever_id==userID) || (response.data[i].sender_id==userID && response.data[i].reciever_id==sellerid)){
                      message.innerText=response.data[i].message;
                     chatDiv.appendChild(message)
                 }
