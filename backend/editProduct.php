@@ -1,13 +1,12 @@
-
 <?php
     include("headers.php");
     include("connection.php");
-    // require_once("jwtFunc.php");
+    require_once("jwtFunc.php");
 
     //Check JWT token
-    // if(!jwtAuth()){
-    //     return;
-    // }
+    if(!jwtAuth()){
+        return;
+    }
 
     $id = $_POST["id"];
     $thumbnail = $_POST['thumbnail'];
@@ -52,4 +51,8 @@
     $query->execute();
     echo json_encode(["message" => "success"]);
 
+<<<<<<< HEAD
 ?>
+=======
+?>
+>>>>>>> main

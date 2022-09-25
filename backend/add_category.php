@@ -1,12 +1,21 @@
 <?php
     include ("connection.php");
     include ("headers.php");
+<<<<<<< HEAD:backend/add_category.php
+    require_once("jwtFunc.php");
+
+    // //Check JWT token
+    if(!jwtAuth()){
+        return;
+    }
+=======
     // require_once("jwtFunc.php");
 
     //Check JWT token
     // if(!jwtAuth()){
     //     return;
     // }
+>>>>>>> main:backend_seller/add_category.php
     
     $description = $_POST["description"];
     $thumbnail = $_POST["thumbnail"];
@@ -70,9 +79,15 @@
         echo json_encode([
             'error' => 400,
             'message' => 'category Exists']);
+<<<<<<< HEAD:backend/add_category.php
+        return;}
+
+    //decode base64 to image and upload it to images folder
+=======
         return;
     }
     
+>>>>>>> main:backend_seller/add_category.php
     $img = base64_decode(str_replace('data:image/png;base64,', '', $thumbnail));
     $split_image = 'png';
     //Save the file by using a random name
@@ -86,6 +101,10 @@
             'message' => "Error: Invalid image"
     ]);
     }
+<<<<<<< HEAD:backend/add_category.php
+
+=======
+>>>>>>> main:backend_seller/add_category.php
     
     //Prepare and execute query to add a new category
     $query = $mysqli->prepare("INSERT INTO `categories` (`description`, `thumbnail`, `name`, `seller_id`)

@@ -1,3 +1,5 @@
+getSellerAPI=""
+
 google.charts.load("current", {packages:['corechart']});
     google.charts.setOnLoadCallback(usersChart);
     function usersChart() {

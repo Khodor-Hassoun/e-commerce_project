@@ -5,7 +5,6 @@
 
     $seller_id = $_GET['id'];
 
-
     if(!isset($seller_id) || empty($seller_id)){
 
         http_response_code(400);
@@ -28,7 +27,4 @@
 
     $json = json_encode($response);
     echo $json;
-
-
-
 ?>

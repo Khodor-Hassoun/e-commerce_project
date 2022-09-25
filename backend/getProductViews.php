@@ -1,12 +1,12 @@
 <?php
     include("headers.php");
     include("connection.php");
-    // require_once("jwtFunc.php");
+    require_once("jwtFunc.php");
 
     //Check JWT token
-    // if(!jwtAuth()){
-    //     return;
-    // }
+    if(!jwtAuth()){
+        return;
+    }
 
     $product_id = $_GET["product_id"];
 
@@ -42,4 +42,8 @@
     $query->close();
     $mysqli->close();
 
+<<<<<<< HEAD
 ?>
+=======
+?>
+>>>>>>> main
