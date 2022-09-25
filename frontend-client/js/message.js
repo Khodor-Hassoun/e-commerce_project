@@ -3,6 +3,7 @@ const chatDiv=document.querySelector("#chat");
 const getSellerAPI="http://localhost/backend/getSellers.php";
 const getMessagesAPI="http://localhost/backend/getMessages.php";
 const addMessageAPI="http://localhost/backend/addMessage.php";
+let inputValue;
 
 const getSellers=()=>{//get sellers and show them in sellers div
     axios.get(getSellerAPI)
@@ -38,7 +39,7 @@ const startChat=(sellerid)=>{
     inputMessage.setAttribute("type", "text");
     inputMessage.classList.add("message-input");
     inputMessage.placeholder="Type Your Message Here..";
-    const inputValue=inputMessage.value;
+    inputValue=inputMessage.value;
     console.log(inputValue)
     btmDiv.appendChild(inputMessage);
     
@@ -47,7 +48,7 @@ const startChat=(sellerid)=>{
     sendBtn.innerText="Send";
     sendBtn.id=sellerid;
     sendBtn.addEventListener("click",function(){//on clicking on send button, sendMessage function will be executed
-        sendMessage(sellerid,inputValue)
+        sendMessage(sellerid)
        })
     btmDiv.appendChild(sendBtn);
     const data = new FormData();
@@ -86,7 +87,8 @@ const startChat=(sellerid)=>{
 
 }
 
-const sendMessage=(id,value)=>{//post input data and user ids to database
+const sendMessage=(id)=>{//post input data and user ids to database
+    alert(inputValue)
     const data = new FormData();
    data.append("sender_id",1)
     data.append("reciever_id", id);
