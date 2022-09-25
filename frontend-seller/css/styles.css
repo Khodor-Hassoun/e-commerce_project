@@ -33,12 +33,12 @@
     margin-left: 0px;
 }
 
-input[type=text] {
+/* input[type=text] {
     margin-top: 10px;
     height: 30px;
     width: 300px;
     border-radius: 7px;
-}
+} */
 
 .title {
     display: flex;
@@ -386,7 +386,71 @@ a:hover {
     pointer-events: all;
     opacity: 1;
 }
+.revenue-container{
+    display: flex;
+    width: 100%;
+}
 
+.revenue-content{
+    flex-grow: 1;
+    /* width: 600px; */
+    background-color: #BC4749;
+}
+.discount-content{
+    width: 300px;
+    background-color: grey;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.discount-btn{
+    margin: 10px 0;
+}
+.discount-btn button{
+    background-color: #1F7A8C;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 5px;
+    width: 100px;
+    /* margin-right: 10px; */
+    color: #fff;
+}
+.discount-code{
+    width: 100%;
+    background-color: white;
+    text-align: center;
+    padding: 5px;
+}
+.discount-code:nth-child(odd){
+    background-color: #E1E5F2;
+}
+
+.discount-pop{
+    display: flex;
+    flex-direction: column;
+    width: 360px;
+    height: 300px;
+    background-color: white;
+    justify-content: space-between;
+    align-items: center;
+    padding: 35px 5px;
+    border: 1px solid black;
+    border-radius: 25px;
+}
+.discount-input{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.discount-input >*{
+    margin: 5px 0;
+}
+.discount-input-div{
+    display: flex;
+    flex-direction: column;
+
+}
 @media only screen and (max-width: 600px) {
 
     /* .navbar-container {
