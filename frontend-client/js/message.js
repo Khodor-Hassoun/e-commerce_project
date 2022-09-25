@@ -1,8 +1,8 @@
 const sellersDiv=document.querySelector("#getSellers");
 const chatDiv=document.querySelector("#chat");
 chatDiv.style.backgroundColor="brown";
-const getSellerAPI="http://localhost/messenger/getSellers.php";
-const getMessagesAPI="http://localhost/messenger/getMessages.php";
+const getSellerAPI="http://localhost/backend/getSellers.php";
+const getMessagesAPI="http://localhost/backend/getMessages.php";
 const getSellers=()=>{
     axios.get(getSellerAPI)
     .then(response =>  {
