@@ -273,7 +273,6 @@ const openProduct = (event) => {
         let likeButton = clone.querySelector(".like_button");
         likeButton.setAttribute('data', response.data.id);
 
-        console.log("hi");
         //Check if the post is liked or not
         axios.get(likedProductAPI + "&product_id=" + response.data.id, config)
         .then(response =>{
@@ -303,36 +302,36 @@ const openProduct = (event) => {
         )
 
         //Get like buttons, and save the product id
-        // let favoriteButton = clone.querySelector(".fav_button");
-        // favoriteButton.setAttribute('data', response.data.id);
+        let favoriteButton = clone.querySelector(".fav_button");
+        favoriteButton.setAttribute('data', response.data.id);
 
-        // //Check if the post is liked or not
-        // axios(likedProductAPI + response.data.id)
-        // .then(response =>{
+        //Check if the post is liked or not
+        axios.get(likedProductAPI + response.data.id, config)
+        .then(response =>{
 
-        //     //Save the result of the product is liked or not, change the button accordingly
-        //     likeButton.setAttribute('isLiked', response.data);
-        //     likeButton.querySelector("#like_image").src = data ? "images/redheart.png" : "images/heart.png";
+            //Save the result of the product is liked or not, change the button accordingly
+            likeButton.setAttribute('isLiked', response.data);
+            likeButton.querySelector("#like_image").src = data ? "images/yellowstar" : "images/star.png";
 
-        //     //When like button is clicked, send a request to the server
-        //     likeButton.addEventListener('click', (event) => {
-        //         let productID = event.currentTarget.getAttribute('data');
-        //         let isLiked = event.currentTarget.getAttribute('isLiked') === "true";
-        //         const productAPI = isLiked ? unlikeAPI : likeAPI;
+            //When like button is clicked, send a request to the server
+            likeButton.addEventListener('click', (event) => {
+                let productID = event.currentTarget.getAttribute('data');
+                let isFavored = event.currentTarget.getAttribute('isLiked') === "true";
+                const productAPI = isFavored ? unlikeAPI : likeAPI;
 
-        //         //Send data to the server using axios
-        //         axios(productAPI + productID)
-        //         .then(response =>  {
-        //             //Change the number of likes on like/unlike
-        //             likes.textContent = isLiked? parseInt(likes.textContent) -1 : parseInt(likes.textContent) + 1;
+                //Send data to the server using axios
+                axios(productAPI + productID)
+                .then(response =>  {
+                    //Change the number of likes on like/unlike
+                    likes.textContent = isFavored? parseInt(likes.textContent) -1 : parseInt(likes.textContent) + 1;
 
-        //             //Change button image on click
-        //             likeButton.setAttribute('isLiked', !isLiked);
-        //             likeButton.querySelector("#like_image").src = isLiked ? "images/heart.png" : "images/redheart.png";
-        //         })
-        //     });
-        // }
-        // )
+                    //Change button image on click
+                    likeButton.setAttribute('isLiked', !isFavored);
+                    likeButton.querySelector("#like_image").src = isFavored ? "images/star.png" : "images/yellowstar.png";
+                })
+            });
+        }
+        )
         
         //Add div after the original tweet
         originalModal.before(clone);
