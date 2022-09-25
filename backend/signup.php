@@ -55,7 +55,7 @@ $privateKey = file_get_contents("./private-key.pem");
 
 //Save the data we need in the payload
 $payload = [
-    'id' => $array['id'],
+    'id' => $userID,
     'exp' => time() + 1500
 ];
 
@@ -65,7 +65,7 @@ $jwt = JWT::encode($payload, $privateKey, 'RS256');
 //Save the user id and the JWT
 $response = [];
 $response['token'] = $jwt;
-$response['id'] = $array['id'];
+$response['id'] = $userID;
 $json = json_encode($response);
 echo $json;
 
