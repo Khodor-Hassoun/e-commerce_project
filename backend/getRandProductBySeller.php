@@ -4,7 +4,7 @@
     include("connection.php");
     require_once("headers.php");
 
-    $seller_id = $_POST['id'];
+    $seller_id = $_GET['id'];
 
     //Prepare and execute SQL query to retrieve 9 random products 
     $query = $mysqli->prepare(
