@@ -7,11 +7,16 @@ const addMessageAPI="http://localhost/backend/addMessage.php";
 const sellersDiv = document.querySelector("#getSellers");
 const chatDiv = document.querySelector("#chat");
 const userID = localStorage.getItem("userID");
+const homeButton = document.querySelector(".header_cart");
 let inputValue;
 const config = {
     headers: {
       Authorization: localStorage.getItem("token")
     }
+}
+
+homeButton.onclick = function() {
+    window.location.replace("landingPage.html");
 }
 
 const getSellers=()=>{
@@ -124,7 +129,10 @@ const sendMessage=(id,value)=>{
     data.append("reciever_id", id);
     data.append("message", value);
 
-    axios.post(addMessageAPI,data, config)
+    axios.post(addMessageAPI, data, config)
+    .then(response => {
+        window.location.replace("messages.html");
+    })
     .catch((e)=>{
         console.log(e)
     });

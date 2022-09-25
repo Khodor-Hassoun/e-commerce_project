@@ -499,13 +499,14 @@ footer{
     width: 30%;
     color: white;
     overflow-y: auto;
-    height: 615px;
+    height: 100vh;
 }
 .chatDiv{
     width: 70%;
     height: auto;
     padding: 5px;
     background-color:rgb(234, 234, 234);
+    height: 100vh;
 }
 .message{
     background-color:#03445c;
@@ -522,6 +523,7 @@ footer{
     border: none;
     color: white;
     border-radius: 5px;
+    width: 100%;
 }
 .light-blue-msg{
     background-color: #1F7A8C;
@@ -533,6 +535,7 @@ footer{
     outline: none;
     border: none;
     margin-right: 3px;
+    width: 100%;
 }
 .input-msg{
     position: absolute;
