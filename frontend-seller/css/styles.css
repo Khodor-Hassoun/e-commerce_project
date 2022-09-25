@@ -414,6 +414,7 @@ a:hover {
     width: 100px;
     /* margin-right: 10px; */
     color: #fff;
+    cursor: pointer;
 }
 .discount-code{
     width: 100%;
@@ -450,6 +451,16 @@ a:hover {
     display: flex;
     flex-direction: column;
 
+}
+.close-btn-pop-three{
+    width: 15px;
+    height: 15px;
+    margin-left: 10px;
+    cursor: pointer;
+    align-self: flex-start;
+}
+.close-btn-pop-three img{
+    width: 100%;
 }
 @media only screen and (max-width: 600px) {
 
