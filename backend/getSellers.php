@@ -7,7 +7,7 @@
     //     return;
     // }
 
-    $query = $mysqli->prepare("SELECT * FROM users WHERE user_type =2");
+    $query = $mysqli->prepare("SELECT * FROM users WHERE user_type_id =2");
     $query->execute();
     $array = $query->get_result();
 

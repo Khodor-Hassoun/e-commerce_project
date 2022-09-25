@@ -9,6 +9,8 @@ use Firebase\JWT\Key;
 
 // initilize variables
 $username = trim($_POST['username']);
+$phoneNumber = $_POST['phoneNumber'];
+$address = $_POST['address'];
 $email = $_POST['email'];
 $firstName = $_POST['firstName'];
 $lastName = $_POST['lastName'];
@@ -23,6 +25,8 @@ if(
     || !isset($firstName) || empty($firstName)
     || !isset($lastName) || empty($lastName)
     || !isset($password) || empty($password)
+    || !isset($phoneNumber) || empty($phoneNumber)
+    || !isset($address) || empty($address)
 
 ) {
     http_response_code(400);
@@ -54,8 +58,8 @@ if(
      return;
  }
 //Prepare and execute SQL query to add a new user
-$query = $mysqli->prepare("INSERT INTO `users` (`username`, `password`, `email`, `first_name`, `last_name`, `is_banned`, `user_type`) VALUES ( ?, ?, ?, ?, ?, ?, ?)"); 
-$query->bind_param("sssssii", $username,$password, $email,  $firstName,$lastName,$isBanned,$userTypeID);
+$query = $mysqli->prepare("INSERT INTO `users` (`username`, `password`, `email`, `first_name`, `last_name`, `address`, `phone_number`,`is_banned`, `user_type_id`) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?)"); 
+$query->bind_param("sssssssii", $username,$password, $email,  $firstName,$lastName,$address,$phoneNumber,$isBanned,$userTypeID);
 $query->execute();
 
 $userID = mysqli_insert_id($mysqli);
