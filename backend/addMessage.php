@@ -1,12 +1,12 @@
 <?php
     include("headers.php");
     include("connection.php");
-    // require_once("jwtFunc.php");
+    require_once("jwtFunc.php");
 
     // //Check JWT token
-    // if(!jwtAuth()){
-    //     return;
-    // }
+    if(!jwtAuth()){
+        return;
+    }
 
     $sender_id = $_POST["sender_id"];
     $reciever_id= $_POST["reciever_id"];
