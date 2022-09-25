@@ -19,6 +19,7 @@ const resetPassModal = document.getElementById("reset_modal");
 const close = document.getElementById("close");
 const close2 = document.getElementById("close2");
 const close3 = document.getElementById("close3");
+const close4 = document.getElementById("close4");
 const open_signup = document.getElementById("open_signup");
 const signupModal = document.getElementById("signup_modal");
 const new_email = document.getElementById("new_email");
@@ -28,6 +29,13 @@ const new_firstName = document.getElementById("new_first_name");
 const new_lastName = document.getElementById("new_last_name");
 const new_address = document.getElementById("new_address");
 const new_phoneNumber = document.getElementById("new_phone_number");
+const edit_email = document.getElementById("edit_email");
+const edit_username = document.getElementById("edit_username");
+const edit_firstName = document.getElementById("edit_first_name");
+const edit_lastName = document.getElementById("edit_last_name");
+const edit_address = document.getElementById("edit_address");
+const edit_phoneNumber = document.getElementById("edit_phone_number");
+const editButton = document.getElementById("edit_profile");
 const signupButton = document.getElementById("create_account");
 const editPorfileButton = document.getElementById("edit_profile");
 const resetPassButton = document.getElementById("forgot_pass");
@@ -69,29 +77,6 @@ const getRandomAds=()=>{
             ads.push(response.data[i].content);
         }
     });
-}
-
-const search = () => {
-    //Get search input and filter it
-    filteredUsername = searchInput.value.toLowerCase().trim();
-
-    //Send data to the server using fetch
-    axios.get(searchAPI + filteredUsername)
-    .then(response=>response.json())
-    .then(data => {
-        //Check if there's an error
-        if(data.message !== undefined){
-            //Do nothing
-            return
-        }
-
-        //Create a list item and add it results
-        let li = document.createElement("li");
-        li.appendChild(document.createTextNode(data.username));
-        li.id = data.id
-        searchResult.innerHTML = '';
-        searchResult.appendChild(li);
-    })
 }
 
 const login = () => {
@@ -175,30 +160,25 @@ const editProfile = () => {
     //Save user's data
     const data = new FormData();
     data.append("id", localStorage.getItem("userID"))
-    data.append("email", new_email.value);
-    data.append("username", new_username.value);
-    data.append("firstName", new_firstName.value);
-    data.append("lastName", new_lastName.value);
-    data.append("address", new_address.value);
-    data.append("phoneNumber", new_phoneNumber.value);
+    data.append("email", edit_email.value);
+    data.append("username", edit_username.value);
+    data.append("first_name", edit_firstName.value);
+    data.append("last_name", edit_lastName.value);
+    data.append("address", edit_address.value);
+    data.append("phone_number", edit_phoneNumber.value);
 
     //Send data to the server using axios
     axios.post(editProfileAPI, data, config)
     .then(
         response =>  {
-
-        //Save token and ID in the local storage
-        localStorage.setItem("userID", response.data.id)
-        localStorage.setItem("token", response.data.token)
-
-        //refresh page
-        window.location.replace("landingPage.html");
+            editProfileModal.style.display = "none";
     })
 }
 
 signupButton.addEventListener("click", createNewAccount);
 loginButton.addEventListener("click", login);
 resetEmail.addEventListener("click", resetPass);
+editButton.addEventListener("click", editProfile);
 getRandomAds();
 
 if(localStorage.getItem("userID")){
@@ -209,8 +189,17 @@ if(localStorage.getItem("userID")){
     signinButton.onclick = function() {
         editProfileModal.style.display = "block";
     }
+
+    close4.onclick = function() {
+        editProfileModal.style.display = "none";
+    }
 }
 else{
+    //When the user clicks on the sign in button, a modal appears
+    signinButton.onclick = function() {
+        signinModal.style.display = "block";
+    }
+
     //When the user clicks on reset password, a new modal appears
     resetPassButton.onclick = function() {
         signinModal.style.display = "none";
@@ -250,4 +239,4 @@ window.onclick = function(event) {
     if(event.target == editProfileModal){
         editProfileModal.style.display = "none";
     }
-  }
+}

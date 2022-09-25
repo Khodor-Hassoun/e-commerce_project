@@ -426,6 +426,7 @@ footer{
 
 .create_account{
     margin-top: 2vh;
+    font-weight: bold;
     width: 35%;
     background-color: #1F7A8C;
     padding: 1vh 1vw;
