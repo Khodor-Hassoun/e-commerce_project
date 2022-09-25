@@ -8,6 +8,9 @@ const getProductAPI = "http://localhost/backend/getProduct.php?product_id=";
 const likedProductAPI = "http://localhost/backend/checkItemIfLiked.php?user_id=" + localStorage.getItem("userID");
 const likeAPI = "http://localhost/backend/likeItem.php?user_id=" + localStorage.getItem("userID");
 const unlikeAPI = "http://localhost/backend/unlikeItem.php?user_id=" + localStorage.getItem("userID");
+const isFavoredAPI = "http://localhost/backend/isFavored.php?user_id=" + localStorage.getItem("userID");
+const addToWishlistAPI = "http://localhost/backend/addWishlistItem.php?user_id=" + localStorage.getItem("userID");
+const rmFromWishlistAPI = "http://localhost/backend/RemoveItemFromWishlist.php?user_id=" + localStorage.getItem("userID");
 
 //Initialize variables
 const sellerContainer=document.querySelector(".sellers");
@@ -301,33 +304,30 @@ const openProduct = (event) => {
         }
         )
 
-        //Get like buttons, and save the product id
+        //Get favorite buttons, and save the product id
         let favoriteButton = clone.querySelector(".fav_button");
         favoriteButton.setAttribute('data', response.data.id);
 
-        //Check if the post is liked or not
-        axios.get(likedProductAPI + response.data.id, config)
+        //Check if the post is favored or not
+        axios.get(isFavoredAPI + "&product_id=" + response.data.id, config)
         .then(response =>{
 
-            //Save the result of the product is liked or not, change the button accordingly
-            likeButton.setAttribute('isLiked', response.data);
-            likeButton.querySelector("#like_image").src = data ? "images/yellowstar" : "images/star.png";
+            //Save the result of the product is favored or not, change the button accordingly
+            favoriteButton.setAttribute('isFavored', response.data);
+            favoriteButton.querySelector("#fav_image").src = data ? "images/yellowstar" : "images/star.png";
 
-            //When like button is clicked, send a request to the server
-            likeButton.addEventListener('click', (event) => {
+            //When favorite button is clicked, send a request to the server
+            favoriteButton.addEventListener('click', (event) => {
                 let productID = event.currentTarget.getAttribute('data');
-                let isFavored = event.currentTarget.getAttribute('isLiked') === "true";
-                const productAPI = isFavored ? unlikeAPI : likeAPI;
+                let isFavored = event.currentTarget.getAttribute('isFavored') === "true";
+                const wishListAPI = isFavored ? rmFromWishlistAPI : addToWishlistAPI;
 
                 //Send data to the server using axios
-                axios(productAPI + productID)
+                axios(wishListAPI + "&product_id=" + productID, config)
                 .then(response =>  {
-                    //Change the number of likes on like/unlike
-                    likes.textContent = isFavored? parseInt(likes.textContent) -1 : parseInt(likes.textContent) + 1;
-
                     //Change button image on click
-                    likeButton.setAttribute('isLiked', !isFavored);
-                    likeButton.querySelector("#like_image").src = isFavored ? "images/star.png" : "images/yellowstar.png";
+                    favoriteButton.setAttribute('isFavored', !isFavored);
+                    favoriteButton.querySelector("#fav_image").src = isFavored ? "images/star.png" : "images/yellowstar.png";
                 })
             });
         }
