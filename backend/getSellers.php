@@ -1,12 +1,11 @@
 <?php
     require_once("headers.php");
     include("connection.php");
-    require_once("jwtFunc.php");
-
-    //Check JWT token
-    if(!jwtAuth()){
-        return;
-    }
+    // require_once("jwtFunc.php");
+    // //Check JWT token
+    // if(!jwtAuth()){
+    //     return;
+    // }
 
     $query = $mysqli->prepare("SELECT * FROM users WHERE user_type_id =2");
     $query->execute();

@@ -6,9 +6,9 @@
 
     //Prepare and execute SQL query to retrieve 9 random products 
     $query = $mysqli->prepare(
-        "SELECT * FROM products P
+        "SELECT * FROM ads 
          ORDER BY rand()
-         LIMIT 9");
+         LIMIT 10");
     $query->execute();
     $array = $query->get_result();
 
