@@ -90,7 +90,7 @@ const config={
 // Get the categories from getCategory and place them in category select form
 axios.get(getCategory,{
     params: {
-		id: 41 // CRITICAL TO BE LOCAL STORAGE ID/////////////////////////////////////////////////////
+		id: localStorage("userID")
 	}
 })
 .then(res=>{
@@ -118,7 +118,7 @@ axios.get(getCategory,{
 // Get the products of the seller
 axios.get(getProductsApi,{
     params:{
-        seller_id:41  //CRITICAL TO BE LOCALSTORAGE userID//////////////////////////////////////////
+        seller_id: localStorage.getItem("userID")
     }
 })
 .then(res =>{
@@ -156,7 +156,7 @@ axios.get(getProductsApi,{
                 p.textContent = `Price: ${object.price} $`
                 gridItemText.appendChild(p)
             }
-            // Insert ID for deletion later- CRITICAL TO BE HIDDEN
+    
             if(i==3){
                 p.textContent= `${object.id}`
                 p.setAttribute('class','productID')
@@ -164,7 +164,7 @@ axios.get(getProductsApi,{
             }
 
         }
-        // Get likes from '''''favourite_items''''''' table in db
+        // Get likes from 'favourite_items' table in db
         const likeDiv = document.createElement('div')
         likeDiv.classList.add("like-icon")
         const likes = document.createElement('p')
@@ -191,7 +191,6 @@ axios.get(getProductsApi,{
         })
         .then(res=>{
             likes.textContent = `Likes: ${res.data.likes}`
-            // gridItemText.append(likeDiv)
             
         })
         .catch(e=>{
@@ -209,7 +208,7 @@ axios.get(getProductsApi,{
         const editBtn = document.createElement("button")
         editBtn.classList.add("btn-style-1")
         editBtn.classList.add('edit')
-        // editBtn.setAttribute('type', 'button')
+
         editBtn.innerHTML = 'Edit'
         editBtn.addEventListener('click', ()=>{
             popupContainer2.classList.add('show')
@@ -223,15 +222,13 @@ axios.get(getProductsApi,{
         const deleteBtn = document.createElement("button")
         deleteBtn.classList.add("btn-style-2")
         deleteBtn.classList.add('delete')
-        // deleteBtn.setAttribute('type', 'button')
         deleteBtn.textContent = 'Delete'
-        //
         deleteBtn.addEventListener('click',()=>{
             axios.get(deleteProductApi,{
                 params:{
                     product_id: parseInt(`${object.id}`)
                 }
-            })
+            }, config)
             .then(res=>{
                 window.location.replace('add-product.html')
             })
@@ -274,18 +271,18 @@ thumbnail.addEventListener('change',()=>{
 
 // Add a product
 productForm.addEventListener("submit",(e)=>{
-    e.preventDefault() //THIS SHOULD GO WHEN GOING LIVE. USED WHEN TESTING THE APIS
+    e.preventDefault() 
     
     const data =new FormData()
     data.append('thumbnail', image64)
     data.append('category_id',parseInt(catName.value))
-    data.append('seller_id',41)
+    data.append('seller_id', localStorage("userID"))
     data.append('quantity', parseInt(quantity.value))
     data.append('name', prodName.value)
     data.append('description',description.value)
     data.append('price',parseInt(price.value))
 
-    axios.post(addpProductApi, data)
+    axios.post(addpProductApi, data, config)
     .then(res=>{
         console.log(data)
         console.log(res)
@@ -296,8 +293,6 @@ productForm.addEventListener("submit",(e)=>{
     
 })
 
-
-
 editForm.addEventListener('submit',(e)=>{
     e.preventDefault()
     const data = new FormData()
@@ -307,8 +302,9 @@ editForm.addEventListener('submit',(e)=>{
     data.append('description', description2.value)
     data.append("category_id",parseInt(catName2.value))
     data.append('price', parseInt(price2.value))
-    data.append("user_id", 41);
-    axios.post(editProductApi, data)
+    data.append("user_id", localStorage("userID"));
+    
+    axios.post(editProductApi, data, config)
       .then((res) => {
         console.log(data);
         console.log(res);
@@ -317,25 +313,3 @@ editForm.addEventListener('submit',(e)=>{
         console.log(e);
     });
 })
-
-// Press on edit button open popup
-// Press on submit button send data
-// const editProduct = ()=>{
-//     const data = new FormData()
-//     data.append('thumbnail', image64)
-//     data.append('id', parseInt(object.id))
-//     data.append('name', object.name)
-//     data.append('description', object.description)
-//     data.append("category_id", object.category_id)
-//     data.append('price', object.price)
-//     data.append('user_id',object.user_id)
-
-//     axios.post(editProductApi, data)
-//     .then(res=>{
-//         console.log(data)
-//         console.log(res)
-//     })
-//     .catch(e=>{
-//         console.log(e)
-//     })
-// }

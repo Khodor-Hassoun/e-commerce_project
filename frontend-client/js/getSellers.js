@@ -1,17 +1,17 @@
 //Intialize APIs
-const getSellerAPI="http://localhost/backend/getSellers.php";
-const getSellerCategoriesAPI="http://localhost/backend/getCategories.php";
-const getRandomProductsAPI="http://localhost/backend/getRandProducts.php";
-const getProductsByCatAPI = "http://localhost/backend/getProductsByCat.php";
-const getRandProductsBySellerAPI = "http://localhost/backend/getRandProductBySeller.php?id=";
-const getProductAPI = "http://localhost/backend/getProduct.php?product_id=";
-const likedProductAPI = "http://localhost/backend/checkItemIfLiked.php?user_id=" + localStorage.getItem("userID");
-const likeAPI = "http://localhost/backend/likeItem.php?user_id=" + localStorage.getItem("userID");
-const unlikeAPI = "http://localhost/backend/unlikeItem.php?user_id=" + localStorage.getItem("userID");
-const isFavoredAPI = "http://localhost/backend/isFavored.php?user_id=" + localStorage.getItem("userID");
-const addToWishlistAPI = "http://localhost/backend/addWishlistItem.php?user_id=" + localStorage.getItem("userID");
-const rmFromWishlistAPI = "http://localhost/backend/RemoveItemFromWishlist.php?user_id=" + localStorage.getItem("userID");
-const addToCartAPI = "http://localhost/backend/addToCart.php?user_id=" + localStorage.getItem("userID");
+const getSellerAPI="http://localhost/e-commerce_project/backend/getSellers.php";
+const getSellerCategoriesAPI="http://localhost/e-commerce_project/backend/getCategories.php";
+const getRandomProductsAPI="http://localhost/e-commerce_project/backend/getRandProducts.php";
+const getProductsByCatAPI = "http://localhost/e-commerce_project/backend/getProductsByCat.php";
+const getRandProductsBySellerAPI = "http://localhost/e-commerce_project/backend/getRandProductBySeller.php?id=";
+const getProductAPI = "http://localhost/e-commerce_project/backend/getProduct.php?product_id=";
+const likedProductAPI = "http://localhost/e-commerce_project/backend/checkItemIfLiked.php?user_id=" + localStorage.getItem("userID");
+const likeAPI = "http://localhost/e-commerce_project/backend/likeItem.php?user_id=" + localStorage.getItem("userID");
+const unlikeAPI = "http://localhost/e-commerce_project/backend/unlikeItem.php?user_id=" + localStorage.getItem("userID");
+const isFavoredAPI = "http://localhost/e-commerce_project/backend/isFavored.php?user_id=" + localStorage.getItem("userID");
+const addToWishlistAPI = "http://localhost/e-commerce_project/backend/addWishlistItem.php?user_id=" + localStorage.getItem("userID");
+const rmFromWishlistAPI = "http://localhost/e-commerce_project/backend/RemoveItemFromWishlist.php?user_id=" + localStorage.getItem("userID");
+const addToCartAPI = "http://localhost/e-commerce_project/backend/addToCart.php?user_id=" + localStorage.getItem("userID");
 
 //Initialize variables
 const sellerContainer=document.querySelector(".sellers");

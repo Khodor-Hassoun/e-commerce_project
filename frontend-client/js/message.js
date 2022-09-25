@@ -1,7 +1,7 @@
 //getting APIs urls
-const getSellerAPI="http://localhost/backend/getSellers.php";
-const getMessagesAPI="http://localhost/backend/getMessages.php";
-const addMessageAPI="http://localhost/backend/addMessage.php";
+const getSellerAPI="http://localhost/e-commerce_project/backend/getSellers.php";
+const getMessagesAPI="http://localhost/e-commerce_project/backend/getMessages.php";
+const addMessageAPI="http://localhost/e-commerce_project/backend/addMessage.php";
 
 //initializing variables
 const sellersDiv = document.querySelector("#getSellers");

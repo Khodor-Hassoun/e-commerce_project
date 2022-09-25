@@ -11,11 +11,11 @@ const description = document.querySelector('#desc')
 let image64= ''
 const categoryForm = document.querySelector('.popup-form')
 
-// const config={
-//     headers:{
-//         Authorization: localStorage.getItem("token")
-//     }
-// }
+const config={
+    headers:{
+        Authorization: localStorage.getItem("token")
+    }
+}
 
 
 addCategory.addEventListener('click',()=>{
@@ -39,7 +39,6 @@ thumbnail.addEventListener('change',()=>{
     })
 
     reader.readAsDataURL(file)
-    // thumbDiv.src= `${reader.result}`
 })
 categoryForm.addEventListener('submit',(e)=>{
     e.preventDefault()
@@ -49,7 +48,7 @@ categoryForm.addEventListener('submit',(e)=>{
     data.append("description",description.value)
     data.append("seller_id",localStorage.getItem("userID"))
     
-    axios.post(addCategoryApi, data)
+    axios.post(addCategoryApi, data, config)
         .then(res=>{
             console.log(data)
             console.log(res)

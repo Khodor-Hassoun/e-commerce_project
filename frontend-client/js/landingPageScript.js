@@ -1,9 +1,9 @@
 //Initialize APIs
-const loginAPI = "http://localhost/backend/signin.php";
-const signupAPI = "http://localhost/backend/signup.php";
-const resetPassAPI = "http://localhost/backend/resetClientPw.php";
-const getRandAdsAPI = "http://localhost/backend/getRandomAds.php";
-const editProfileAPI = "http://localhost/backend/editProfile.php";
+const loginAPI = "http://localhost/e-commerce_project/backend/signin.php";
+const signupAPI = "http://localhost/e-commerce_project/backend/signup.php";
+const resetPassAPI = "http://localhost/e-commerce_project/backend/resetClientPw.php";
+const getRandAdsAPI = "http://localhost/e-commerce_project/backend/getRandomAds.php";
+const editProfileAPI = "http://localhost/e-commerce_project/backend/editProfile.php";
 const getVouchersAPI = "";
 
 //Initialize variables
@@ -119,7 +119,7 @@ const login = () => {
         window.location.replace("landingPage.html");
     }
     else if (response.data.type == "seller"){
-        window.location.replace("/../frontend-seller/main_page_seller.html");
+        window.location.replace("/../frontend-seller/add-category.html");
     }
     else{
         error.textContent = "Invalid input";

@@ -2,7 +2,6 @@
 
 include("headers.php");
 include("connection.php");
-<<<<<<< HEAD:backend/addProductByCategory.php
 require_once("jwtFunc.php");
 
 //Check JWT token
@@ -10,9 +9,6 @@ if(!jwtAuth()){
     return;
 }
 
-=======
-// include ("jwtAPI.php");
->>>>>>> main:backend_seller/addProductByCategory.php
 $category_id = $_POST["category_id"];
 $seller_id = $_POST["seller_id"];
 $quantity = $_POST["quantity"];
@@ -30,22 +26,6 @@ if(!isset($category_id) || empty($category_id) || !isset($seller_id) || empty($s
     return;
 }   
 
-<<<<<<< HEAD:backend/addProductByCategory.php
-=======
-//check if category is valid in database
-// $query = $mysqli->prepare("SELECT * FROM categories WHERE category_id = ? AND seller_id=?");
-// $query->bind_param("si", $category_id,$seller_id);
-// $query->execute();
-// $res=$query->store_result();
-// $num_rows = $query->num_rows;
-    
-// if($num_rows == 0){
-//     http_response_code(400);
-//     echo json_encode(['status' => 400,'message' => 'Category not found']); 
-//     return;
-// }
-
->>>>>>> main:backend_seller/addProductByCategory.php
 //decode base64 to image and upload it to images folder
 $img = base64_decode(str_replace('data:image/png;base64,', '', $thumbnail));
     $split_image = 'png';

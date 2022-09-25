@@ -24,7 +24,7 @@ const getClients = () =>{
             let clone = originalItem.cloneNode(true);
             clone.style.display ="block";
             clone.id= data[i].tweet_id;
-            clone.classList.add("client");
+            clone.classList.add("table-row-group");
 
             //Add the first name
             let firstname = clone.querySelector("#firstname");

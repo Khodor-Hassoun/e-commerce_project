@@ -1,5 +1,5 @@
 //Intialize APIs
-const getCartItemsAPI = "http://localhost/backend/getCartItems.php?user_id=" + localStorage.getItem("userID");
+const getCartItemsAPI = "http://localhost/e-commerce_project/backend/getCartItems.php?user_id=" + localStorage.getItem("userID");
 
 //Intialize variables
 const cartUl = document.querySelector(".cart_items");

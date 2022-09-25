@@ -1,6 +1,6 @@
 //Intialize APIs
-const getWishlistItemsAPI = "http://localhost/backend/getWishlistItems.php?user_id=" + localStorage.getItem("userID");
-const getFavoriteItemsAPI = "http://localhost/backend/getlikedItems.php?user_id=" + localStorage.getItem("userID");
+const getWishlistItemsAPI = "http://localhost/e-commerce_project/backend/getWishlistItems.php?user_id=" + localStorage.getItem("userID");
+const getFavoriteItemsAPI = "http://localhost/e-commerce_project/backend/getlikedItems.php?user_id=" + localStorage.getItem("userID");
 
 //Intialize variables
 const wishlistsUl = document.querySelector(".wishlist_items");

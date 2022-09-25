@@ -1,8 +1,8 @@
 //Intialize APIs
-const getSellerAPI = "http://localhost/backend/getSellers.php";
-const deleteSellerAPI = "http://localhost/backend/deleteSeller.php";
-const addSellerAPI = "http://localhost/backend/addSeller.php";
-const editSellerAPI = "http://localhost/backend/editSeller.php";
+const getSellerAPI = "http://localhost/e-commerce_project/backend/getSellers.php";
+const deleteSellerAPI = "http://localhost/e-commerce_project/backend/deleteSeller.php";
+const addSellerAPI = "http://localhost/e-commerce_project/backend/addSeller.php";
+const editSellerAPI = "http://localhost/e-commerce_project/backend/editSeller.php";
 
 //Intialize variables
 const editUserModal = document.querySelector(".edit_user_modal");

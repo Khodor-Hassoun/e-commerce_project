@@ -1,10 +1,15 @@
 const sellersDiv=document.querySelector("#getSellers");
 const chatDiv=document.querySelector("#chat");
-const getSellerAPI="http://localhost/backend/getClients.php";
-const getMessagesAPI="http://localhost/backend/getMessages.php";
-const addMessageAPI="http://localhost/backend/addMessage.php";
+const getSellerAPI="http://localhost/e-commerce_project/backend/getClients.php";
+const getMessagesAPI="http://localhost/e-commerce_project/backend/getMessages.php";
+const addMessageAPI="http://localhost/e-commerce_project/backend/addMessage.php";
 let inputValue;
 const userID=localStorage.getItem("userID");
+const config={
+    headers:{
+        Authorization: localStorage.getItem("token")
+    }
+}
 
 const getSellers=()=>{//get sellers and show them in sellers div
     axios.get(getSellerAPI)
@@ -56,7 +61,7 @@ const startChat=(sellerid)=>{
     data.append("seller_id", sellerid);
     data.append("user_id", userID)
     
-    axios.post(getMessagesAPI,data)
+    axios.post(getMessagesAPI,data, config)
     .then(response =>  {
         //Show error
         if (response.error != null) {
@@ -93,15 +98,13 @@ const sendMessage=(id,value)=>{//post input data and user ids to database
    data.append("sender_id",userID)
     data.append("reciever_id", id);
     data.append("message", value);
-    axios.post(addMessageAPI,data)
+    axios.post(addMessageAPI,data,config)
     .then(response =>  {
         //Show error
         if (response.error != null) {
             console.log("error")
             return
-        }
-       
-        
+        }   
     });
 }
 window.addEventListener("load",getSellers)

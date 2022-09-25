@@ -50,9 +50,4 @@
     $query->bind_param('sssiii', $thumbnail, $name, $description, $category_id, $price, $id);
     $query->execute();
     echo json_encode(["message" => "success"]);
-
-<<<<<<< HEAD
 ?>
-=======
-?>
->>>>>>> main
