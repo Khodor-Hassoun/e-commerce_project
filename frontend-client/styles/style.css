@@ -447,7 +447,57 @@ footer{
     margin-left: 0.5vw;
     margin-right: 0.5vw;
 }
+.seller-row{
+    padding: 10px;
+    height: 30px;
+}
+.messenger{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 
+}
+.getsellers-div{
+    width: 30%;
+    color: white;
+    overflow-y: auto;
+    height: 615px;
+}
+.chatDiv{
+    width: 70%;
+    font-weight: bolder;
+    height: 615px;
+    color:gray;
+    padding: 5px;
+    background-color:rgb(167, 169, 169);
+}
+.message{
+    background-color: white;
+    color: gray;
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 5px;
+    width: 50%;
+}
+.send-btn{
+    outline: none;
+    padding: 10px 15px;
+    background-color: #1F7A8C;
+    border: none;
+    color: white;
+    border-radius: 5px;
+}
+.message-input{
+    padding: 10px 15px;  
+    outline: none;
+    border: none;
+    margin-right: 3px;
+}
+.input-msg{
+    position: absolute;
+    bottom:0;
+    position: fixed;
+}
 /*End of sign up modal*/
 
 @media screen and (max-width: 800px) {
