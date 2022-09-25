@@ -2,6 +2,7 @@ const getSellerAPI="http://localhost/backend/getSellers.php";
 const getSellerCategoriesAPI="http://localhost/backend/getCategories.php";
 const getRandomProductsAPI="http://localhost/backend/getRandProducts.php";
 const getProductsByCatAPI = "http://localhost/backend/getProductsByCat.php";
+const getRandProductsBySellerAPI = "http://localhost/backend/getRandProductBySeller.php?id=";
 const sellerContainer=document.querySelector(".sellers");
 const categoriesUl=document.querySelector(".categories_list");
 const productsDiv=document.querySelector(".products");
@@ -30,7 +31,8 @@ const getSellers=()=>{
             img.src = imagesGenertor[Math.floor(Math.random()*imagesGenertor.length)];;
             sellerContainer.appendChild(img);
             img.addEventListener("click",function(){
-                getSellerCategories(response.data[i].id)
+                getSellerCategories(response.data[i].id);
+                getSellerProducts(response.data[i].id);
             },false)
         }
     });
@@ -119,6 +121,42 @@ const getRandomProducts=()=>{
             console.log("error")
             return
         }
+        //Loop over the response
+        for(let i = 0; i < response.data.length; i++){
+            const product=document.createElement("div");
+            product.classList.add("product");
+            productsDiv.appendChild(product);
+            const image=document.createElement("img");
+            image.classList.add("product_image");
+            image.src = response.data[i].thumbnail;
+            product.appendChild(image);
+            const productDesc=document.createElement("div");
+            productDesc.classList.add("product_desc");
+            product.appendChild(productDesc);
+            const h4=document.createElement("h4");
+            h4.innerText=response.data[i].name;
+            const span=document.createElement("span");
+            span.innerText=response.data[i].price;
+            productDesc.appendChild(h4);
+            productDesc.appendChild(span);
+
+        }
+    });
+}
+
+const getSellerProducts = (sellerID) => {
+    productsDiv.innerHTML = "";
+    console.log(getRandProductsBySellerAPI + sellerID)
+    axios.get(getRandProductsBySellerAPI + sellerID)
+    .then(response =>  {
+        //Show error
+        if (response.error != null) {
+            console.log("error")
+            return
+        }
+        console.log(sellerID)
+         console.log(response)
+
         //Loop over the response
         for(let i = 0; i < response.data.length; i++){
             const product=document.createElement("div");
