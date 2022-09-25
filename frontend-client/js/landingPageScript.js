@@ -37,22 +37,23 @@ const config = {
       Authorization: localStorage.getItem("token")
     }
 }
-let data;
 let index = 0;
 
 function changeImage(){
-   adElement.src = ads[index];
-   index > ads.length ? index = 0 : index++;
+    //Go over the array and change the image
+    adElement.src = ads[index];
+    index > ads.length ? index = 0 : index++;
 }
 
 window.onload = function () {
-    if(empty(ads)){
+    if(ads.length == 0){
+        //If the array is empty, do nothing
         return;
     }
     else{
+        //Change the image every 5 seconds
         setInterval(changeImage, 5000);
     }
-    
 };
 
 //When the user clicks on reset password, a new modal appears
@@ -133,7 +134,7 @@ const search = () => {
 
 const login = () => {
     //Save data
-    data = new FormData();
+    const data = new FormData();
     data.append("email", email.value);
     data.append("password", password.value);
 
@@ -171,7 +172,7 @@ const login = () => {
 
 const createNewAccount = () => {
     //Save user's data
-    data = new FormData();
+    const data = new FormData();
     data.append("email", new_email.value);
     data.append("username", new_username.value);
     data.append("password", new_password.value);
@@ -196,7 +197,7 @@ const createNewAccount = () => {
 
 const resetPass = () =>{
     //Get the email from the user
-    data = new FormData();
+    const data = new FormData();
     data.append("email", resetPassEmail.value);
 
     //Send data to the server using axios

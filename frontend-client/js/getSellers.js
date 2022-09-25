@@ -1,6 +1,7 @@
 const getSellerAPI="http://localhost/backend/getSellers.php";
 const getSellerCategoriesAPI="http://localhost/backend/getCategories.php";
 const getRandomProductsAPI="http://localhost/backend/getRandProducts.php";
+const getProductsByCatAPI = "http://localhost/backend/getProductsByCat.php";
 const sellerContainer=document.querySelector(".sellers");
 const categoriesUl=document.querySelector(".categories_list");
 const productsDiv=document.querySelector(".products");
@@ -12,6 +13,7 @@ const imagesGenertor = ["https://img.freepik.com/free-vector/businessman-charact
 "https://st2.depositphotos.com/1006318/5909/v/450/depositphotos_59094961-stock-illustration-businesswoman-profile-icon.jpg",
 "https://png.pngtree.com/png-vector/20191101/ourmid/pngtree-businessman-avatar-icon-flat-style-png-image_1917273.jpg",
 "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000"];
+let data;
 
 const getSellers=()=>{
     axios.get(getSellerAPI)
@@ -104,7 +106,11 @@ const getRandomProducts=()=>{
 }
 
 const getProductsByCat = (sellerID, categoryID) => {
-    axios.get(getRandomProductsAPI)
+    const data = new FormData();
+    data.append("seller_id", sellerID);
+    data.append("category_id", categoryID);
+
+    axios.post(getProductsByCatAPI, data)
     .then(response =>  {
         //Show error
         if (response.error != null) {
