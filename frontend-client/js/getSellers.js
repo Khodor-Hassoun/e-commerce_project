@@ -59,15 +59,17 @@ const getSellerCategories=(id)=>{
             header.classList.add("categoriesHeader");
             categoriesUl.appendChild(header);
             for(let i = 0; i < response.data.length; i++){   
-                    const li=document.createElement("li");
-                    li.innerText=response.data[i].name;
-                    li.classList.add("categoriesItem");
-                    li.classList.add("hover-underline-animation");
-                    categoriesUl.appendChild(li);
+                const li=document.createElement("li");
+                li.innerText=response.data[i].name;
+                li.id = response.data[i].id;
+                li.classList.add("categoriesItem");
+                li.classList.add("hover-underline-animation");
+                categoriesUl.appendChild(li);
+
+                li.addEventListener("click", getProductsByCat(id, response.data[i].id))
             }
         }
     });
-    
 }
 
 const getRandomProducts=()=>{
@@ -100,6 +102,40 @@ const getRandomProducts=()=>{
         }
     });
 }
+
+const getProductsByCat = (sellerID, categoryID) => {
+    axios.get(getRandomProductsAPI)
+    .then(response =>  {
+        //Show error
+        if (response.error != null) {
+            console.log("error")
+            return
+        }
+
+        productsDiv.innerHTML = "";
+        //Loop over the response
+        for(let i = 0; i < response.data.length; i++){
+            const product=document.createElement("div");
+            product.classList.add("product");
+            productsDiv.appendChild(product);
+            const image=document.createElement("img");
+            image.classList.add("product_image");
+            image.src = response.data[i].thumbnail;
+            product.appendChild(image);
+            const productDesc=document.createElement("div");
+            productDesc.classList.add("product_desc");
+            product.appendChild(productDesc);
+            const h4=document.createElement("h4");
+            h4.innerText=response.data[i].name;
+            const span=document.createElement("span");
+            span.innerText=response.data[i].price;
+            productDesc.appendChild(h4);
+            productDesc.appendChild(span);
+        }
+    });
+}
+
+
 const loadPage=()=>{
     getSellers();
     getRandomProducts();
