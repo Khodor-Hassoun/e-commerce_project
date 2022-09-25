@@ -11,6 +11,7 @@ const unlikeAPI = "http://localhost/backend/unlikeItem.php?user_id=" + localStor
 const isFavoredAPI = "http://localhost/backend/isFavored.php?user_id=" + localStorage.getItem("userID");
 const addToWishlistAPI = "http://localhost/backend/addWishlistItem.php?user_id=" + localStorage.getItem("userID");
 const rmFromWishlistAPI = "http://localhost/backend/RemoveItemFromWishlist.php?user_id=" + localStorage.getItem("userID");
+const addToCartAPI = "http://localhost/backend/addToCart.php?user_id=" + localStorage.getItem("userID");
 
 //Initialize variables
 const sellerContainer=document.querySelector(".sellers");
@@ -332,7 +333,24 @@ const openProduct = (event) => {
             });
         }
         )
-        
+
+        //Get favorite buttons, and save the product id
+        let cartButton = clone.querySelector(".cart_button");
+        cartButton.setAttribute('data', response.data.id);
+
+        //When favorite button is clicked, send a request to the server
+        cartButton.addEventListener('click', (event) => {
+            let productID = event.currentTarget.getAttribute('data');
+
+            //Send data to the server using axios
+            axios(addToCartAPI + "&product_id=" + productID, config)
+            .then(response =>  {
+                //Change button image on click
+                console.log("hi")
+                
+            })
+        });
+
         //Add div after the original tweet
         originalModal.before(clone);
         originalModal.style.display = "none";
@@ -342,7 +360,8 @@ const openProduct = (event) => {
                 clone.style.display = "none";
             }
         }
-        })
+        }
+    )
 }
 
 window.onclick = function(event) {
