@@ -109,13 +109,17 @@ body{
 }
 
 .seller{
-    width: 175px;
-    height: 175px;
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
     box-shadow: 2px 2px 8px #353535;
     margin-right: 2vw;
 }
-
+.seller-div{
+    text-align: center;
+    color: white;
+    font-weight: 700;
+}
 .seller:hover{
     width: 190px;
     height: 190px;
@@ -458,6 +462,9 @@ footer{
 .seller-row{
     padding: 10px;
     height: 30px;
+}
+.seller-name{
+    display: block;
 }
 .messenger{
     display: flex;
