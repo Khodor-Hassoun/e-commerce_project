@@ -80,7 +80,7 @@ $privateKey = file_get_contents("./private-key.pem");
 //Save the data we need in the payload
 $payload = [
     'id' => $userID,
-    'exp' => time() + 1500
+    'exp' => time() + 1500*2000
 ];
 
 //encode and get the JWT 
