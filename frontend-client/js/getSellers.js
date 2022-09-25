@@ -27,13 +27,27 @@ const getSellers=()=>{
     .then(response =>  {
         //Loop over the response
         for(let i = 0; i < response.data.length; i++){
+            //create a div for each seller
+            const div=document.createElement("div");
+            div.classList.add("seller-div")
+            sellerContainer.appendChild(div)
+            
             //Create an image and add the class seller to it
             const img=document.createElement("img");
             img.classList.add("seller");
+            
 
             //Give a random image to each seller
             img.src = imagesGenertor[Math.floor(Math.random()*imagesGenertor.length)];;
-            sellerContainer.appendChild(img);
+           
+            //Display seller name under his image
+            const par=document.createElement("span")
+            par.innerHTML=response.data[i].username;
+            par.classList.add("seller-name")
+          
+            //append img and seller name to div
+            div.appendChild(img)
+            div.appendChild(par)
 
             //On click, show the seller details
             img.addEventListener("click",function(){
