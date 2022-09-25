@@ -20,22 +20,8 @@
         return;   
     }   
 
-    //Check if these product is found in wishlist of the same user id
-    $query = $mysqli->prepare("SELECT * FROM wishlists WHERE product_id = ? and user_id = ?");
-    $query->bind_param("ii", $product_id, $user_id);
-    $query->execute();
-    $res=$query->store_result();
-    $num_rows = $query->num_rows;
-
-    //send a message that item is already liked
-    if ($num_rows>0) {
-        http_response_code(400);
-        echo json_encode(['status' => 400,'message' => 'Item already found in wishlist!']);
-        return;
-    }
-
     //Insert wishlist item record to database
-    $query = $mysqli->prepare("INSERT INTO wishlists (product_id, user_id) VALUE (?, ?) "); 
+    $query = $mysqli->prepare("INSERT INTO carts (product_id, user_id) VALUE (?, ?) "); 
     $query->bind_param("ii", $product_id, $user_id);
     $query->execute();
 
