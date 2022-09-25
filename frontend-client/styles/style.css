@@ -469,6 +469,17 @@ footer{
     padding: 10px;
     height: 30px;
 }
+.slr{
+    background-color: #1F7A8C;
+    color: white;
+    margin: 1px;
+    padding: 10px;
+    height: 30px;
+}
+.slr:hover{
+    color: #1F7A8C ;
+    background-color: white;
+}
 .seller-name{
     display: block;
 }
@@ -478,6 +489,12 @@ footer{
     justify-content: space-between;
 
 }
+.no-msgs{
+    text-align: center;
+    font-size: 25px;
+    color: #03445c ;
+    padding-top: 20%;
+}
 .getsellers-div{
     width: 30%;
     color: white;
@@ -486,19 +503,17 @@ footer{
 }
 .chatDiv{
     width: 70%;
-    font-weight: bolder;
-    height: 615px;
-    color:gray;
+    height: auto;
     padding: 5px;
-    background-color:rgb(167, 169, 169);
+    background-color:rgb(234, 234, 234);
 }
 .message{
-    background-color: white;
-    color: gray;
+    background-color:#03445c;
+    color:white;
     padding: 10px;
-    border-radius: 15px;
+    border-radius: 10px;
     margin-bottom: 5px;
-    width: 50%;
+    width: 40%;
 }
 .send-btn{
     outline: none;
@@ -507,6 +522,11 @@ footer{
     border: none;
     color: white;
     border-radius: 5px;
+}
+.light-blue-msg{
+    background-color: #1F7A8C;
+    color: white;
+    margin-left: auto;
 }
 .message-input{
     padding: 10px 15px;  

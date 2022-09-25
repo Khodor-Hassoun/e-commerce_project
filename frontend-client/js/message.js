@@ -1,8 +1,10 @@
-const sellersDiv=document.querySelector("#getSellers");
-const chatDiv=document.querySelector("#chat");
+//getting APIs urls
 const getSellerAPI="http://localhost/backend/getSellers.php";
 const getMessagesAPI="http://localhost/backend/getMessages.php";
 const addMessageAPI="http://localhost/backend/addMessage.php";
+//initializing variables
+const sellersDiv=document.querySelector("#getSellers");
+const chatDiv=document.querySelector("#chat");
 let inputValue;
 const userID=localStorage.getItem("userID");
 
@@ -20,9 +22,7 @@ const getSellers=()=>{//get sellers and show them in sellers div
             const seller=document.createElement("div");
             sellersDiv.appendChild(seller);
             seller.innerText=element.username;
-            seller.style.backgroundColor="#1F7A8C";
-            seller.style.margin="1px";
-            seller.classList.add("seller-row");
+            seller.classList.add("slr");
             seller.addEventListener("click",function(){//on clicking on seller row, client is able to start chat
                 startChat(element.id);
 
@@ -33,16 +33,13 @@ const getSellers=()=>{//get sellers and show them in sellers div
     }      
 
 const startChat=(sellerid)=>{
-    
     const btmDiv=document.createElement("div");
     btmDiv.classList.add("input-msg")
     const inputMessage=document.createElement("INPUT");
     inputMessage.setAttribute("type", "text");
     inputMessage.classList.add("message-input");
     inputMessage.placeholder="Type Your Message Here..";
-
     btmDiv.appendChild(inputMessage);
-    
     const sendBtn=document.createElement("button");
     sendBtn.classList.add("send-btn");
     sendBtn.innerText="Send";
@@ -66,23 +63,33 @@ const startChat=(sellerid)=>{
         
         if(response.data.length==0){//if no old messages found, display No Messages
             chatDiv.innerText=" "
-            chatDiv.innerText="No messages"
-            chatDiv.style.color="white"
+            chatDiv.innerText="No messages";
+            chatDiv.classList.add("no-msgs");
             chatDiv.appendChild(btmDiv)
     }
         //if there are old messages,display them
         else{
             chatDiv.innerText=" ";
+            chatDiv.classList.remove("no-msgs");
             for(let i = 0; i < response.data.length; i++){
                 const message=document.createElement("div");
                 message.classList.add("message");
+                //select from messages that are between loggedin user and clicked seller
                 if((response.data[i].sender_id==sellerid && response.data[i].reciever_id==userID) || (response.data[i].sender_id==userID && response.data[i].reciever_id==sellerid)){
-                     message.innerText=response.data[i].message;
-                    chatDiv.appendChild(message)
+                     if(response.data[i].sender_id==userID){//if message is for loggedin user
+                            message.innerText=response.data[i].message;//display it and give it custom class
+                            chatDiv.appendChild(message)
+                        
+                    }
+                    else{//if message is for clicked seller
+                        message.innerText=response.data[i].message;//display it and give it different class
+                        message.classList.add("light-blue-msg");
+                        chatDiv.appendChild(message)
+                    }
                 }
                 
             } 
-            chatDiv.appendChild(btmDiv)
+            chatDiv.appendChild(btmDiv)//add input and button Div at the bottom of the page
       }
     });
 
@@ -104,4 +111,4 @@ const sendMessage=(id,value)=>{//post input data and user ids to database
         
     });
 }
-window.addEventListener("load",getSellers)
+window.addEventListener("load",getSellers)//when page load,execute get sellers function
