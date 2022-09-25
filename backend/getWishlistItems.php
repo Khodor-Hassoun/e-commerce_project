@@ -23,19 +23,19 @@
             return;
         }
         
+        //execute query
+        $query = $mysqli->prepare("Select * FROM wishlists, products
+        WHERE wishlists.product_id = products.id and wishlists.user_id = ?");
+        $query->bind_param("i", $user_id);
+        $query->execute();
+        $array = $query->get_result();
 
-    $query = $mysqli->prepare("Select * FROM wishlists, products
-    WHERE wishlists.product_id = products.id and wishlists.user_id = ?");
-    $query->bind_param("i", $user_id);
-    $query->execute();
-    $array = $query->get_result();
+        $response = [];
 
-    $response = [];
+        while($a = $array->fetch_assoc()){
+            $response[] = $a;
+        }
 
-    while($a = $array->fetch_assoc()){
-        $response[] = $a;
-    }
-
-    $json = json_encode($response);
-    echo $json;
+        $json = json_encode($response);
+        echo $json;
 ?>
