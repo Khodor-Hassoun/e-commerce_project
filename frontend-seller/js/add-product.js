@@ -215,8 +215,9 @@ axios.get(getProductsApi,{
             popupContainer2.classList.add('show')
             editProdId.value = parseInt(object.id)
             editSellerId.value = parseInt(object.user_id)
-
         })
+        
+
         btnDiv.append(editBtn)
 
         const deleteBtn = document.createElement("button")
@@ -274,6 +275,7 @@ thumbnail.addEventListener('change',()=>{
 // Add a product
 productForm.addEventListener("submit",(e)=>{
     e.preventDefault() //THIS SHOULD GO WHEN GOING LIVE. USED WHEN TESTING THE APIS
+    
     const data =new FormData()
     data.append('thumbnail', image64)
     data.append('category_id',parseInt(catName.value))
@@ -293,6 +295,9 @@ productForm.addEventListener("submit",(e)=>{
     })
     
 })
+
+
+
 editForm.addEventListener('submit',(e)=>{
     e.preventDefault()
     const data = new FormData()
@@ -302,7 +307,7 @@ editForm.addEventListener('submit',(e)=>{
     data.append('description', description2.value)
     data.append("category_id",parseInt(catName2.value))
     data.append('price', parseInt(price2.value))
-    data.append("user_id", editSellerId);
+    data.append("user_id", 41);
     axios.post(editProductApi, data)
       .then((res) => {
         console.log(data);
