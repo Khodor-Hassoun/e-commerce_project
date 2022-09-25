@@ -608,6 +608,16 @@ footer{
     background-color: #ff5757;
 }
 
+.profile_actions{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.profile_actions button{
+    width: 30%;
+    font-size: 14px;
+}
 @media screen and (max-width: 800px) {
     .product{
         max-width: 290px;
