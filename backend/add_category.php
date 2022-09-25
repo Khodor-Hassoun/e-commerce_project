@@ -1,12 +1,12 @@
 <?php
     include ("connection.php");
     include ("headers.php");
-    // require_once("jwtFunc.php");
+    require_once("jwtFunc.php");
 
     // //Check JWT token
-    // if(!jwtAuth()){
-    //     return;
-    // }
+    if(!jwtAuth()){
+        return;
+    }
     
     $description = $_POST["description"];
     $thumbnail = $_POST["thumbnail"];
