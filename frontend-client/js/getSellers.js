@@ -5,9 +5,9 @@ const getRandomProductsAPI="http://localhost/backend/getRandProducts.php";
 const getProductsByCatAPI = "http://localhost/backend/getProductsByCat.php";
 const getRandProductsBySellerAPI = "http://localhost/backend/getRandProductBySeller.php?id=";
 const getProductAPI = "http://localhost/backend/getProduct.php?product_id=";
-const likedProductAPI = "http://localhost/backend/getLikedItems.php";
-const likeAPI = "http://localhost/backend/likeItem.php";
-const unlikeAPI = "http://localhost/backend/unlikeItem.php";
+const likedProductAPI = "http://localhost/backend/checkItemIfLiked.php?user_id=" + localStorage.getItem("userID");
+const likeAPI = "http://localhost/backend/likeItem.php?user_id=" + localStorage.getItem("userID");
+const unlikeAPI = "http://localhost/backend/unlikeItem.php?user_id=" + localStorage.getItem("userID");
 
 //Initialize variables
 const sellerContainer=document.querySelector(".sellers");
@@ -235,7 +235,6 @@ const openProduct = (event) => {
 
     axios.get(getProductAPI + sellerID)
     .then(response => {
-        console.log(response)
          
         //Make a clone of the tweet model
         let originalModal = document.getElementById("product_modal");
@@ -266,16 +265,17 @@ const openProduct = (event) => {
         }
         
         //Get likes
-        let likes = clone.querySelector(".likes_number");
-        likes.textContent = data.likes_count;
-        likes.id = data.id;
+        // let likes = clone.querySelector(".likes_number");
+        // likes.textContent = data.likes_count;
+        // likes.id = data.id;
 
         //Get like buttons, and save the product id
         let likeButton = clone.querySelector(".like_button");
         likeButton.setAttribute('data', response.data.id);
 
+        console.log("hi");
         //Check if the post is liked or not
-        axios(likedProductAPI + response.data.id)
+        axios.get(likedProductAPI + "&product_id=" + response.data.id, config)
         .then(response =>{
 
             //Save the result of the product is liked or not, change the button accordingly
@@ -289,10 +289,10 @@ const openProduct = (event) => {
                 const productAPI = isLiked ? unlikeAPI : likeAPI;
 
                 //Send data to the server using axios
-                axios(productAPI + productID)
+                axios.get(productAPI  + "&product_id=" +  productID, config)
                 .then(response =>  {
                     //Change the number of likes on like/unlike
-                    likes.textContent = isLiked? parseInt(likes.textContent) -1 : parseInt(likes.textContent) + 1;
+                    // likes.textContent = isLiked? parseInt(likes.textContent) -1 : parseInt(likes.textContent) + 1;
 
                     //Change button image on click
                     likeButton.setAttribute('isLiked', !isLiked);
