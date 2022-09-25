@@ -145,7 +145,8 @@ header > h3{
     display: flex;
     width: 100%;
     border-collapse:collapse;
-    margin: 20vh 22vw;
+    margin: 20vh 30vw;
+    overflow-y: scroll;
     position: fixed;
 }
 
@@ -204,7 +205,9 @@ header > h3{
     outline: none;
 }
 
-
+.seller{
+    display: none;
+}
 
 /*Client page starts here*/
 .client_info tr td:last-child{
@@ -285,8 +288,9 @@ header > h3{
     width: 67%;
 }
 
-.name_container input:first-child{
-    margin-right: 1vw;
+.name_container input:nth-child(2){
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
 }
   
 .close {
@@ -327,7 +331,7 @@ header > h3{
     }
 
     .side_menu_container{
-        width: 27vw;
+        width: 20vw;
         font-size: 12px
     }
 
@@ -341,10 +345,14 @@ header > h3{
 
     .info{
         display: flex;
-        width: 50%;
+        width: 70%;
         border-collapse:collapse;
-        margin-left: 35vw;
+        margin-left: 25vw;
         font-size: 12px;
+    }
+
+    .info tr{
+        padding: 0.3vh 0.3vw;
     }
 
     .modal_content {
