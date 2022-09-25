@@ -11,6 +11,7 @@ const addpProductApi = 'http://localhost/e-commerce_project/backend/addProductBy
 const getProductsApi = 'http://localhost/e-commerce_project/backend/getProductsOfSeller.php'
 const getProductLikes = 'http://localhost/e-commerce_project/backend/getProductLikes.php'
 const deleteProductApi = 'http://localhost/e-commerce_project/backend/deleteProduct.php'
+const getProductViews = 'http://localhost/e-commerce_project/backend/getProductViews.php'
 
 // Variables for add product api
 const thumbnail = document.getElementById('thumbnail');
@@ -123,25 +124,40 @@ axios.get(getProductsApi,{
         // Get likes from '''''favourite_items''''''' table in db
         const likeDiv = document.createElement('div')
         likeDiv.classList.add("like-icon")
-        const p = document.createElement('p')
+        const likes = document.createElement('p')
+        const views = document.createElement('p')
+        
+        // Get the views api
+        axios.get(getProductViews,{
+            params:{
+                product_id: parseInt(object.id)
+            }
+        })
+        .then(res=>{
+            views.textContent = `Views: ${res.data.views}`
+        })
+        .catch(e=>{
+            console.log(e)
+        })
 
+        // Get the likes api
         axios.get(getProductLikes,{
             params:{
                 product_id: parseInt(object.id)
             }
         })
         .then(res=>{
-            p.textContent = `Likes: ${res.data.likes}`
-            likeDiv.append(p)
-            gridItemText.append(likeDiv)
+            likes.textContent = `Likes: ${res.data.likes}`
+            // gridItemText.append(likeDiv)
             
         })
         .catch(e=>{
             console.log(e)
         })
-        // likeDiv.append(p)
+        likeDiv.append(views)
+        likeDiv.append(likes)
         gridItem.append(image)
-        // gridItemText.append(likeDiv)
+        gridItemText.append(likeDiv)
 
         // Edit and delete buttons
         const btnDiv = document.createElement('div')
