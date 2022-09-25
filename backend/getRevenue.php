@@ -1,6 +1,6 @@
 <?php
-    include("headers/headers.php");
-    include("connection/connection.php");
+    include("headers.php");
+    include("connection.php");
     require_once("jwtFunc.php");
 
     //Check JWT token
