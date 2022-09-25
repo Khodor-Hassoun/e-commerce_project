@@ -2,15 +2,18 @@
 const loginAPI = "http://localhost/backend/signin.php";
 const signupAPI = "http://localhost/backend/signup.php";
 const resetPassAPI = "http://localhost/backend/resetClientPw.php";
-const getRandAdsAPI = "http://localhost/backend/getRandAds.php";
-const searchAPI = "";
+const getRandAdsAPI = "http://localhost/backend/getRandomAds.php";
+const editProfileAPI = "http://localhost/backend/editProfile.php";
 
 //Initialize variables
-const button = document.getElementById("login_btn");
+const wishlistButton = document.getElementById("wishlist_btn");
+const cartButton = document.getElementById("cart_btn");
+const loginButton = document.getElementById("login_btn");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 const error = document.getElementById("error");
 const signinModal = document.getElementById("signin_modal");
+const editProfileModal = document.getElementById("edit_modal");
 const signinButton = document.getElementById("signin_btn");
 const resetPassModal = document.getElementById("reset_modal");
 const close = document.getElementById("close");
@@ -26,6 +29,7 @@ const new_lastName = document.getElementById("new_last_name");
 const new_address = document.getElementById("new_address");
 const new_phoneNumber = document.getElementById("new_phone_number");
 const signupButton = document.getElementById("create_account");
+const editPorfileButton = document.getElementById("edit_profile");
 const resetPassButton = document.getElementById("forgot_pass");
 const resetPassEmail = document.getElementById("reset_email");
 const resetStatus = document.getElementById("email_status");
@@ -55,48 +59,6 @@ window.onload = function () {
         setInterval(changeImage, 5000);
     }
 };
-
-//When the user clicks on reset password, a new modal appears
-resetPassButton.onclick = function() {
-    signinModal.style.display = "none";
-    resetPassModal.style.display = "block";
-}
-
-//When the user clicks on the sign in button, a modal appears
-signinButton.onclick = function() {
-    signinModal.style.display = "block";
-}
-
-//Open sign up modal instead of sign in
-open_signup.onclick = function() {
-    signinModal.style.display = "none";
-    signupModal.style.display = "block";
-}
-
-//Close modals
-close.onclick = function() {
-    signinModal.style.display = "none";
-}
-
-close2.onclick = function() {
-    signupModal.style.display = "none";
-}
-close3.onclick = function() {
-    resetPassModal.style.display = "none";
-}
-
-//Close modals if clicked outside of them
-window.onclick = function(event) {
-  if (event.target == signinModal) {
-    signinModal.style.display = "none";
-  }
-  if (event.target == signupModal) {
-    signupModal.style.display = "none";
-  }
-  if (event.target == resetPassModal) {
-    resetPassModal.style.display = "none";
-  }
-}
 
 const getRandomAds=()=>{
     axios.get(getRandAdsAPI)
@@ -133,6 +95,7 @@ const search = () => {
 }
 
 const login = () => {
+    
     //Save data
     const data = new FormData();
     data.append("email", email.value);
@@ -208,17 +171,83 @@ const resetPass = () =>{
      })
 }
 
-//search once the user type on the search bar
-searchInput.onkeyup = function() {
-    search();
+const editProfile = () => {
+    //Save user's data
+    const data = new FormData();
+    data.append("id", localStorage.getItem("userID"))
+    data.append("email", new_email.value);
+    data.append("username", new_username.value);
+    data.append("firstName", new_firstName.value);
+    data.append("lastName", new_lastName.value);
+    data.append("address", new_address.value);
+    data.append("phoneNumber", new_phoneNumber.value);
 
-    if(searchInput.value == ""){
-        searchResult.style.display = "none";
-        searchResult.innerHTML = '';
+    //Send data to the server using axios
+    axios.post(editProfileAPI, data, config)
+    .then(
+        response =>  {
+
+        //Save token and ID in the local storage
+        localStorage.setItem("userID", response.data.id)
+        localStorage.setItem("token", response.data.token)
+
+        //refresh page
+        window.location.replace("landingPage.html");
+    })
+}
+
+signupButton.addEventListener("click", createNewAccount);
+loginButton.addEventListener("click", login);
+resetEmail.addEventListener("click", resetPass);
+getRandomAds();
+
+if(localStorage.getItem("userID")){
+    wishlistButton.style.display = "block";
+    cartButton.style.display = "block";
+
+    //When the user clicks on the sign in button, a modal appears
+    signinButton.onclick = function() {
+        editProfileModal.style.display = "block";
+    }
+}
+else{
+    //When the user clicks on reset password, a new modal appears
+    resetPassButton.onclick = function() {
+        signinModal.style.display = "none";
+        resetPassModal.style.display = "block";
+    }
+    
+    //Open sign up modal instead of sign in
+    open_signup.onclick = function() {
+        signinModal.style.display = "none";
+        signupModal.style.display = "block";
+    }
+    
+    //Close modals
+    close.onclick = function() {
+        signinModal.style.display = "none";
+    }
+    
+    close2.onclick = function() {
+        signupModal.style.display = "none";
+    }
+    close3.onclick = function() {
+        resetPassModal.style.display = "none";
     }
 }
 
-signupButton.addEventListener("click", createNewAccount)
-button.addEventListener("click", login);
-resetEmail.addEventListener("click", resetPass);
-getRandomAds();
+//Close modals if clicked outside of them
+window.onclick = function(event) {
+    if (event.target == signinModal) {
+        signinModal.style.display = "none";
+    }
+    if (event.target == signupModal) {
+        signupModal.style.display = "none";
+    }
+    if (event.target == resetPassModal) {
+        resetPassModal.style.display = "none";
+    }
+    if(event.target == editProfileModal){
+        editProfileModal.style.display = "none";
+    }
+  }

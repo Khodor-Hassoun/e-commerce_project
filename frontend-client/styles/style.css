@@ -450,6 +450,10 @@ footer{
 
 /*End of sign up modal*/
 
+.hidden{
+    display: none;
+}
+
 @media screen and (max-width: 800px) {
     .product{
         max-width: 290px;

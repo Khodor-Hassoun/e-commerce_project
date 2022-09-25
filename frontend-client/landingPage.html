@@ -21,8 +21,8 @@
 
             <div class="user_options">
                 <button id="signin_btn" class="user_option"><img class="icons" src="images/profile.png"></button>
-                <button id="wishlist_btn" class="user_option"><img class="icons" src="images/wishlist.png"></button>
-                <button id="cart_btn" class="user_option"><img class="icons" src ="images/cart.png"></button>
+                <button id="wishlist_btn" class="user_option hidden"><img class="icons" src="images/wishlist.png"></button>
+                <button id="cart_btn" class="user_option hidden"><img class="icons" src ="images/cart.png"></button>
             </div>
         </div>
         <!--End of header-->
@@ -162,6 +162,30 @@
          <!--End of reset password content-->
     </div>
     <!--End of sign up modal-->
+
+    <!--Start of edit profile modal-->
+    <div id="edit_modal" class="modal add_user_modal">
+        <!--Start of modal content-->
+        <div class="modal_content">
+            <span id="close4" class="close">&times;</span>
+
+            <h1 class="login_title">Sign up</h1>
+            <input class="textfield" id="new_email" type="email" placeholder="email">
+
+            <div class="name_container">
+                <input class="textfield" id="new_username" type="text" placeholder="username">
+                <input class="textfield" id="new_first_name" type="text" placeholder="first name">
+                <input class="textfield" id="new_last_name" type="text" placeholder="last name">
+            </div>
+
+            <input class="textfield" id="new_address" type="text" placeholder="Address">
+            <input class="textfield" id="new_phone_number" type="number" placeholder="Phone number">
+
+            <button id="edit_profile" class="create_account">Edit</button>
+        </div>
+         <!--End of modal content-->
+    </div>
+    <!--End of edit profile modal-->
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="js/landingPageScript.js"></script>
