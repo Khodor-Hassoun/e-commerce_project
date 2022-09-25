@@ -619,6 +619,47 @@ footer{
     font-size: 14px;
 }
 
+/*Start of Wish list page*/
+.items_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:flex-start;
+    height: 100vh;
+}
+
+.vl {
+    border-left: 2px solid #022B3A;
+    height: 100%;
+}
+
+.list_title{
+    color:#1F7A8C;
+    margin-bottom: 2vh;
+}
+
+.list_container{
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    margin-top: 8vh;
+    align-items: center;
+    width: 45%;
+    overflow: scroll;
+    background-color: #EEF7FA;
+    padding: 1vh 1vw;
+    border-radius: 20px;
+}
+
+.list_container ul li{
+    padding: 1vh 1vw;
+    margin-top: 1vh;
+    font-size: 20px;
+    color: black;
+}
+
+/*End of Wish list page*/
+
 @media screen and (max-width: 800px) {
     .product{
         max-width: 290px;

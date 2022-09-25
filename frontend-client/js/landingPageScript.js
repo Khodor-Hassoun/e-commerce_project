@@ -268,9 +268,9 @@ messagesButton.onclick = function() {
 }
 
 wishlistButton.onclick = function() {
-    window.location.replace("wishlist.html");
+    window.location.replace("wishlistPage.html");
 }
 
 cartButton.onclick = function() {
-    window.location.replace("cart.html");
+    window.location.replace("cartPage.html");
 }
