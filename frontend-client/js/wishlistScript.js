@@ -4,9 +4,14 @@ const getFavoriteItemsAPI = "http://localhost/backend/getlikedItems.php?user_id=
 
 //Intialize variables
 const wishlistsUl=document.querySelector(".wishlist_items");
+const config = {
+    headers: {
+      Authorization: localStorage.getItem("token")
+    }
+}
 
 //Get data from the server using axios
-axios.get(getWishlistItemsAPI)
+axios.get(getWishlistItemsAPI, config)
 .then(response =>  {
 
     wishlistsUl.innerHTML = "";
