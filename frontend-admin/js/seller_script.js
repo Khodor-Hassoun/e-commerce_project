@@ -2,6 +2,7 @@
 const getSellerAPI = "http://localhost/backend/getSellers.php";
 const deleteSellerAPI = "http://localhost/backend/deleteSeller.php";
 const addSellerAPI = "http://localhost/backend/addSeller.php";
+const editSellerAPI = "http://localhost/backend/editSeller.php";
 
 //Intialize variables
 const editUserModal = document.querySelector(".edit_user_modal");
@@ -18,6 +19,15 @@ const new_lastName = document.getElementById("new_last_name");
 const new_address = document.getElementById("new_address");
 const new_phoneNumber = document.getElementById("new_phone_number");
 const addSellerBtn = document.getElementById("add_seller_btn");
+
+const edit_email = document.getElementById("edit_email");
+const edit_password = document.getElementById("edit_password");
+const edit_firstName = document.getElementById("edit_first_name");
+const edit_lastName = document.getElementById("edit_last_name");
+const edit_address = document.getElementById("edit_address");
+const edit_phoneNumber = document.getElementById("edit_phone_number");
+const editSellerBtn = document.getElementById("edit_seller_btn");
+
 
 const config = {
   headers: {
@@ -94,11 +104,38 @@ const getSellers = () =>{
             //Get edit button and save the user's id in it
             let editUserBtn = clone.querySelector(".edit_seller");
             editUserBtn.setAttribute('id', data.data[i].id);
+          
 
             // When the user clicks on the button, open the modal
             editUserBtn.onclick = function() {
               editUserModal.style.display = "block";
             }
+            //when the user click on editUserBtn, update seller
+            editSellerBtn.addEventListener("click", ()=>{
+              userID = editSellerBtn.getAttribute('id');
+  
+              const data = new FormData();
+              data.append("id",userID);
+              data.append("email", edit_email.value);
+              data.append("password", edit_password.value);
+              data.append("firstName", edit_firstName.value);
+              data.append("lastName", edit_lastName.value);
+              data.append("address", edit_address.value);
+              data.append("phoneNumber", edit_phoneNumber.value);
+              //Send data to the server using axios
+              axios.post(editSellerAPI, data, config)
+              .then(
+                  data =>  {
+                  //Show error
+                  if (data.message == "") {
+                      //Do nothing
+                      return
+                  }
+
+          //refresh page
+          window.location.replace("seller_page.html"); 
+      })
+          })
             
             //Get delete button and save the user's id in it
             let deleteUserBtn = clone.querySelector(".delete_seller");
