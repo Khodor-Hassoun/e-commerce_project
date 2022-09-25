@@ -4,26 +4,32 @@ const signupAPI = "http://localhost/backend/signup.php";
 const resetPassAPI = "http://localhost/backend/resetClientPw.php";
 const getRandAdsAPI = "http://localhost/backend/getRandomAds.php";
 const editProfileAPI = "http://localhost/backend/editProfile.php";
+const getVouchersAPI = "";
 
 //Initialize variables
 const wishlistButton = document.getElementById("wishlist_btn");
 const cartButton = document.getElementById("cart_btn");
 const loginButton = document.getElementById("login_btn");
+const signinButton = document.getElementById("signin_btn");
+const open_signup = document.getElementById("open_signup");
+const signupButton = document.getElementById("create_account");
+const editPorfileButton = document.getElementById("edit_profile");
+const resetPassButton = document.getElementById("forgot_pass");
+const signinModal = document.getElementById("signin_modal");
+const editProfileModal = document.getElementById("edit_modal");
+const resetPassModal = document.getElementById("reset_modal");
+const signupModal = document.getElementById("signup_modal");
+const voucherModal = document.getElementById("voucher_modal");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 const error = document.getElementById("error");
 const errorEdit = document.getElementById("error_edit");
 const errorCreate = document.getElementById("error_create");
-const signinModal = document.getElementById("signin_modal");
-const editProfileModal = document.getElementById("edit_modal");
-const signinButton = document.getElementById("signin_btn");
-const resetPassModal = document.getElementById("reset_modal");
 const close = document.getElementById("close");
 const close2 = document.getElementById("close2");
 const close3 = document.getElementById("close3");
 const close4 = document.getElementById("close4");
-const open_signup = document.getElementById("open_signup");
-const signupModal = document.getElementById("signup_modal");
+const close5 = document.getElementById("close5");
 const new_email = document.getElementById("new_email");
 const new_username = document.getElementById("new_username");
 const new_password = document.getElementById("new_password");
@@ -39,14 +45,13 @@ const edit_address = document.getElementById("edit_address");
 const edit_phoneNumber = document.getElementById("edit_phone_number");
 const editButton = document.getElementById("edit_profile");
 const logoutButton = document.getElementById("logout");
-const signupButton = document.getElementById("create_account");
-const editPorfileButton = document.getElementById("edit_profile");
-const resetPassButton = document.getElementById("forgot_pass");
 const resetPassEmail = document.getElementById("reset_email");
 const resetStatus = document.getElementById("email_status");
 const resetEmail = document.getElementById("reset_password");
 const adElement = document.querySelector('#ad');
 const messagesButton = document.getElementById("check_messages");
+const checkVouchersButton = document.getElementById("check_voucher");
+const sendVoucherButton = document.getElementById("send_voucher");
 
 const ads = [];
 const config = {
@@ -194,6 +199,8 @@ const logout = () => {
 
     localStorage.removeItem("userID");
     localStorage.removeItem("token");
+
+    window.location.replace("landingPage.html");
 }
 
 signupButton.addEventListener("click", createNewAccount);
@@ -274,3 +281,35 @@ wishlistButton.onclick = function() {
 cartButton.onclick = function() {
     window.location.replace("cartPage.html");
 }
+
+checkVouchersButton.onclick = function() {
+    editProfileModal.style.display = "none";
+    voucherModal.style.display = "block";
+}
+
+close5.onclick = function() {
+    voucherModal.style.display = "none";
+}
+
+//Get data from the server using axios
+axios.get(getFavoriteItemsAPI, config)
+.then(response =>  {
+
+    favoritessUl.innerHTML = "";
+
+    for(let i = 0; i < response.data.length; i++){   
+        //Create a new list item and add it to the favorites container
+        const li=document.createElement("li");
+        li.innerHTML= response.data[i].name + "<br/>" + "Price:" + response.data[i].price + "$";
+        li.id = response.data[i].id;
+        favoritessUl.appendChild(li);
+    }}
+    )
+.catch((e)=>{
+    favoritessUl.innerHTML = "";
+
+    //If there was an error, send back a message that there are no items
+    const li=document.createElement("li");
+    li.innerText="No Items";
+    favoritessUl.appendChild(li);
+});

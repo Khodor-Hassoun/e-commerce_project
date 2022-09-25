@@ -638,7 +638,8 @@ footer{
 }
 
 .profile_actions button{
-    width: 30%;
+    width: 8vw;
+    margin: 1vh 1vw;
     font-size: 14px;
 }
 
