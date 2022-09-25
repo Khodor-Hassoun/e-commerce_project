@@ -618,6 +618,7 @@ footer{
     width: 30%;
     font-size: 14px;
 }
+
 @media screen and (max-width: 800px) {
     .product{
         max-width: 290px;

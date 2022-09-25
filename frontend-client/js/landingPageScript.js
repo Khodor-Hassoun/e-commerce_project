@@ -47,6 +47,7 @@ const resetStatus = document.getElementById("email_status");
 const resetEmail = document.getElementById("reset_password");
 const adElement = document.querySelector('#ad');
 const messagesButton = document.getElementById("check_messages");
+
 const ads = [];
 const config = {
     headers: {
@@ -264,4 +265,12 @@ window.onclick = function(event) {
 
 messagesButton.onclick = function() {
     window.location.replace("messages.html");
+}
+
+wishlistButton.onclick = function() {
+    window.location.replace("wishlist.html");
+}
+
+cartButton.onclick = function() {
+    window.location.replace("cart.html");
 }
