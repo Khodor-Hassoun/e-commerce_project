@@ -649,6 +649,7 @@ footer{
     background-color: #EEF7FA;
     padding: 1vh 1vw;
     border-radius: 20px;
+    box-shadow: 2px 2px 5px #cbcbcb;
 }
 
 .list_container ul li{
@@ -765,5 +766,9 @@ footer{
         border-radius: 30px;
         border-end-end-radius: 0;
         border-end-start-radius: 0;
+    }
+
+    .list_container ul li{
+        font-size: 16px;
     }
 }

@@ -3,7 +3,8 @@ const getWishlistItemsAPI = "http://localhost/backend/getWishlistItems.php?user_
 const getFavoriteItemsAPI = "http://localhost/backend/getlikedItems.php?user_id=" + localStorage.getItem("userID");
 
 //Intialize variables
-const wishlistsUl=document.querySelector(".wishlist_items");
+const wishlistsUl = document.querySelector(".wishlist_items");
+const favoritessUl = document.querySelector(".favorite_items");
 const config = {
     headers: {
       Authorization: localStorage.getItem("token")
@@ -19,7 +20,7 @@ axios.get(getWishlistItemsAPI, config)
     for(let i = 0; i < response.data.length; i++){   
         //Create a new list item and add it to the wishlist container
         const li=document.createElement("li");
-        li.innerText=response.data[i].name;
+        li.innerHTML= response.data[i].name + "<br/>" + "Price:" + response.data[i].price + "$";
         li.id = response.data[i].id;
         wishlistsUl.appendChild(li);
     }}
@@ -30,4 +31,26 @@ axios.get(getWishlistItemsAPI, config)
     const li=document.createElement("li");
     li.innerText="No Items";
     wishlistsUl.appendChild(li);
+});
+
+//Get data from the server using axios
+axios.get(getFavoriteItemsAPI, config)
+.then(response =>  {
+
+    favoritessUl.innerHTML = "";
+
+    for(let i = 0; i < response.data.length; i++){   
+        //Create a new list item and add it to the wishlist container
+        const li=document.createElement("li");
+        li.innerHTML= response.data[i].name + "<br/>" + "Price:" + response.data[i].price + "$";
+        li.id = response.data[i].id;
+        favoritessUl.appendChild(li);
+    }}
+    )
+.catch((e)=>{
+    favoritessUl.innerHTML = "";
+
+    const li=document.createElement("li");
+    li.innerText="No Items";
+    favoritessUl.appendChild(li);
 });
