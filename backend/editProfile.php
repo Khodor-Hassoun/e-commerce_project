@@ -14,17 +14,6 @@
     $first_name = $_POST["first_name"];
     $last_name = $_POST["last_name"];
 
-    //Check if ID's are not empty
-    if(!isset($id) || empty($id) || !isset($username) || empty($username)
-        || !isset($email) || empty($email)
-        || !isset($first_name) || empty($first_name) || !isset($last_name) || empty($last_name)){ 
-        http_response_code(400);
-        echo json_encode([
-            'status' => 400,'message' => 'All fields are required']);
-        
-        return;   
-    }   
-
     // Check if username exists
     $query = $mysqli->prepare("SELECT username FROM users WHERE username = ?");
     $query ->bind_param('s',$username);
@@ -56,8 +45,6 @@
     $query = $mysqli->prepare("UPDATE users SET first_name= ?, last_name= ?,username= ?,email= ? WHERE id= ?");
     $query->bind_param('ssssi', $first_name, $last_name, $username, $email, $id);
     $query->execute();
+
     echo json_encode(["message" => "success"]);
-
-
-
 ?>
