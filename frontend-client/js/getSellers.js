@@ -208,8 +208,94 @@ const getSellerProducts = (sellerID) => {
     })
 }
 
-const openProduct = () => {
+const openProduct = (sellerID, catergoryID) => {
     productModal.style.display = "block";
+
+    axios.get(getProductAPI)
+    .then(response => {
+         //Loop over the response
+         for(let i = 0; i < response.data.length; i++){
+            //Make a clone of the tweet model
+            let originalModal = document.getElementById("product_modal");
+            let clone = originalModal.cloneNode(true);
+            clone.style.display ="block";
+            clone.id= response.data[i].id;
+            clone.classList.add("modal");
+
+            //Get the tweet text and modify on it
+            let productName = clone.querySelector("#product_name");
+            productName.textContent = response.data[i].name;
+
+            //Get username
+            let description = clone.querySelector("#product_description");
+            username.textContent = response.data[i].description;
+
+            //Get name
+            let name = clone.querySelector(".name");
+            if(data[i].name != null){
+                name.textContent = response.data[i].name;
+            }
+
+            //Get the image if avaiable and show it
+            let image = clone.querySelector(".modalproduct_image");
+            if(data[i].image == null){
+                image.src = "images/empty.png"
+            }
+            else{
+                image.src = "data:image/png;base64," + response.data[i].image;
+            }
+            
+            //Get likes
+            let likes = clone.querySelector(".likes_number");
+            likes.textContent = data[i].likes_count;
+            likes.id = data[i].id;
+
+            //Get like buttons, and save the tweet id as an attribute
+            let likeButton = clone.querySelector(".like_btn");
+            likeButton.setAttribute('data', data[i].tweet_id);
+
+            //Check if the post is liked or not
+            fetch(likedTweetAPI + data[i].id)
+            .then(response => response.json())
+            .then(data =>{
+
+                //Save the result of the tweet is liked or not, change the button accordingly
+                likeButton.setAttribute('isLiked', data);
+                likeButton.querySelector("#like_image").src = data ? "images/redheart.png" : "images/heart.png";
+
+                //When like button is clicked, send a request to the server
+                likeButton.addEventListener('click', (event) => {
+                    let tweet_id = event.currentTarget.getAttribute('data');
+                    let isLiked = event.currentTarget.getAttribute('isLiked') === "true";
+                    const tweetApi = isLiked ? unlikeTweetAPI : likeTweetAPI;
+
+                    //Send data to the server using fetch
+                    fetch(tweetApi + tweet_id)
+                    .then(response=>response.json())
+                    .then(data =>  {
+
+                        if (data.error !== undefined) {
+                            //Do nothing
+                            return
+                        }
+
+                        //Change the number of likes on like/unlike
+                        likes.textContent = isLiked? parseInt(likes.textContent) -1 : parseInt(likes.textContent) + 1;
+
+                        //Change button image on click
+                        likeButton.setAttribute('isLiked', !isLiked);
+                        likeButton.querySelector("#like_image").src = isLiked ? "images/heart.png" : "images/redheart.png";
+                    })
+                });
+            }
+            
+            )
+            
+            //Add div after the original tweet
+            originalTweet.after(clone);
+        }
+    })
+    })
 
 
 }
