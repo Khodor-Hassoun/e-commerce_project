@@ -23,18 +23,8 @@
     $query = $mysqli->prepare("SELECT * FROM favourite_items WHERE product_id = ? and user_id = ?");
     $query->bind_param("ii", $product_id, $user_id);
     $query->execute();
-    $res=$query->store_result();
-    $num_rows = $query->num_rows;
 
-    //send a message that item is already liked 
-    if ($num_rows>0) {
-        http_response_code(400);
-        echo json_encode(['status' => 400,'message' => 'Item already liked!']);
-        return;
-    }
-    //send a message that item is not liked
-    else{
-        echo json_encode(['message' => 'Item Not liked!']);
-    }
+    $array = $query->get_result()->fetch_assoc();
 
+    echo json_encode(! empty($array));
 ?>
