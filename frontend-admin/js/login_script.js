@@ -1,5 +1,5 @@
 //Initialize APIs
-const loginAPI = "http://localhost/backend/signin.php";
+const loginAPI = "http://localhost/e-commerce_project/backend/signin.php";
 const button = document.getElementById("login_btn");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
