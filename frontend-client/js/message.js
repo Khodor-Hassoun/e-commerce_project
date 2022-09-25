@@ -2,7 +2,7 @@ const sellersDiv=document.querySelector("#getSellers");
 const chatDiv=document.querySelector("#chat");
 const getSellerAPI="http://localhost/backend/getSellers.php";
 const getMessagesAPI="http://localhost/backend/getMessages.php";
-
+const addMessageAPI="http://localhost/backend/addMessage.php";
 
 const getSellers=()=>{
     axios.get(getSellerAPI)
@@ -86,6 +86,19 @@ const startChat=(sellerid)=>{
 }
 
 const sendMessage=(id)=>{
-    console.log(id)
+    const data = new FormData();
+   data.append("sender_id",1)
+    data.append("reciever_id", id);
+    data.append("message", inputMessage.value);
+    axios.post(addMessageAPI,data)
+    .then(response =>  {
+        //Show error
+        if (response.error != null) {
+            console.log("error")
+            return
+        }
+        //Loop over the response
+        
+    });
 }
 window.addEventListener("load",getSellers)
