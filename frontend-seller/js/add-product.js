@@ -92,7 +92,7 @@ axios.get(getProductsApi,{
         gridItem.classList.add("grid-item")
 
         const image = document.createElement('img')
-        image.src = `../../backend/${object.thumbnail})`
+        image.src = `../backend/${object.thumbnail})`
 
         const gridItemText = document.createElement('div')
         gridItemText.classList.add("grid-item-text")
@@ -121,7 +121,8 @@ axios.get(getProductsApi,{
 
         }
         // Get likes from '''''favourite_items''''''' table in db
-        const likeDiv = document.querySelector('.like-icon')
+        const likeDiv = document.createElement('div')
+        likeDiv.classList.add("like-icon")
         const p = document.createElement('p')
 
         axios.get(getProductLikes,{
@@ -131,26 +132,26 @@ axios.get(getProductsApi,{
         })
         .then(res=>{
             p.textContent = `Likes: ${res.data.likes}`
-            // likeDiv.append(p)
-            // gridItemText.append(likeDiv)
+            likeDiv.append(p)
+            gridItemText.append(likeDiv)
             
         })
         .catch(e=>{
             console.log(e)
         })
-        likeDiv.append(p)
+        // likeDiv.append(p)
         gridItem.append(image)
-        gridItemText.append(likeDiv)
+        // gridItemText.append(likeDiv)
 
         // Edit and delete buttons
         const btnDiv = document.createElement('div')
-        btnDiv.classList.add("butoon-position")
+        btnDiv.classList.add("button-position")
 
         const editBtn = document.createElement("button")
         editBtn.classList.add("btn-style-1")
         editBtn.classList.add('edit')
         // editBtn.setAttribute('type', 'button')
-        editBtn.textContent = 'Edit'
+        editBtn.innerHTML = 'Edit'
         btnDiv.append(editBtn)
 
         const deleteBtn = document.createElement("button")
@@ -158,6 +159,23 @@ axios.get(getProductsApi,{
         deleteBtn.classList.add('delete')
         // deleteBtn.setAttribute('type', 'button')
         deleteBtn.textContent = 'Delete'
+        //
+        deleteBtn.addEventListener('click',()=>{
+            axios.get(deleteProductApi,{
+                params:{
+                    product_id: parseInt(`${object.id}`)
+                }
+            })
+            .then(res=>{
+                window.location.replace('add-product.html')
+            })
+            .catch(e=>{
+                console.log(e)
+            })
+        })
+
+
+
         btnDiv.append(deleteBtn)
         
         gridItemText.append(btnDiv)
@@ -172,39 +190,6 @@ axios.get(getProductsApi,{
 })
 
 // For deleting products
-const prodIds = document.getElementsByClassName('productID')
-
-for( let i=0; i<deleteBtns.length;i++){
-    deleteBtns[i].addEventListener("submit",()=>{
-        axios.get(deleteProductApi,{
-            params:{
-                product_id: parseInt(prodIds[i].textContent)
-            }
-        })
-        .then(res=>{
-            console.log(res.data)
-        })
-        .catch(e=>{
-            console.log(e)
-        })
-    })
-}
-// let i = 0
-// for( let button of deleteBtns){
-//     button.addEventListener("click",()=>{
-//         axios.get(deleteProductApi,{
-//             params:{
-//                 product_id: parseInt(prodIds[i].textContent)
-//             }
-//         })
-//         .then(res=>{
-//             console.log(res.data)
-//         })
-//         .catch(e=>{
-//             console.log(e)
-//         })
-//     })
-// }
 
 // For adding a product 
 // Get base64 from image
@@ -227,7 +212,7 @@ productForm.addEventListener("submit",(e)=>{
     const data =new FormData()
     data.append('thumbnail', image64)
     data.append('category_id',parseInt(catName.value))
-    data.append('seller_id',9)
+    data.append('seller_id',41)
     data.append('quantity', parseInt(quantity.value))
     data.append('name', prodName.value)
     data.append('description',description.value)
