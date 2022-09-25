@@ -146,7 +146,7 @@ const getRandomProducts=()=>{
 
 const getSellerProducts = (sellerID) => {
     productsDiv.innerHTML = "";
-    console.log(getRandProductsBySellerAPI + sellerID)
+
     axios.get(getRandProductsBySellerAPI + sellerID)
     .then(response =>  {
         //Show error
@@ -178,6 +178,10 @@ const getSellerProducts = (sellerID) => {
 
         }
     });
+}
+
+const openProduct = () => {
+
 }
 
 const loadPage=()=>{
