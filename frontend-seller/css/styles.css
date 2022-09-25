@@ -275,6 +275,20 @@ a:hover {
     height: 100vh;
     width: 100vw;
 }
+.popup-container2{
+    display: flex;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.6);
+    pointer-events: none;
+    opacity: 0;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
 
 .popup {
     height: 90vh;
@@ -300,6 +314,16 @@ a:hover {
 .close-btn-pop img {
     width: 100%;
 }
+.close-btn-pop-two {
+    width: 24px;
+    height: 24px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.close-btn-pop-two img {
+    width: 100%;
+}
 
 .popup-form {
     display: flex;
@@ -313,7 +337,9 @@ a:hover {
 #thumbnail {
     display: none;
 }
-
+#thumbnail-two {
+    display: none;
+}
 .thumbnail-div {
     width: 200px;
     height: 200px;

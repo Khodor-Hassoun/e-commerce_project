@@ -5,6 +5,8 @@ const popupContainer = document.querySelector('.popup-container');
 const thumbDiv = document.querySelector('.thumbnail-div');
 const gridContainer = document.querySelector(".grid-container")
 const submitBtn = document.getElementById('submit-btn')
+const popupContainer2 = document.querySelector('.popup-container2')
+const backBtn2 = document.querySelector('.close-btn-pop-two');
 
 // Apis used in this page
 const getCategory = "http://localhost/e-commerce_project/backend/getCategories.php"
@@ -13,6 +15,7 @@ const getProductsApi = 'http://localhost/e-commerce_project/backend/getProductsO
 const getProductLikes = 'http://localhost/e-commerce_project/backend/getProductLikes.php'
 const deleteProductApi = 'http://localhost/e-commerce_project/backend/deleteProduct.php'
 const getProductViews = 'http://localhost/e-commerce_project/backend/getProductViews.php'
+const editProductApi = 'http://localhost/e-commerce_project/backend/editProduct.php'
 
 // Variables for add product api
 const thumbnail = document.getElementById('thumbnail');
@@ -21,8 +24,36 @@ const description = document.querySelector('#desc')
 const catName = document.getElementById("category");
 const quantity = document.getElementById("quantity");
 const price = document.getElementById('price')
+const thumbDiv2 = document.querySelector('.thumbnail-div-two');
+const editProdId = document.getElementById("edit-prod-id")
+const editSellerId = document.getElementById("seller-id")
+
 let image64= ''
-const productForm = document.querySelector('.popup-form')
+const productForm = document.getElementById('add-form')
+
+// Variable for edit form
+const editForm = document.getElementById('edit-form')
+const editFormBtn = document.getElementById('edit-btn')
+const thumbnail2 = document.getElementById('thumbnail-two');
+const prodName2 = document.querySelector('#name-two');
+const description2 = document.querySelector('#desc-two')
+const catName2 = document.getElementById("category-two");
+const quantity2 = document.getElementById("quantity-two");
+const price2 = document.getElementById('price-two')
+let image642 = ''
+thumbnail2.addEventListener('change',()=>{
+    const file = thumbnail.files[0]
+    const reader = new FileReader()
+
+    reader.addEventListener('load',()=>{
+        console.log(reader.result)
+        thumbDiv2.src= `${reader.result}`
+        image642 = reader.result
+    })
+
+    reader.readAsDataURL(file)
+})
+
 
 // Arrays for the delete and edit buttons
 const deleteBtns = document.getElementsByClassName('delete')
@@ -41,7 +72,13 @@ backBtn.addEventListener('click',()=>{
 })
 
 submitBtn.addEventListener('click',()=>{
-    popupContainer.classList.remove(show)
+    popupContainer.classList.remove('show')
+})
+backBtn2.addEventListener('click',()=>{
+    popupContainer2.classList.remove('show')
+})
+editFormBtn.addEventListener('click',()=>{
+    popupContainer2.classList.remove('show')
 })
 
 const config={
@@ -65,6 +102,7 @@ axios.get(getCategory,{
         // get innerText
         catOption.textContent = `${object.name}`
         catName.append(catOption)
+        catName2.append(catOption)
 
         // insert categories into array of objects to use for products
         let id = object.id
@@ -173,6 +211,12 @@ axios.get(getProductsApi,{
         editBtn.classList.add('edit')
         // editBtn.setAttribute('type', 'button')
         editBtn.innerHTML = 'Edit'
+        editBtn.addEventListener('click', ()=>{
+            popupContainer2.classList.add('show')
+            editProdId.value = parseInt(object.id)
+            editSellerId.value = parseInt(object.user_id)
+
+        })
         btnDiv.append(editBtn)
 
         const deleteBtn = document.createElement("button")
@@ -249,4 +293,44 @@ productForm.addEventListener("submit",(e)=>{
     })
     
 })
+editForm.addEventListener('submit',(e)=>{
+    e.preventDefault()
+    const data = new FormData()
+    data.append('thumbnail', image642)
+    data.append('id', editProdId)
+    data.append('name', prodName2.value)
+    data.append('description', description2.value)
+    data.append("category_id",parseInt(catName2.value))
+    data.append('price', parseInt(price2.value))
+    data.append("user_id", editSellerId);
+    axios.post(editProductApi, data)
+      .then((res) => {
+        console.log(data);
+        console.log(res);
+      })
+      .catch((e) => {
+        console.log(e);
+    });
+})
 
+// Press on edit button open popup
+// Press on submit button send data
+// const editProduct = ()=>{
+//     const data = new FormData()
+//     data.append('thumbnail', image64)
+//     data.append('id', parseInt(object.id))
+//     data.append('name', object.name)
+//     data.append('description', object.description)
+//     data.append("category_id", object.category_id)
+//     data.append('price', object.price)
+//     data.append('user_id',object.user_id)
+
+//     axios.post(editProductApi, data)
+//     .then(res=>{
+//         console.log(data)
+//         console.log(res)
+//     })
+//     .catch(e=>{
+//         console.log(e)
+//     })
+// }

@@ -82,10 +82,10 @@
             <div class="close-btn-pop">
                 <img src="./images/back-btn.png" alt="">
             </div>
-            <form action="#" class="popup-form">
+            <form action="#" class="popup-form" id="add-form">
                 <input type="file" name="thumbnail" id="thumbnail">
                 <label for="thumbnail" class="">
-                    <img class="thumbnail-div" src="./images/category.png">
+                    <img class="thumbnail-div-two" src="./images/category.png">
                 </label>
                 <div class="pop-form-input">
                     <label for="name">Product name</label>
@@ -112,7 +112,51 @@
                     <label for="description">Product description</label>
                     <textarea name="description" id="desc" cols="30" rows="10"></textarea>
                 </div>
-                <button id="sumbit-btn" class="btn-style-1">Submit</button>
+                <button id="submit-btn" class="btn-style-1">Submit</button>
+            </form>
+        </section>
+    </div>
+    
+
+    <!-- Edit product -->
+    <div class="popup-container2">
+        <section class="popup">
+            <div class="close-btn-pop-two">
+                <img src="./images/back-btn.png" alt="">
+            </div>
+            <form action="#" class="popup-form" id="edit-form">
+                <input type="file" name="thumbnail" id="thumbnail-two">
+                <label for="thumbnail" class="">
+                    <img class="thumbnail-div" src="./images/category.png">
+                </label>
+                <div class="pop-form-input">
+                    <label for="name">Product name</label>
+                    <input type="text" name="name" id="name-two">
+                </div>
+                <div class="pop-form-input quan-cat">
+                    <div class="inner-quan-cat">
+                        <label for="category">Category:</label>
+                        <select name="category" id="category-two">
+                            <option value="1" selected >Categories</option>
+                        </select>
+                    </div>
+                    <div class="inner-quan-cat">
+                        <label for="quantity">Quantity</label>
+                        <input type="number" name="quantity" id="quantity-two">
+                    </div>
+                    <div class="inner-quan-cat">
+                        <label for="price">Price</label>
+                        <input type="number" name="price" id="price-two">
+                    </div>
+                </div>
+                
+                <div class="pop-form-input">
+                    <label for="description">Product description</label>
+                    <textarea name="description" id="desc-two" cols="30" rows="10"></textarea>
+                </div>
+                <input type="text" id="edit-prod-id" style="display: none;">
+                <input type="text" id="seller-id" style="display: none;">
+                <button id="edit-btn" class="btn-style-1">Submit</button>
             </form>
         </section>
     </div>
