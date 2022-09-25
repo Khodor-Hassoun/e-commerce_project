@@ -9,6 +9,8 @@ const getRandProductsBySellerAPI = "http://localhost/backend/getRandProductBySel
 const sellerContainer=document.querySelector(".sellers");
 const categoriesUl=document.querySelector(".categories_list");
 const productsDiv=document.querySelector(".products");
+const productModal = document.getElementById("product_modal");
+
 const imagesGenertor = ["https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000",
 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSla-p7MqWVSLL2rpSQHlxEO6mKceKYPvZjo4oslefoeXE7-oMcRHP5IfT3qgllHC8kKvQ&usqp=CAU",
 "https://www.w3schools.com/howto/img_avatar.png",
@@ -34,6 +36,8 @@ const getSellers=()=>{
 
             //On click, show the seller details
             img.addEventListener("click",function(){
+
+                //Get seller's categories and 9 random products from all categories
                 getSellerCategories(response.data[i].id);
                 getSellerProducts(response.data[i].id);
             },false)
@@ -80,6 +84,7 @@ const getSellerCategories=(id)=>{
                 li.classList.add("hover-underline-animation");
                 categoriesUl.appendChild(li);
 
+                //When a user clicks on a category, we get it's products
                 li.addEventListener("click", (event) => {
                     productsDiv.innerHTML = "";
                     const data = new FormData();
@@ -112,6 +117,8 @@ const getSellerCategories=(id)=>{
 
                             productDesc.appendChild(h4);
                             productDesc.appendChild(span);
+
+                            product.addEventListener("click", openProduct)
                     } 
                 });
 
@@ -154,6 +161,8 @@ const getRandomProducts=()=>{
 
             productDesc.appendChild(h4);
             productDesc.appendChild(span);
+
+            product.addEventListener("click", openProduct)
         }
     });
 }
@@ -163,7 +172,6 @@ const getSellerProducts = (sellerID) => {
 
     axios.get(getRandProductsBySellerAPI + sellerID)
     .then(response =>  {
-
         //Loop over the response
         for(let i = 0; i < response.data.length; i++){
             //Create a new div to store data in it
@@ -191,6 +199,7 @@ const getSellerProducts = (sellerID) => {
             productDesc.appendChild(h4);
             productDesc.appendChild(span);
 
+            product.addEventListener("click", openProduct)
         }
     })
     .catch((e)=>{
@@ -200,7 +209,15 @@ const getSellerProducts = (sellerID) => {
 }
 
 const openProduct = () => {
+    productModal.style.display = "block";
 
+
+}
+
+window.onclick = function(event) {
+    if (event.target == productModal) {
+        productModal.style.display = "none";
+    }
 }
 
 const loadPage=()=>{
