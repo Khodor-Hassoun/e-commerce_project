@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src * self blob: data: gap:; style-src * self 'unsafe-inline' blob: data: gap:; script-src * 'self' 'unsafe-eval' 'unsafe-inline' blob: data: gap:; object-src * 'self' blob: data: gap:; img-src * self 'unsafe-inline' blob: data: gap:; connect-src self * 'unsafe-inline' blob: data: gap:; frame-src * self blob: data: gap:;">
+    <link href="./styles/styles.css" rel="stylesheet">
+    <title>Seller page</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>LOGO</h1>
+            <h3>Welcome <span id="admin_name">admin!</span></h3>
+        </header>
+
+        <div class="data_container">
+            <div class="side_menu_container">
+                <ul class="menu">
+                    <li><h4>Options</h4></li>
+                    <li><a href="./clients_page.html">Clients</a></li>
+                    <li><a href="./seller_page.html">Sellers</a></li>
+                    <li><a href="./statistics_page.html">Statistics</a></li>
+                </ul>
+            </div>
+    
+            <div id="sellers_table" class="info_container">
+                <table class="info seller_info">
+                    <tr>
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>Phone number</th>
+                    </tr>
+    
+                    <tr class="seller">
+                        <td id="firstname"></td>
+                        <td id="lastname"></td>
+                        <td id="email"></td>
+                        <td id="address"></td>
+                        <td id="phone_number"></td>
+                        <td><button id="edit_seller" class="transparent_btn edit_seller"><img class="icons" src="images/user.png" alt="Add user button"></button></td>
+                        <td><button id="delete_seller" class="transparent_btn delete_seller"><img class="icons" src="images/delete-person.png" alt="Add user button"></button></td>
+                    </tr>
+    
+                    <tr>
+                        <td id="add_seller" colspan="5">+</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!--Start of modal-->
+    <div id="add_seller" class="modal add_user_modal">
+        <!--Start of modal content-->
+        <div class="modal_content">
+            <span id="close" class="close">&times;</span>
+            <input id="new_email" type="email" placeholder="email">
+            <input id="new_password" type="password" placeholder="Password">
+
+            <div class="name_container">
+                <input id="new_username" type="text" placeholder="username">
+                <input id="new_first_name" type="text" placeholder="first name">
+                <input id="new_last_name" type="text" placeholder="last name">
+            </div>
+
+            <input id="new_address" type="text" placeholder="Address">
+            <input id="new_phone_number" type="number" placeholder="Phone number">
+
+            <button id="add_seller_btn" class="edit">Add Seller</button>
+        </div>
+         <!--End of modal content-->
+    </div>
+    <!--End of modal-->
+
+    <!--Start of modal-->
+    <div class="modal edit_user_modal">
+        <!--Start of modal content-->
+        <div class="modal_content">
+            <span id="close2" class="close">&times;</span>
+            <input type="email" placeholder="email" id="edit_email">
+            <input type="password" placeholder="Password" id="edit_password">
+
+            <div class="name_container">
+                <input type="text" placeholder="first name" id="edit_first_name">
+                <input type="text" placeholder="last name" id="edit_last_name">
+            </div>
+
+            <input type="text" placeholder="Address" id="edit_address">
+            <input type="number" placeholder="Phone number" id="edit_phone_number">
+
+            <button class="edit" id="edit_seller_btn">Edit Seller</button>
+        </div>
+         <!--End of modal content-->
+    </div>
+    <!--End of modal-->
+    <script src="./js/renderer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./js/seller_script.js"></script>
+</body>
+</html>
