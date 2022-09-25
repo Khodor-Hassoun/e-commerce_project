@@ -4,9 +4,7 @@
     require_once("jwtFunc.php");
 
     //Check JWT token
-    if(!jwtAuth()){
-        return;
-    }
+
 
     //get total products
     $query = $mysqli->prepare(
