@@ -4,6 +4,7 @@ const backBtn = document.querySelector('.close-btn-pop');
 const popupContainer = document.querySelector('.popup-container');
 const thumbDiv = document.querySelector('.thumbnail-div');
 const gridContainer = document.querySelector(".grid-container")
+const submitBtn = document.getElementById('submit-btn')
 
 // Apis used in this page
 const getCategory = "http://localhost/e-commerce_project/backend/getCategories.php"
@@ -37,6 +38,10 @@ addProduct.addEventListener('click',()=>{
 
 backBtn.addEventListener('click',()=>{
     popupContainer.classList.remove('show')
+})
+
+submitBtn.addEventListener('click',()=>{
+    popupContainer.classList.remove(show)
 })
 
 const config={
