@@ -47,7 +47,7 @@ const config={
 // Get the categories from getCategory and place them in category select form
 axios.get(getCategory,{
     params: {
-		id: 9 // CRITICAL TO BE LOCAL STORAGE ID
+		id: 41 // CRITICAL TO BE LOCAL STORAGE ID/////////////////////////////////////////////////////
 	}
 })
 .then(res=>{
@@ -74,7 +74,7 @@ axios.get(getCategory,{
 // Get the products of the seller
 axios.get(getProductsApi,{
     params:{
-        seller_id:9   //CRITICAL TO BE LOCALSTORAGE userID
+        seller_id:41  //CRITICAL TO BE LOCALSTORAGE userID//////////////////////////////////////////
     }
 })
 .then(res =>{
