@@ -20,7 +20,7 @@
     }   
 
     //Check if these product is liked by the same user id
-    $query = $mysqli->prepare("SELECT * FROM favourite_items WHERE product_id = ? and user_id = ?");
+    $query = $mysqli->prepare("SELECT * FROM wishlists WHERE product_id = ? and user_id = ?");
     $query->bind_param("ii", $product_id, $user_id);
     $query->execute();
 

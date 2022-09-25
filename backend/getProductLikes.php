@@ -3,6 +3,12 @@
     // DataBase connection
     include("connection.php");
     require_once("headers.php");
+    // require_once("jwtFunc.php");
+
+    //Check JWT token
+    // if(!jwtAuth()){
+    //     return;
+    // }
 
     $product_id = $_GET["product_id"];
 
@@ -17,15 +23,23 @@
     }
 
     //Prepare and execute SQL query to retrieve product's record
-    $query = $mysqli->prepare(
-        "SELECT * FROM products P
-        WHERE P.id = (?)");
+    $query = $mysqli->prepare("SELECT product_id, COUNT(id) as likes FROM favourite_items WHERE product_id = ?");
 
     $query->bind_param("i", $product_id);
     $query->execute();
-    
 
     $response = $query->get_result()->fetch_assoc();
+
+    //If response is empty, send back an error message
+    if (empty($response)) {
+        http_response_code(400);
+        echo json_encode([
+            'error' => 400,
+            'message' => 'Product does not have any likes'
+        ]);
+
+        return;
+    }
 
     echo json_encode($response);
 

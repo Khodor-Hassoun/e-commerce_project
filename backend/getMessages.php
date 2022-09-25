@@ -1,11 +1,11 @@
 <?php
     include("headers.php");
     include("connection.php");
-    // require_once("jwtFunc.php");
-    // //Check JWT token
-    // if(!jwtAuth()){
-    //     return;
-    // }
+//     require_once("jwtFunc.php");
+//     //Check JWT token
+//     if(!jwtAuth()){
+//         return;
+//     }
     $seller_id= $_POST["seller_id"];
     $user_id= $_POST["user_id"];
     

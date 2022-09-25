@@ -3,6 +3,7 @@
     include("connection.php");
     require_once("headers.php");
 
+
     $seller_id = $_GET['id'];
 
 
