@@ -80,11 +80,12 @@ header{
     background-color: #022B3A;
     height: 15vh;
     color: white;
-    text-align: center;
+    text-align: left;
     padding-top: 3vh;
     width: 100%;
     position: fixed;
     top: 0;
+    padding-left: 6vw;
 }
 
 header > h1{
@@ -139,6 +140,10 @@ header > h3{
 
 .side_menu_container li:first-child{
     border: none;
+}
+
+.info > h1{
+    color:#022B3A;
 }
 
 .info{
@@ -358,5 +363,17 @@ header > h3{
     .modal_content {
         width: 70%; 
         height: 50%;
+    }
+
+    header > h1{
+        font-size: 18px;
+    }
+
+    header > h3{
+        font-size: 14px;
+    }
+
+    header{
+        padding-left: 3vw;
     }
 }

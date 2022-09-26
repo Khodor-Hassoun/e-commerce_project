@@ -5,6 +5,7 @@
 
 body{
     box-sizing: border-box;
+    font-family: 'Lato', sans-serif; 
 }
 
 .main_container{
@@ -176,6 +177,8 @@ body{
 
 .categories_list{
     margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .categoriesHeader{
@@ -696,6 +699,21 @@ footer{
     align-items: center;
 }
 
+.cart_button {
+    width: 50%;
+    font-family: Arial, FontAwesome;
+    display: flex;
+    flex-direction: row;
+}
+
+.cart_button i{
+    margin-right: 2vw;
+    font-size: 50px;
+}
+
+.cart_button span{
+    font-weight: bold;
+}
 /*End of Wish list page*/
 
 @media screen and (max-width: 800px) {
@@ -811,5 +829,9 @@ footer{
 
     .cart{
         width: 90%;
+    }
+
+    .profile_actions button{
+        width: 25vw;
     }
 }

@@ -290,26 +290,3 @@ checkVouchersButton.onclick = function() {
 close5.onclick = function() {
     voucherModal.style.display = "none";
 }
-
-//Get data from the server using axios
-axios.get(getFavoriteItemsAPI, config)
-.then(response =>  {
-
-    favoritessUl.innerHTML = "";
-
-    for(let i = 0; i < response.data.length; i++){   
-        //Create a new list item and add it to the favorites container
-        const li=document.createElement("li");
-        li.innerHTML= response.data[i].name + "<br/>" + "Price:" + response.data[i].price + "$";
-        li.id = response.data[i].id;
-        favoritessUl.appendChild(li);
-    }}
-    )
-.catch((e)=>{
-    favoritessUl.innerHTML = "";
-
-    //If there was an error, send back a message that there are no items
-    const li=document.createElement("li");
-    li.innerText="No Items";
-    favoritessUl.appendChild(li);
-});

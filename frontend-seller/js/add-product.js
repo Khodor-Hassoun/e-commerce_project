@@ -100,7 +100,6 @@ axios.get(getCategory,{
         // get innerText
         catOption.textContent = `${object.name}`
         catName.append(catOption)
-        catName2.append(catOption)
 
         // insert categories into array of objects to use for products
         let id = object.id
