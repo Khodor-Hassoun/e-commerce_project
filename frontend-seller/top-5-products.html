@@ -5,22 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/top-5-products.css">
+    <meta http-equiv="Content-Security-Policy" content="default-src * self blob: data: gap:; style-src * self 'unsafe-inline' blob: data: gap:; script-src * 'self' 'unsafe-eval' 'unsafe-inline' blob: data: gap:; object-src * 'self' blob: data: gap:; img-src * self 'unsafe-inline' blob: data: gap:; connect-src self * 'unsafe-inline' blob: data: gap:; frame-src * self blob: data: gap:;">
+    <link rel="stylesheet" href="css/styles.css">
     <script src="https://kit.fontawesome.com/8c9f3af1d6.js" crossorigin="anonymous"></script>
     <title>Top 5 Products</title>
 
-</head>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/styles.css">
-    <script src="https://kit.fontawesome.com/8c9f3af1d6.js" crossorigin="anonymous"></script>
-
-    <title>Seller</title>
 </head>
 
 <body>
@@ -32,19 +21,12 @@
 
             <div class="navbar">
                 <div class="navbar-container">
-                    <div class="search-field">
-                        <i class="fa-solid fa-magnifying-glass navbar-item"></i>
-                        <input type="text" placeholder="Search..">
-                    </div>
                     <div class="title">
-                        <p class="navbar-item">ZAAKH online store</p>
+                        <p class="navbar-item">ShopNerd</p>
                         <h1>Top 5 Products</h1>
                     </div>
-                    <i class="fa-solid fa-user navbar-item"></i>
+        
                 </div>
-
-
-
             </div>
         </nav>
 
@@ -56,15 +38,12 @@
     <section class="main-container">
         <div class="side-menu-container">
             <div class="side-menu-item">
-                <!-- <div class="link-style">
-                    
-                    <div class="underline"></div>
-                </div> -->
-                <a href="#">Options</a>
-                <a href="#">Add Product</a>
+                <h1>Options</h1>
+                <a href="add-product.html">Add Product</a>
                 <a href="top-5-products.html">Top 5 products</a>
-                <a href="#">Add Category</a>
-                <a href="#">Discount</a>
+                <a href="add-category.html">Add Category</a>
+                <a href="revenue.html">Revenue</a>
+                <a href="messages.html">Messages</a>
             </div>
         </div>
         <!-- end  sidebar menu-->
@@ -73,88 +52,7 @@
 
         <div class="grid-container">
 
-            <div class="grid-item">
-                <img src="../assets/images/car-kids.jpg ">
-                <div class="grid-item-text ">
-                    <p>Item:</p>
-                    <p>Categories:Electronics</p>
-                    <p> Price:8$</p>
-                    <div class="like-icon ">
-                        <p>Views:112</p>
-                        <i class="fa-regular fa-heart "></i>
-                    </div>
-                    <div class="button-position ">
-                        <input type="button" value="Edit" class="btn-style-1 ">
-                        <input type="button" value="Delete" class="btn-style-2 ">
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item ">
-                <img src="../assets/images/sac.jpg">
-                <div class="grid-item-text">
-                    <p>Item:</p>
-                    <p>Categories:Electronics</p>
-                    <p> Price:8$</p>
-                    <div class="like-icon">
-                        <p>Views:112</p>
-                        <i class="fa-regular fa-heart"></i>
-                    </div>
-                    <div class="button-position">
-                        <input type="button" value="Edit" class="btn-style-1">
-                        <input type="button" value="Delete" class="btn-style-2">
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <img src="../assets/images/speaker.jpg ">
-                <div class="grid-item-text ">
-                    <p>Item:</p>
-                    <p>Categories:Electronics</p>
-                    <p> Price:8$</p>
-                    <div class="like-icon ">
-                        <p>Views:112</p>
-                        <i class="fa-regular fa-heart "></i>
-                    </div>
-                    <div class="button-position ">
-                        <input type="button" value="Edit " class="btn-style-1 ">
-                        <input type="button" value="Delete " class="btn-style-2 ">
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item ">
-                <img src="../assets/images/table.jpg">
-                <div class="grid-item-text">
-                    <p>Item:</p>
-                    <p>Categories:Electronics</p>
-                    <p> Price:8$</p>
-                    <div class="like-icon">
-                        <p>Views:112</p>
-                        <i class="fa-regular fa-heart"></i>
-                    </div>
-                    <div class="button-position">
-                        <input type="button" value="Edit" class="btn-style-1">
-                        <input type="button" value="Delete" class="btn-style-2">
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <img src="../assets/images/pic1.jpg ">
-                <div class="grid-item-text ">
-                    <p>Item:</p>
-                    <p>Categories:Electronics</p>
-                    <p> Price:8$</p>
-                    <div class="like-icon ">
-                        <p>Views:112</p>
-                        <i class="fa-regular fa-heart "></i>
-                    </div>
-                    <div class="button-position ">
-                        <input type="button" value="Edit " class="btn-style-1 ">
-                        <input type="button" value="Delete " class="btn-style-2 ">
-                    </div>
-                </div>
-
-
-
-            </div>
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="js/getTop5Products.js"></script>
 </body>

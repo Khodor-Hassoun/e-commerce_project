@@ -26,7 +26,6 @@ backBtn.addEventListener('click',()=>{
     popupContainer.classList.remove('show')
 })
 
-
 // Add with axios
 thumbnail.addEventListener('change',()=>{
     const file = thumbnail.files[0]
@@ -40,6 +39,7 @@ thumbnail.addEventListener('change',()=>{
 
     reader.readAsDataURL(file)
 })
+
 categoryForm.addEventListener('submit',(e)=>{
     e.preventDefault()
     const data = new FormData()

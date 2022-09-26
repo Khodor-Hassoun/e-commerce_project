@@ -5,11 +5,6 @@
     require_once("headers.php");
     require_once("jwtFunc.php");
 
-    //Check JWT token
-    if(!jwtAuth()){
-        return;
-    }
-
     $seller_id = $_POST["seller_id"];   
 
     //Validate seller id

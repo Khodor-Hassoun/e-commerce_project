@@ -119,7 +119,7 @@ const login = () => {
         window.location.replace("landingPage.html");
     }
     else if (response.data.type == "seller"){
-        window.location.replace("/../frontend-seller/add-category.html");
+        window.location.replace("./../frontend-seller/add-product.html");
     }
     else{
         error.textContent = "Invalid input";

@@ -46,14 +46,12 @@ thumbnail2.addEventListener('change',()=>{
     const reader = new FileReader()
 
     reader.addEventListener('load',()=>{
-        console.log(reader.result)
         thumbDiv2.src= `${reader.result}`
         image642 = reader.result
     })
 
     reader.readAsDataURL(file)
 })
-
 
 // Arrays for the delete and edit buttons
 const deleteBtns = document.getElementsByClassName('delete')
@@ -90,7 +88,7 @@ const config={
 // Get the categories from getCategory and place them in category select form
 axios.get(getCategory,{
     params: {
-		id: localStorage("userID")
+		id: localStorage.getItem("userID")
 	}
 })
 .then(res=>{
@@ -122,7 +120,7 @@ axios.get(getProductsApi,{
     }
 })
 .then(res =>{
-    console.log(res.data)
+
     let categoryName
     for(let object of res.data){
         // get object category name
@@ -276,7 +274,7 @@ productForm.addEventListener("submit",(e)=>{
     const data =new FormData()
     data.append('thumbnail', image64)
     data.append('category_id',parseInt(catName.value))
-    data.append('seller_id', localStorage("userID"))
+    data.append('seller_id', localStorage.getItem("userID"))
     data.append('quantity', parseInt(quantity.value))
     data.append('name', prodName.value)
     data.append('description',description.value)
@@ -302,7 +300,7 @@ editForm.addEventListener('submit',(e)=>{
     data.append('description', description2.value)
     data.append("category_id",parseInt(catName2.value))
     data.append('price', parseInt(price2.value))
-    data.append("user_id", localStorage("userID"));
+    data.append("user_id", localStorage.getItem("userID"));
     
     axios.post(editProductApi, data, config)
       .then((res) => {
